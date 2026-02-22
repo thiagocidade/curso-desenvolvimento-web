@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Entre em contato comigo">
+    <title>Meu Portfólio | Contato</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ===== CABEÇALHO E NAVEGAÇÃO ===== -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">Meu Portfólio</a>
+            </div>
+            <nav>
+                <ul class="menu" id="menu">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                    <li><a href="contato.html" class="ativo">Contato</a></li>
+                </ul>
+                <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
+                    &#9776;
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+    <main>
+        <section class="secao">
+            <div class="container">
+                <h1>Contato</h1>
+                <p class="secao-descricao">Tem alguma pergunta ou quer entrar em contato? Preencha o formulário abaixo!</p>
+
+                <div class="contato-grid">
+                    <!-- Formulário de Contato -->
+                    <div class="contato-form">
+                        <form id="form-contato">
+                            <div class="form-group">
+                                <label for="nome">Nome *</label>
+                                <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+                                <span class="mensagem-erro"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">E-mail *</label>
+                                <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+                                <span class="mensagem-erro"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="assunto">Assunto</label>
+                                <select id="assunto" name="assunto">
+                                    <option value="">-- Selecione --</option>
+                                    <option value="duvida">Dúvida</option>
+                                    <option value="feedback">Feedback</option>
+                                    <option value="proposta">Proposta</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="mensagem">Mensagem *</label>
+                                <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva sua mensagem..." required></textarea>
+                                <span class="mensagem-erro"></span>
+                            </div>
+
+                            <button type="submit" class="btn">Enviar Mensagem</button>
+                        </form>
+
+                        <!-- Mensagem de sucesso (oculta por padrão) -->
+                        <div class="sucesso-card" id="sucesso-card" style="display: none;">
+                            <h3>✅ Mensagem enviada!</h3>
+                            <p>Obrigado pelo contato. Responderei o mais breve possível.</p>
+                        </div>
+                    </div>
+
+                    <!-- Informações de contato -->
+                    <div class="contato-info">
+                        <h2>Outras formas de contato</h2>
+
+                        <div class="info-item">
+                            <span class="info-icone">📧</span>
+                            <div>
+                                <strong>E-mail</strong>
+                                <p>seu-email@exemplo.com</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <span class="info-icone">🔗</span>
+                            <div>
+                                <strong>GitHub</strong>
+                                <p><a href="https://github.com/seu-usuario" target="_blank" rel="noopener">github.com/seu-usuario</a></p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <span class="info-icone">💼</span>
+                            <div>
+                                <strong>LinkedIn</strong>
+                                <p><a href="https://linkedin.com/in/seu-perfil" target="_blank" rel="noopener">linkedin.com/in/seu-perfil</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== RODAPÉ ===== -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Seu Nome. Projeto Final - Fundamentos de Desenvolvimento Web.</p>
+            <p>
+                <a href="https://github.com/seu-usuario" target="_blank" rel="noopener">GitHub</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

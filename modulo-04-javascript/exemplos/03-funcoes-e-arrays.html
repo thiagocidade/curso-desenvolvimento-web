@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funções e Arrays - Exemplos JavaScript</title>
+    <style>
+        /* ==========================================
+           FUNÇÕES E ARRAYS - EXEMPLOS
+           ========================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #34495e;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #2c3e50;
+            margin: 15px 0 10px;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .output {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            margin-top: 10px;
+            min-height: 40px;
+            white-space: pre-wrap;
+            font-size: 14px;
+        }
+
+        .code-display {
+            background: #f8f8f8;
+            border: 1px solid #ddd;
+            border-left: 4px solid #3498db;
+            padding: 12px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px 5px 5px 0;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        .btn-verde { background: #2ecc71; }
+        .btn-verde:hover { background: #27ae60; }
+        .btn-vermelho { background: #e74c3c; }
+        .btn-vermelho:hover { background: #c0392b; }
+        .btn-roxo { background: #9b59b6; }
+        .btn-roxo:hover { background: #8e44ad; }
+
+        input[type="text"], input[type="number"] {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            margin: 5px;
+        }
+
+        .nota {
+            background: #eaf6ff;
+            border-left: 4px solid #3498db;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .array-visual {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+
+        .array-item {
+            background: #3498db;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            text-align: center;
+            min-width: 50px;
+        }
+
+        .array-item .index {
+            display: block;
+            font-size: 10px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>⚡ Funções e Arrays</h1>
+    <p class="subtitle">Módulo 4 - JavaScript | Exemplo 03</p>
+
+    <!-- ==================== SEÇÃO 1: Tipos de Função ==================== -->
+    <div class="section">
+        <h2>1. Três Formas de Criar Funções</h2>
+        <p>JavaScript oferece diferentes maneiras de criar funções. Todas fazem a mesma coisa, mas com sintaxes diferentes.</p>
+
+        <div class="code-display">// 1. Declaração de função (function declaration)
+function somar(a, b) {
+    return a + b;
+}
+
+// 2. Expressão de função (function expression)
+const subtrair = function(a, b) {
+    return a - b;
+};
+
+// 3. Arrow function (ES6+) - forma moderna e concisa
+const multiplicar = (a, b) => a * b;</div>
+
+        <p>Teste as três formas:</p>
+        <input type="number" id="func-a" value="10" style="width:80px">
+        <input type="number" id="func-b" value="5" style="width:80px">
+        <button onclick="testarFuncoes()">▶ Executar as 3 Formas</button>
+        <div class="output" id="output-funcoes"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 2: Arrow Functions ==================== -->
+    <div class="section">
+        <h2>2. Arrow Functions em Detalhe</h2>
+        <p>As arrow functions (<code>=></code>) são a forma mais moderna e usada. Veja as variações:</p>
+
+        <div class="code-display">// Com vários parâmetros
+const somar = (a, b) => a + b;
+
+// Com um parâmetro (parênteses opcionais)
+const dobrar = n => n * 2;
+
+// Sem parâmetros
+const saudacao = () => "Olá!";
+
+// Com corpo (bloco) - precisa de return
+const calcular = (a, b) => {
+    const resultado = a * b;
+    return resultado;
+};</div>
+
+        <button onclick="exemploArrow()">▶ Ver Arrow Functions em Ação</button>
+        <div class="output" id="output-arrow"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 3: Arrays Básico ==================== -->
+    <div class="section">
+        <h2>3. Arrays — Listas de Dados</h2>
+        <p>Um array é uma <strong>lista ordenada</strong> de valores. Cada valor tem uma posição (índice), começando em 0.</p>
+
+        <div class="code-display">const frutas = ["Maçã", "Banana", "Laranja"];
+//   índice:      0        1         2
+
+frutas[0]    // "Maçã"     (primeiro item)
+frutas[2]    // "Laranja"  (terceiro item)
+frutas.length // 3          (total de itens)</div>
+
+        <h3>Visualização do Array</h3>
+        <div class="array-visual" id="array-visual"></div>
+
+        <button onclick="exemploArrayBasico()">▶ Explorar o Array</button>
+        <div class="output" id="output-array-basico"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 4: Métodos de Array ==================== -->
+    <div class="section">
+        <h2>4. Métodos de Modificação de Arrays</h2>
+        <p>Adicione e remova itens do array interativamente:</p>
+
+        <div class="array-visual" id="array-modificar"></div>
+
+        <p>
+            <input type="text" id="input-item" placeholder="Novo item" value="Uva">
+        </p>
+        <button class="btn-verde" onclick="arrayPush()">push() → Adicionar no final</button>
+        <button class="btn-verde" onclick="arrayUnshift()">unshift() → Adicionar no início</button>
+        <br>
+        <button class="btn-vermelho" onclick="arrayPop()">pop() → Remover do final</button>
+        <button class="btn-vermelho" onclick="arrayShift()">shift() → Remover do início</button>
+        <br>
+        <button onclick="arrayReset()">🔄 Resetar</button>
+        <div class="output" id="output-modificar"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 5: forEach, map, filter ==================== -->
+    <div class="section">
+        <h2>5. Métodos Poderosos: forEach, map, filter</h2>
+        <p>Esses métodos usam <strong>funções como parâmetro</strong> (callback) para processar cada item do array.</p>
+
+        <div class="code-display">const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// forEach - executa algo para cada item (não retorna nada)
+numeros.forEach(n => console.log(n));
+
+// map - transforma cada item e retorna NOVO array
+const dobrados = numeros.map(n => n * 2);
+// [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+
+// filter - filtra itens e retorna NOVO array
+const pares = numeros.filter(n => n % 2 === 0);
+// [2, 4, 6, 8, 10]</div>
+
+        <button onclick="exemploForEach()">▶ forEach</button>
+        <button onclick="exemploMap()">▶ map</button>
+        <button onclick="exemploFilter()">▶ filter</button>
+        <button class="btn-roxo" onclick="exemploEncadeado()">▶ Encadear (map + filter)</button>
+        <div class="output" id="output-metodos"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 6: find, includes, reduce ==================== -->
+    <div class="section">
+        <h2>6. Mais Métodos: find, includes, reduce</h2>
+
+        <div class="code-display">const notas = [8.5, 6.0, 9.2, 4.5, 7.8, 3.0, 10.0];
+
+// find - encontra o PRIMEIRO item que atende a condição
+notas.find(n => n >= 9);        // 9.2
+
+// includes - verifica se o array contém um valor
+notas.includes(10.0);           // true
+
+// reduce - reduz o array a um único valor
+notas.reduce((soma, n) => soma + n, 0);  // soma total</div>
+
+        <button onclick="exemploFind()">▶ find</button>
+        <button onclick="exemploIncludes()">▶ includes</button>
+        <button onclick="exemploReduce()">▶ reduce</button>
+        <div class="output" id="output-mais-metodos"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 7: Template Literals ==================== -->
+    <div class="section">
+        <h2>7. Template Literals com Funções e Arrays</h2>
+        <p>Combinando template literals (<code>`${}`</code>) com funções e arrays para gerar conteúdo dinâmico:</p>
+
+        <p>Digite nomes separados por vírgula:</p>
+        <input type="text" id="input-nomes" value="Ana, Bruno, Carlos, Diana" style="width:300px">
+        <button onclick="exemploTemplateLiteral()">▶ Gerar Relatório</button>
+        <div class="output" id="output-template"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 8: Desafio ==================== -->
+    <div class="section">
+        <h2>8. Desafio: Processador de Notas</h2>
+        <p>Digite notas separadas por vírgula e veja as estatísticas calculadas com funções e métodos de array:</p>
+
+        <input type="text" id="input-notas" value="8.5, 6.0, 9.2, 4.5, 7.8, 3.0, 10.0" style="width:350px">
+        <button class="btn-verde" onclick="processarNotas()">📊 Processar Notas</button>
+        <div class="output" id="output-notas"></div>
+    </div>
+
+    <script>
+        /* ==========================================
+           FUNÇÕES DOS EXEMPLOS INTERATIVOS
+           ========================================== */
+
+        // --- Exemplo 1: Três formas de função ---
+        function testarFuncoes() {
+            const el = document.getElementById('output-funcoes');
+            const a = Number(document.getElementById('func-a').value);
+            const b = Number(document.getElementById('func-b').value);
+
+            // Declaração
+            function somar(x, y) { return x + y; }
+
+            // Expressão
+            const subtrair = function(x, y) { return x - y; };
+
+            // Arrow function
+            const multiplicar = (x, y) => x * y;
+
+            let resultado = '';
+            resultado += `Valores: a = ${a}, b = ${b}\n\n`;
+            resultado += `1. function somar(a, b) { return a + b; }\n`;
+            resultado += `   somar(${a}, ${b}) → ${somar(a, b)}\n\n`;
+            resultado += `2. const subtrair = function(a, b) { return a - b; }\n`;
+            resultado += `   subtrair(${a}, ${b}) → ${subtrair(a, b)}\n\n`;
+            resultado += `3. const multiplicar = (a, b) => a * b;\n`;
+            resultado += `   multiplicar(${a}, ${b}) → ${multiplicar(a, b)}\n\n`;
+            resultado += `💡 As três produzem o mesmo resultado.\n`;
+            resultado += `   Arrow functions são mais concisas e modernas.`;
+
+            el.textContent = resultado;
+        }
+
+        // --- Exemplo 2: Arrow Functions ---
+        function exemploArrow() {
+            const el = document.getElementById('output-arrow');
+
+            const dobrar = n => n * 2;
+            const saudacao = () => "Olá, mundo!";
+            const somar = (a, b) => a + b;
+            const descrever = (nome, idade) => {
+                const ano = 2025 - idade;
+                return `${nome} nasceu em ${ano}`;
+            };
+
+            let resultado = '';
+            resultado += `Arrow com 1 parâmetro:\n`;
+            resultado += `  const dobrar = n => n * 2;\n`;
+            resultado += `  dobrar(7) → ${dobrar(7)}\n\n`;
+
+            resultado += `Arrow sem parâmetros:\n`;
+            resultado += `  const saudacao = () => "Olá, mundo!";\n`;
+            resultado += `  saudacao() → "${saudacao()}"\n\n`;
+
+            resultado += `Arrow com 2 parâmetros:\n`;
+            resultado += `  const somar = (a, b) => a + b;\n`;
+            resultado += `  somar(3, 4) → ${somar(3, 4)}\n\n`;
+
+            resultado += `Arrow com bloco (corpo):\n`;
+            resultado += `  const descrever = (nome, idade) => {\n`;
+            resultado += `      const ano = 2025 - idade;\n`;
+            resultado += `      return \`\${nome} nasceu em \${ano}\`;\n`;
+            resultado += `  };\n`;
+            resultado += `  descrever("Ana", 20) → "${descrever("Ana", 20)}"`;
+
+            el.textContent = resultado;
+        }
+
+        // --- Exemplo 3: Array Básico ---
+        const frutasBase = ["🍎 Maçã", "🍌 Banana", "🍊 Laranja", "🥭 Manga", "🍇 Uva"];
+
+        function renderizarArray(containerId, arr) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            arr.forEach((item, i) => {
+                const div = document.createElement('div');
+                div.className = 'array-item';
+                div.innerHTML = `<span class="index">[${i}]</span>${item}`;
+                container.appendChild(div);
+            });
+        }
+
+        function exemploArrayBasico() {
+            const el = document.getElementById('output-array-basico');
+            const frutas = [...frutasBase];
+            renderizarArray('array-visual', frutas);
+
+            let resultado = '';
+            resultado += `const frutas = ${JSON.stringify(frutas.map(f => f.split(' ')[1]))}\n\n`;
+            resultado += `frutas[0]     → "${frutas[0]}" (primeiro)\n`;
+            resultado += `frutas[2]     → "${frutas[2]}" (terceiro)\n`;
+            resultado += `frutas[${frutas.length - 1}]     → "${frutas[frutas.length - 1]}" (último)\n`;
+            resultado += `frutas.length → ${frutas.length} (total)\n\n`;
+            resultado += `💡 Índices começam em 0!\n`;
+            resultado += `   Último índice = length - 1 = ${frutas.length - 1}`;
+
+            el.textContent = resultado;
+        }
+
+        // --- Exemplo 4: Modificar Array ---
+        let arrayModificar = ["🍎 Maçã", "🍌 Banana", "🍊 Laranja"];
+
+        function atualizarArrayVisual() {
+            renderizarArray('array-modificar', arrayModificar);
+        }
+
+        function arrayPush() {
+            const item = document.getElementById('input-item').value || "Item";
+            arrayModificar.push("🆕 " + item);
+            atualizarArrayVisual();
+            document.getElementById('output-modificar').textContent =
+                `push("${item}") → Adicionou "${item}" no FINAL\nArray agora: [${arrayModificar.join(', ')}]\nTamanho: ${arrayModificar.length}`;
+        }
+
+        function arrayUnshift() {
+            const item = document.getElementById('input-item').value || "Item";
+            arrayModificar.unshift("🆕 " + item);
+            atualizarArrayVisual();
+            document.getElementById('output-modificar').textContent =
+                `unshift("${item}") → Adicionou "${item}" no INÍCIO\nArray agora: [${arrayModificar.join(', ')}]\nTamanho: ${arrayModificar.length}`;
+        }
+
+        function arrayPop() {
+            if (arrayModificar.length === 0) {
+                document.getElementById('output-modificar').textContent = "❌ Array vazio!";
+                return;
+            }
+            const removido = arrayModificar.pop();
+            atualizarArrayVisual();
+            document.getElementById('output-modificar').textContent =
+                `pop() → Removeu "${removido}" do FINAL\nArray agora: [${arrayModificar.join(', ')}]\nTamanho: ${arrayModificar.length}`;
+        }
+
+        function arrayShift() {
+            if (arrayModificar.length === 0) {
+                document.getElementById('output-modificar').textContent = "❌ Array vazio!";
+                return;
+            }
+            const removido = arrayModificar.shift();
+            atualizarArrayVisual();
+            document.getElementById('output-modificar').textContent =
+                `shift() → Removeu "${removido}" do INÍCIO\nArray agora: [${arrayModificar.join(', ')}]\nTamanho: ${arrayModificar.length}`;
+        }
+
+        function arrayReset() {
+            arrayModificar = ["🍎 Maçã", "🍌 Banana", "🍊 Laranja"];
+            atualizarArrayVisual();
+            document.getElementById('output-modificar').textContent = "🔄 Array resetado!";
+        }
+
+        // --- Exemplo 5: forEach, map, filter ---
+        const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        function exemploForEach() {
+            const el = document.getElementById('output-metodos');
+            let resultado = `const numeros = [${numeros.join(', ')}];\n\n`;
+            resultado += `numeros.forEach(n => console.log(n));\n`;
+            resultado += `─────────────────────────────────────\n`;
+
+            numeros.forEach((n, i) => {
+                resultado += `  Índice ${i}: valor = ${n}\n`;
+            });
+
+            resultado += `\n💡 forEach NÃO retorna nada. Apenas executa uma ação para cada item.`;
+            el.textContent = resultado;
+        }
+
+        function exemploMap() {
+            const el = document.getElementById('output-metodos');
+            let resultado = `const numeros = [${numeros.join(', ')}];\n\n`;
+
+            const dobrados = numeros.map(n => n * 2);
+            resultado += `const dobrados = numeros.map(n => n * 2);\n`;
+            resultado += `Resultado: [${dobrados.join(', ')}]\n\n`;
+
+            const textos = numeros.map(n => `Item ${n}`);
+            resultado += `const textos = numeros.map(n => \`Item \${n}\`);\n`;
+            resultado += `Resultado: [${textos.map(t => `"${t}"`).join(', ')}]\n\n`;
+
+            resultado += `💡 map RETORNA um novo array transformado.\n`;
+            resultado += `   O array original NÃO é modificado.`;
+            el.textContent = resultado;
+        }
+
+        function exemploFilter() {
+            const el = document.getElementById('output-metodos');
+            let resultado = `const numeros = [${numeros.join(', ')}];\n\n`;
+
+            const pares = numeros.filter(n => n % 2 === 0);
+            resultado += `const pares = numeros.filter(n => n % 2 === 0);\n`;
+            resultado += `Resultado: [${pares.join(', ')}]\n\n`;
+
+            const maioresQue5 = numeros.filter(n => n > 5);
+            resultado += `const maioresQue5 = numeros.filter(n => n > 5);\n`;
+            resultado += `Resultado: [${maioresQue5.join(', ')}]\n\n`;
+
+            resultado += `💡 filter RETORNA um novo array só com itens\n`;
+            resultado += `   que passam na condição (retornam true).`;
+            el.textContent = resultado;
+        }
+
+        function exemploEncadeado() {
+            const el = document.getElementById('output-metodos');
+            let resultado = `const numeros = [${numeros.join(', ')}];\n\n`;
+            resultado += `Encadeando métodos (filter + map):\n`;
+            resultado += `──────────────────────────────────\n\n`;
+
+            const resultado2 = numeros
+                .filter(n => n % 2 === 0)
+                .map(n => n * 10);
+
+            resultado += `numeros\n`;
+            resultado += `  .filter(n => n % 2 === 0)  → [${numeros.filter(n => n % 2 === 0).join(', ')}]\n`;
+            resultado += `  .map(n => n * 10)          → [${resultado2.join(', ')}]\n\n`;
+
+            resultado += `💡 Você pode encadear vários métodos!\n`;
+            resultado += `   Cada método retorna um novo array para o próximo.`;
+            el.textContent = resultado;
+        }
+
+        // --- Exemplo 6: find, includes, reduce ---
+        const notas = [8.5, 6.0, 9.2, 4.5, 7.8, 3.0, 10.0];
+
+        function exemploFind() {
+            const el = document.getElementById('output-mais-metodos');
+            let resultado = `const notas = [${notas.join(', ')}];\n\n`;
+
+            const primeira9 = notas.find(n => n >= 9);
+            resultado += `notas.find(n => n >= 9)\n`;
+            resultado += `→ ${primeira9} (primeira nota >= 9)\n\n`;
+
+            const reprovado = notas.find(n => n < 5);
+            resultado += `notas.find(n => n < 5)\n`;
+            resultado += `→ ${reprovado} (primeira nota < 5)\n\n`;
+
+            const inexistente = notas.find(n => n > 10);
+            resultado += `notas.find(n => n > 10)\n`;
+            resultado += `→ ${inexistente} (não encontrou → undefined)\n\n`;
+
+            resultado += `💡 find retorna o PRIMEIRO item que atende a condição.`;
+            el.textContent = resultado;
+        }
+
+        function exemploIncludes() {
+            const el = document.getElementById('output-mais-metodos');
+            let resultado = `const notas = [${notas.join(', ')}];\n\n`;
+
+            resultado += `notas.includes(10.0) → ${notas.includes(10.0)}\n`;
+            resultado += `notas.includes(5.0)  → ${notas.includes(5.0)}\n`;
+            resultado += `notas.includes(8.5)  → ${notas.includes(8.5)}\n\n`;
+
+            resultado += `indexOf (posição do item):\n`;
+            resultado += `notas.indexOf(9.2)   → ${notas.indexOf(9.2)} (posição)\n`;
+            resultado += `notas.indexOf(5.0)   → ${notas.indexOf(5.0)} (-1 = não existe)\n\n`;
+
+            resultado += `💡 includes retorna true/false.\n`;
+            resultado += `   indexOf retorna a posição (ou -1 se não existir).`;
+            el.textContent = resultado;
+        }
+
+        function exemploReduce() {
+            const el = document.getElementById('output-mais-metodos');
+            let resultado = `const notas = [${notas.join(', ')}];\n\n`;
+
+            const soma = notas.reduce((acum, n) => acum + n, 0);
+            resultado += `// Somar todas as notas\n`;
+            resultado += `notas.reduce((acum, n) => acum + n, 0)\n`;
+            resultado += `Passo a passo:\n`;
+
+            let acum = 0;
+            notas.forEach((n, i) => {
+                const novoAcum = acum + n;
+                resultado += `  ${i}: acum=${acum.toFixed(1)} + ${n} = ${novoAcum.toFixed(1)}\n`;
+                acum = novoAcum;
+            });
+
+            resultado += `Resultado: ${soma}\n\n`;
+
+            const media = soma / notas.length;
+            resultado += `Média: ${soma} / ${notas.length} = ${media.toFixed(2)}\n\n`;
+
+            resultado += `💡 reduce "reduz" todo o array a um único valor.`;
+            el.textContent = resultado;
+        }
+
+        // --- Exemplo 7: Template Literals ---
+        function exemploTemplateLiteral() {
+            const el = document.getElementById('output-template');
+            const input = document.getElementById('input-nomes').value;
+            const nomes = input.split(',').map(n => n.trim()).filter(n => n);
+
+            const saudar = nome => `Olá, ${nome}! Bem-vindo(a) ao curso.`;
+            const maiusculos = nomes.map(n => n.toUpperCase());
+            const comIndice = nomes.map((n, i) => `${i + 1}. ${n}`);
+
+            let resultado = `Nomes digitados: ${nomes.length}\n`;
+            resultado += `Array: [${nomes.map(n => `"${n}"`).join(', ')}]\n\n`;
+
+            resultado += `--- Saudações (map + template literal) ---\n`;
+            nomes.forEach(n => {
+                resultado += `${saudar(n)}\n`;
+            });
+
+            resultado += `\n--- Em maiúsculas (map + toUpperCase) ---\n`;
+            resultado += `[${maiusculos.map(n => `"${n}"`).join(', ')}]\n\n`;
+
+            resultado += `--- Lista numerada (map com índice) ---\n`;
+            comIndice.forEach(item => resultado += `${item}\n`);
+
+            el.textContent = resultado;
+        }
+
+        // --- Exemplo 8: Processador de Notas ---
+        function processarNotas() {
+            const el = document.getElementById('output-notas');
+            const input = document.getElementById('input-notas').value;
+            const notas = input.split(',').map(n => Number(n.trim())).filter(n => !isNaN(n));
+
+            if (notas.length === 0) {
+                el.textContent = "❌ Digite notas válidas separadas por vírgula!";
+                return;
+            }
+
+            const soma = notas.reduce((acc, n) => acc + n, 0);
+            const media = soma / notas.length;
+            const maior = Math.max(...notas);
+            const menor = Math.min(...notas);
+            const aprovados = notas.filter(n => n >= 7);
+            const reprovados = notas.filter(n => n < 7);
+
+            let resultado = `📊 RELATÓRIO DE NOTAS\n`;
+            resultado += `═══════════════════════════════\n\n`;
+            resultado += `Notas: [${notas.join(', ')}]\n`;
+            resultado += `Total de alunos: ${notas.length}\n\n`;
+
+            resultado += `--- Estatísticas ---\n`;
+            resultado += `Soma:   ${soma.toFixed(1)}  (reduce)\n`;
+            resultado += `Média:  ${media.toFixed(2)}  (reduce + divisão)\n`;
+            resultado += `Maior:  ${maior}  (Math.max)\n`;
+            resultado += `Menor:  ${menor}  (Math.min)\n\n`;
+
+            resultado += `--- Aprovados (nota >= 7) ---  (filter)\n`;
+            resultado += `${aprovados.length} aluno(s): [${aprovados.join(', ')}]\n\n`;
+
+            resultado += `--- Reprovados (nota < 7) ---  (filter)\n`;
+            resultado += `${reprovados.length} aluno(s): [${reprovados.join(', ')}]\n\n`;
+
+            resultado += `--- Conceitos ---  (map)\n`;
+            const conceitos = notas.map(n => {
+                const c = n >= 9 ? 'A' : n >= 7 ? 'B' : n >= 5 ? 'C' : 'D';
+                return `${n} → ${c}`;
+            });
+            conceitos.forEach(c => resultado += `  ${c}\n`);
+
+            resultado += `\nTaxa de aprovação: ${((aprovados.length / notas.length) * 100).toFixed(0)}%`;
+
+            el.textContent = resultado;
+        }
+
+        // Inicializar visualizações
+        renderizarArray('array-visual', frutasBase);
+        atualizarArrayVisual();
+    </script>
+
+</body>
+</html>

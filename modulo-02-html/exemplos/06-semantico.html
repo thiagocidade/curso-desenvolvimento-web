@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Exemplo de página com HTML semântico - Curso Fundamentos Web">
+    <meta name="author" content="Curso Fundamentos Web">
+    <title>Blog Tech - Exemplo HTML Semântico</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
+        header { background-color: #2c3e50; color: white; padding: 20px; }
+        header h1 { font-size: 1.8em; }
+        header p { color: #bdc3c7; }
+        nav { background-color: #34495e; padding: 10px 20px; }
+        nav ul { list-style: none; display: flex; gap: 20px; }
+        nav a { color: white; text-decoration: none; padding: 5px 10px; border-radius: 4px; }
+        nav a:hover { background-color: #3498db; }
+        .container { display: flex; max-width: 1200px; margin: 0 auto; padding: 20px; gap: 20px; }
+        main { flex: 3; }
+        aside { flex: 1; background-color: #ecf0f1; padding: 20px; border-radius: 8px; }
+        article { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 25px; margin-bottom: 20px; }
+        article h2 { color: #2c3e50; margin-bottom: 10px; }
+        article header { background: none; color: #333; padding: 0; margin-bottom: 15px; }
+        article header p { color: #7f8c8d; font-size: 0.9em; }
+        section { margin-bottom: 30px; }
+        section h2 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; margin-bottom: 15px; }
+        aside h3 { color: #2c3e50; margin-bottom: 10px; }
+        aside ul { padding-left: 20px; }
+        aside li { margin-bottom: 8px; }
+        details { background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 15px 0; }
+        summary { cursor: pointer; font-weight: bold; color: #2c3e50; }
+        footer { background-color: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 30px; }
+        footer a { color: #3498db; }
+        mark { background-color: #f1c40f; padding: 2px 4px; border-radius: 2px; }
+        time { color: #3498db; }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho principal do site -->
+    <header>
+        <h1>Blog Tech</h1>
+        <p>Notícias e tutoriais sobre desenvolvimento web</p>
+    </header>
+
+    <!-- Navegação principal -->
+    <nav aria-label="Navegação principal">
+        <ul>
+            <li><a href="#home">Início</a></li>
+            <li><a href="#artigos">Artigos</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+
+    <!-- Conteúdo principal com sidebar -->
+    <div class="container">
+
+        <!-- Conteúdo principal -->
+        <main>
+
+            <!-- Seção de Artigos -->
+            <section id="artigos">
+                <h2>Artigos Recentes</h2>
+
+                <!-- Artigo 1 -->
+                <article>
+                    <header>
+                        <h2>Introdução ao HTML Semântico</h2>
+                        <p>
+                            Por <strong>Ana Silva</strong> |
+                            Publicado em <time datetime="2025-01-15">15 de Janeiro de 2025</time> |
+                            Atualizado em <time datetime="2025-02-01">1 de Fevereiro de 2025</time>
+                        </p>
+                    </header>
+
+                    <p>
+                        O <mark>HTML semântico</mark> é uma abordagem de escrita HTML que utiliza tags
+                        com significado próprio para descrever o conteúdo da página. Em vez de usar
+                        <code>&lt;div&gt;</code> para tudo, usamos tags como <code>&lt;article&gt;</code>,
+                        <code>&lt;section&gt;</code>, <code>&lt;nav&gt;</code> e <code>&lt;aside&gt;</code>.
+                    </p>
+
+                    <p>
+                        Essa prática melhora a <strong>acessibilidade</strong>, o <strong>SEO</strong>
+                        e a <strong>manutenção</strong> do código.
+                    </p>
+
+                    <details>
+                        <summary>Por que usar HTML semântico?</summary>
+                        <ul>
+                            <li><strong>Acessibilidade:</strong> Leitores de tela entendem melhor a estrutura</li>
+                            <li><strong>SEO:</strong> Motores de busca indexam melhor o conteúdo</li>
+                            <li><strong>Manutenção:</strong> Código mais legível e organizado</li>
+                            <li><strong>Consistência:</strong> Padrão universal para todos os desenvolvedores</li>
+                        </ul>
+                    </details>
+
+                    <footer>
+                        <p>Tags: <a href="#">HTML</a>, <a href="#">Semântica</a>, <a href="#">Boas Práticas</a></p>
+                    </footer>
+                </article>
+
+                <!-- Artigo 2 -->
+                <article>
+                    <header>
+                        <h2>CSS Grid vs Flexbox: Quando Usar Cada Um</h2>
+                        <p>
+                            Por <strong>Carlos Souza</strong> |
+                            Publicado em <time datetime="2025-01-20">20 de Janeiro de 2025</time>
+                        </p>
+                    </header>
+
+                    <p>
+                        Uma das dúvidas mais comuns entre iniciantes é quando usar <mark>CSS Grid</mark>
+                        e quando usar <mark>Flexbox</mark>. A resposta curta: Flexbox é ideal para layouts
+                        unidimensionais (linha OU coluna), enquanto Grid é perfeito para layouts
+                        bidimensionais (linhas E colunas).
+                    </p>
+
+                    <figure>
+                        <img
+                            src="https://via.placeholder.com/700x300/3498db/ffffff?text=Grid+vs+Flexbox"
+                            alt="Comparação visual entre CSS Grid e Flexbox"
+                            style="max-width: 100%; height: auto; border-radius: 8px;"
+                        >
+                        <figcaption>Figura 1: Comparação entre layouts com Grid e Flexbox</figcaption>
+                    </figure>
+
+                    <details>
+                        <summary>Resumo rápido</summary>
+                        <p><strong>Use Flexbox para:</strong> Menus, barras de ferramentas, cards em linha, centralização.</p>
+                        <p><strong>Use Grid para:</strong> Layouts de página, galerias, dashboards, layouts complexos.</p>
+                    </details>
+
+                    <footer>
+                        <p>Tags: <a href="#">CSS</a>, <a href="#">Grid</a>, <a href="#">Flexbox</a></p>
+                    </footer>
+                </article>
+
+                <!-- Artigo 3 -->
+                <article>
+                    <header>
+                        <h2>JavaScript para Iniciantes: Por Onde Começar</h2>
+                        <p>
+                            Por <strong>Maria Santos</strong> |
+                            Publicado em <time datetime="2025-01-25">25 de Janeiro de 2025</time>
+                        </p>
+                    </header>
+
+                    <p>
+                        JavaScript é a linguagem de programação da web. Com ela, podemos adicionar
+                        <mark>interatividade</mark> às nossas páginas: animações, validações de formulário,
+                        requisições a APIs e muito mais.
+                    </p>
+
+                    <p>
+                        Neste artigo, vamos explorar os conceitos fundamentais que todo iniciante
+                        precisa dominar antes de avançar para frameworks como React ou Vue.
+                    </p>
+
+                    <footer>
+                        <p>Tags: <a href="#">JavaScript</a>, <a href="#">Iniciante</a>, <a href="#">Tutorial</a></p>
+                    </footer>
+                </article>
+            </section>
+
+        </main>
+
+        <!-- Barra lateral -->
+        <aside>
+            <h3>Sobre o Blog</h3>
+            <p>Blog dedicado a compartilhar conhecimento sobre desenvolvimento web para iniciantes.</p>
+
+            <h3>Categorias</h3>
+            <ul>
+                <li><a href="#">HTML (5 artigos)</a></li>
+                <li><a href="#">CSS (8 artigos)</a></li>
+                <li><a href="#">JavaScript (12 artigos)</a></li>
+                <li><a href="#">Git (3 artigos)</a></li>
+                <li><a href="#">Ferramentas (4 artigos)</a></li>
+            </ul>
+
+            <h3>Links Úteis</h3>
+            <ul>
+                <li><a href="https://developer.mozilla.org/pt-BR/" target="_blank" rel="noopener noreferrer">MDN Web Docs</a></li>
+                <li><a href="https://www.w3schools.com/" target="_blank" rel="noopener noreferrer">W3Schools</a></li>
+                <li><a href="https://css-tricks.com/" target="_blank" rel="noopener noreferrer">CSS-Tricks</a></li>
+            </ul>
+
+            <h3>Newsletter</h3>
+            <form action="#" method="POST">
+                <label for="email-newsletter">Receba novidades:</label>
+                <input type="email" id="email-newsletter" name="email" placeholder="seu@email.com" required style="width:100%; padding:8px; margin:5px 0;">
+                <button type="submit" style="width:100%; padding:8px; background:#3498db; color:white; border:none; border-radius:4px; cursor:pointer;">Assinar</button>
+            </form>
+        </aside>
+
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; <time datetime="2025">2025</time> Blog Tech - Todos os direitos reservados</p>
+        <address>
+            Contato: <a href="mailto:contato@blogtech.com.br">contato@blogtech.com.br</a>
+        </address>
+        <p>
+            <a href="#">Política de Privacidade</a> |
+            <a href="#">Termos de Uso</a>
+        </p>
+    </footer>
+
+</body>
+</html>

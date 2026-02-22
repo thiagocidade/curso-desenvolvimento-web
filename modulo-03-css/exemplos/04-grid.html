@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid - Exemplos</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; padding: 20px; background: #f0f0f0; }
+        .page { max-width: 950px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; }
+        h2 { color: #34495e; margin: 25px 0 10px; border-bottom: 2px solid #e67e22; padding-bottom: 8px; }
+        h3 { color: #7f8c8d; margin: 15px 0 8px; }
+        p { color: #555; margin-bottom: 10px; }
+        code { background: #ecf0f1; padding: 2px 6px; border-radius: 3px; }
+
+        .grid-demo {
+            display: grid;
+            gap: 10px;
+            padding: 10px;
+            background: #ecf0f1;
+            border-radius: 8px;
+            margin: 10px 0 20px;
+        }
+
+        .grid-demo .item {
+            background: #e67e22;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .grid-demo .item:nth-child(2) { background: #3498db; }
+        .grid-demo .item:nth-child(3) { background: #2ecc71; }
+        .grid-demo .item:nth-child(4) { background: #e74c3c; }
+        .grid-demo .item:nth-child(5) { background: #9b59b6; }
+        .grid-demo .item:nth-child(6) { background: #1abc9c; }
+        .grid-demo .item:nth-child(7) { background: #f39c12; }
+        .grid-demo .item:nth-child(8) { background: #e91e63; }
+        .grid-demo .item:nth-child(9) { background: #00bcd4; }
+
+        /* Grid básico com colunas fixas */
+        .grid-3col { grid-template-columns: 200px 200px 200px; }
+
+        /* Grid com fr */
+        .grid-fr { grid-template-columns: 1fr 2fr 1fr; }
+
+        /* Grid com repeat */
+        .grid-repeat { grid-template-columns: repeat(4, 1fr); }
+
+        /* Grid com minmax */
+        .grid-minmax { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+
+        /* Grid com auto-fill */
+        .grid-autofill { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+
+        /* Grid com linhas e colunas */
+        .grid-rows {
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: 100px 150px 80px;
+        }
+
+        /* Grid com áreas nomeadas */
+        .grid-areas {
+            grid-template-columns: 200px 1fr 200px;
+            grid-template-rows: 60px 1fr 50px;
+            grid-template-areas:
+                "header header header"
+                "sidebar content aside"
+                "footer footer footer";
+            min-height: 350px;
+        }
+
+        .grid-areas .area-header {
+            grid-area: header;
+            background: #2c3e50;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .grid-areas .area-sidebar {
+            grid-area: sidebar;
+            background: #34495e;
+            color: white;
+        }
+        .grid-areas .area-content {
+            grid-area: content;
+            background: #fafafa;
+            color: #333;
+        }
+        .grid-areas .area-aside {
+            grid-area: aside;
+            background: #7f8c8d;
+            color: white;
+        }
+        .grid-areas .area-footer {
+            grid-area: footer;
+            background: #2c3e50;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Grid span */
+        .grid-span { grid-template-columns: repeat(3, 1fr); }
+        .grid-span .span-2col { grid-column: span 2; background: #e74c3c !important; }
+        .grid-span .span-2row { grid-row: span 2; background: #9b59b6 !important; }
+
+        /* Galeria de imagens */
+        .galeria {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .galeria .img-item {
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .galeria .img-item:hover {
+            transform: scale(1.03);
+        }
+
+        .galeria .img-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .galeria .img-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            padding: 15px 10px 10px;
+            font-size: 0.9em;
+        }
+
+        /* Dashboard layout */
+        .dashboard {
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: auto auto auto;
+            gap: 15px;
+        }
+
+        .dashboard .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-top: 4px solid;
+        }
+
+        .dashboard .stat-card:nth-child(1) { border-color: #3498db; }
+        .dashboard .stat-card:nth-child(2) { border-color: #2ecc71; }
+        .dashboard .stat-card:nth-child(3) { border-color: #e74c3c; }
+        .dashboard .stat-card:nth-child(4) { border-color: #f39c12; }
+
+        .dashboard .stat-card .number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .dashboard .stat-card .label {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .dashboard .wide {
+            grid-column: span 2;
+            background: #fafafa;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .dashboard .full {
+            grid-column: span 4;
+            background: #fafafa;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page">
+        <h1>CSS Grid</h1>
+        <p>CSS Grid é um sistema de layout bidimensional que permite criar layouts complexos com linhas e colunas.</p>
+
+        <!-- Grid básico -->
+        <h2>Grid Básico - Colunas Fixas</h2>
+        <h3><code>grid-template-columns: 200px 200px 200px</code></h3>
+        <div class="grid-demo grid-3col">
+            <div class="item">1</div><div class="item">2</div><div class="item">3</div>
+            <div class="item">4</div><div class="item">5</div><div class="item">6</div>
+        </div>
+
+        <!-- Unidade fr -->
+        <h2>Unidade Fracionária (fr)</h2>
+        <h3><code>grid-template-columns: 1fr 2fr 1fr</code></h3>
+        <div class="grid-demo grid-fr">
+            <div class="item">1fr</div><div class="item">2fr (dobro)</div><div class="item">1fr</div>
+        </div>
+
+        <!-- repeat() -->
+        <h2>repeat()</h2>
+        <h3><code>grid-template-columns: repeat(4, 1fr)</code></h3>
+        <div class="grid-demo grid-repeat">
+            <div class="item">1</div><div class="item">2</div><div class="item">3</div><div class="item">4</div>
+            <div class="item">5</div><div class="item">6</div><div class="item">7</div><div class="item">8</div>
+        </div>
+
+        <!-- auto-fit com minmax -->
+        <h2>Grid Responsivo: auto-fit + minmax()</h2>
+        <h3><code>grid-template-columns: repeat(auto-fit, minmax(180px, 1fr))</code></h3>
+        <p><em>Redimensione a janela para ver os itens se reorganizarem automaticamente!</em></p>
+        <div class="grid-demo grid-minmax">
+            <div class="item">1</div><div class="item">2</div><div class="item">3</div>
+            <div class="item">4</div><div class="item">5</div><div class="item">6</div>
+        </div>
+
+        <!-- grid-template-rows -->
+        <h2>Definindo Linhas e Colunas</h2>
+        <h3>Linhas com alturas diferentes: <code>100px 150px 80px</code></h3>
+        <div class="grid-demo grid-rows">
+            <div class="item">1</div><div class="item">2</div><div class="item">3</div>
+            <div class="item">4</div><div class="item">5</div><div class="item">6</div>
+            <div class="item">7</div><div class="item">8</div><div class="item">9</div>
+        </div>
+
+        <!-- grid-column span -->
+        <h2>Spanning (Ocupar Múltiplas Células)</h2>
+        <h3><code>grid-column: span 2</code> e <code>grid-row: span 2</code></h3>
+        <div class="grid-demo grid-span">
+            <div class="item span-2col">Span 2 colunas</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item span-2row">Span 2 linhas</div>
+            <div class="item">6</div>
+            <div class="item">7</div>
+        </div>
+
+        <!-- grid-template-areas -->
+        <h2>Grid Template Areas</h2>
+        <p>Nomeie áreas do grid para criar layouts de forma visual e intuitiva:</p>
+        <div class="grid-demo grid-areas">
+            <div class="item area-header">Header</div>
+            <div class="item area-sidebar">Sidebar</div>
+            <div class="item area-content">Conteúdo Principal</div>
+            <div class="item area-aside">Aside</div>
+            <div class="item area-footer">Footer</div>
+        </div>
+
+        <!-- Exemplo: Galeria -->
+        <h2>Exemplo Prático: Galeria de Imagens</h2>
+        <div class="grid-demo galeria">
+            <div class="img-item">
+                <img src="https://via.placeholder.com/400x300/3498db/fff?text=Foto+1" alt="Foto 1">
+                <div class="overlay">Paisagem 1</div>
+            </div>
+            <div class="img-item">
+                <img src="https://via.placeholder.com/400x300/2ecc71/fff?text=Foto+2" alt="Foto 2">
+                <div class="overlay">Paisagem 2</div>
+            </div>
+            <div class="img-item">
+                <img src="https://via.placeholder.com/400x300/e74c3c/fff?text=Foto+3" alt="Foto 3">
+                <div class="overlay">Paisagem 3</div>
+            </div>
+            <div class="img-item">
+                <img src="https://via.placeholder.com/400x300/f39c12/fff?text=Foto+4" alt="Foto 4">
+                <div class="overlay">Paisagem 4</div>
+            </div>
+            <div class="img-item">
+                <img src="https://via.placeholder.com/400x300/9b59b6/fff?text=Foto+5" alt="Foto 5">
+                <div class="overlay">Paisagem 5</div>
+            </div>
+            <div class="img-item">
+                <img src="https://via.placeholder.com/400x300/1abc9c/fff?text=Foto+6" alt="Foto 6">
+                <div class="overlay">Paisagem 6</div>
+            </div>
+        </div>
+
+        <!-- Exemplo: Dashboard -->
+        <h2>Exemplo Prático: Dashboard</h2>
+        <div class="grid-demo dashboard" style="background: #ecf0f1;">
+            <div class="stat-card">
+                <div class="number">1,234</div>
+                <div class="label">Visitantes</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">567</div>
+                <div class="label">Cadastros</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">89%</div>
+                <div class="label">Satisfação</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">42</div>
+                <div class="label">Projetos</div>
+            </div>
+            <div class="wide">
+                <h4>Gráfico de Vendas</h4>
+                <p>Área para gráfico (grid-column: span 2)</p>
+            </div>
+            <div class="wide">
+                <h4>Atividades Recentes</h4>
+                <p>Lista de atividades (grid-column: span 2)</p>
+            </div>
+            <div class="full">
+                <h4>Tabela Completa</h4>
+                <p>Conteúdo que ocupa toda a largura (grid-column: span 4)</p>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

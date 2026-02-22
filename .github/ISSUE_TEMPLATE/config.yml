@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Discussões da Turma
+    url: https://github.com/thiagocidade/curso-desenvolvimento-web/discussions
+    about: Use Discussions para apresentação e troca de ideias gerais.

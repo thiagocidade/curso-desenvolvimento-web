@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabelas - Exemplos HTML</title>
+    <style>
+        /* Estilo básico para melhor visualização das tabelas */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 800px;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        caption {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        tfoot td {
+            font-weight: bold;
+            background-color: #ecf0f1;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Tabelas HTML</h1>
+
+    <!-- Tabela básica -->
+    <h2>Tabela Básica</h2>
+    <table>
+        <caption>Lista de Alunos</caption>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Idade</th>
+                <th>Cidade</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Ana Silva</td>
+                <td>25</td>
+                <td>São Paulo</td>
+            </tr>
+            <tr>
+                <td>Carlos Souza</td>
+                <td>30</td>
+                <td>Rio de Janeiro</td>
+            </tr>
+            <tr>
+                <td>Maria Santos</td>
+                <td>22</td>
+                <td>Belo Horizonte</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <!-- Tabela com colspan e rowspan -->
+    <h2>Tabela com Colspan e Rowspan</h2>
+    <table>
+        <caption>Horário de Aulas - Fundamentos Web</caption>
+        <thead>
+            <tr>
+                <th>Horário</th>
+                <th>Segunda</th>
+                <th>Terça</th>
+                <th>Quarta</th>
+                <th>Quinta</th>
+                <th>Sexta</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>08:00 - 10:00</td>
+                <td rowspan="2">Introdução à Web</td>
+                <td>HTML - Estrutura</td>
+                <td>HTML - Formulários</td>
+                <td>CSS - Flexbox</td>
+                <td>CSS - Responsivo</td>
+            </tr>
+            <tr>
+                <td>10:00 - 12:00</td>
+                <td>HTML - Tags</td>
+                <td>HTML - Semântico</td>
+                <td>CSS - Grid</td>
+                <td>CSS - Animações</td>
+            </tr>
+            <tr>
+                <td colspan="6" style="text-align: center; background-color: #f9e79f;">
+                    Intervalo para Almoço (12:00 - 13:00)
+                </td>
+            </tr>
+            <tr>
+                <td>13:00 - 15:00</td>
+                <td>Git e GitHub</td>
+                <td>HTML - Prática</td>
+                <td>CSS - Prática</td>
+                <td>JavaScript - DOM</td>
+                <td rowspan="2">Projeto Final</td>
+            </tr>
+            <tr>
+                <td>15:00 - 17:00</td>
+                <td>Atividade 1</td>
+                <td>Atividade 2</td>
+                <td>Atividade 3</td>
+                <td>JavaScript - Eventos</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6">Total: 32 horas de curso</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <hr>
+
+    <!-- Tabela com dados numéricos -->
+    <h2>Tabela com Dados Numéricos</h2>
+    <table>
+        <caption>Notas dos Módulos</caption>
+        <thead>
+            <tr>
+                <th scope="col">Aluno</th>
+                <th scope="col">HTML</th>
+                <th scope="col">CSS</th>
+                <th scope="col">JavaScript</th>
+                <th scope="col">Média</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Ana Silva</th>
+                <td>9.5</td>
+                <td>8.7</td>
+                <td>9.0</td>
+                <td>9.1</td>
+            </tr>
+            <tr>
+                <th scope="row">Carlos Souza</th>
+                <td>8.0</td>
+                <td>7.5</td>
+                <td>8.5</td>
+                <td>8.0</td>
+            </tr>
+            <tr>
+                <th scope="row">Maria Santos</th>
+                <td>9.0</td>
+                <td>9.2</td>
+                <td>8.8</td>
+                <td>9.0</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>Média da Turma</td>
+                <td>8.8</td>
+                <td>8.5</td>
+                <td>8.8</td>
+                <td>8.7</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <!-- Tabela responsiva com wrapper -->
+    <h2>Tabela Responsiva</h2>
+    <p><em>Em telas pequenas, a tabela terá scroll horizontal.</em></p>
+    <div style="overflow-x: auto;">
+        <table>
+            <caption>Comparação de Tecnologias Web</caption>
+            <thead>
+                <tr>
+                    <th>Tecnologia</th>
+                    <th>Tipo</th>
+                    <th>Função</th>
+                    <th>Dificuldade</th>
+                    <th>Ano de Criação</th>
+                    <th>Criador</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>HTML</td>
+                    <td>Marcação</td>
+                    <td>Estrutura</td>
+                    <td>Fácil</td>
+                    <td>1993</td>
+                    <td>Tim Berners-Lee</td>
+                </tr>
+                <tr>
+                    <td>CSS</td>
+                    <td>Estilização</td>
+                    <td>Aparência</td>
+                    <td>Médio</td>
+                    <td>1996</td>
+                    <td>Håkon Wium Lie</td>
+                </tr>
+                <tr>
+                    <td>JavaScript</td>
+                    <td>Programação</td>
+                    <td>Interatividade</td>
+                    <td>Médio-Alto</td>
+                    <td>1995</td>
+                    <td>Brendan Eich</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

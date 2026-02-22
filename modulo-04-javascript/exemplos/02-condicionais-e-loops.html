@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Condicionais e Loops - Exemplos JavaScript</title>
+    <style>
+        /* ==========================================
+           CONDICIONAIS E LOOPS - EXEMPLOS
+           ========================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #34495e;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .output {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            margin-top: 10px;
+            min-height: 40px;
+            white-space: pre-wrap;
+            font-size: 14px;
+        }
+
+        .code-display {
+            background: #f8f8f8;
+            border: 1px solid #ddd;
+            border-left: 4px solid #3498db;
+            padding: 12px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px 5px 5px 0;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        input[type="number"], input[type="text"], select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            margin: 5px;
+        }
+
+        .nota {
+            background: #eaf6ff;
+            border-left: 4px solid #3498db;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .aviso {
+            background: #fff9e6;
+            border-left: 4px solid #f1c40f;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .diagrama {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            font-size: 13px;
+            white-space: pre;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🔀 Condicionais e Loops</h1>
+    <p class="subtitle">Módulo 4 - JavaScript | Exemplo 02</p>
+
+    <!-- ==================== SEÇÃO 1: if / else ==================== -->
+    <div class="section">
+        <h2>1. if / else if / else</h2>
+        <p>Condicionais permitem que o programa <strong>tome decisões</strong>. "Se isso for verdadeiro, faça aquilo."</p>
+
+        <div class="diagrama">
+                   ┌──────────┐
+                   │ condição │
+                   └────┬─────┘
+                   ┌────┴────┐
+              verdadeiro   falso
+                   │         │
+              ┌────┴───┐ ┌──┴────┐
+              │ bloco  │ │ bloco │
+              │  if    │ │ else  │
+              └────────┘ └───────┘
+        </div>
+
+        <p>Digite sua idade para verificar a classificação:</p>
+        <input type="number" id="input-idade" placeholder="Sua idade" value="18" min="0" max="150">
+        <button onclick="verificarIdade()">▶ Verificar Idade</button>
+        <div class="output" id="output-idade"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 2: Operador Ternário ==================== -->
+    <div class="section">
+        <h2>2. Operador Ternário</h2>
+        <p>Uma forma compacta de escrever um <code>if/else</code> simples em uma única linha.</p>
+
+        <div class="code-display">// Sintaxe: condição ? valorSeVerdadeiro : valorSeFalso
+
+let idade = 18;
+let status = idade >= 18 ? "Maior de idade" : "Menor de idade";
+
+// É o mesmo que:
+// if (idade >= 18) { status = "Maior de idade"; }
+// else { status = "Menor de idade"; }</div>
+
+        <p>Nota de 0 a 10:</p>
+        <input type="number" id="input-nota" placeholder="Nota" value="7" min="0" max="10">
+        <button onclick="verificarNota()">▶ Aprovado ou Reprovado?</button>
+        <div class="output" id="output-nota"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 3: switch ==================== -->
+    <div class="section">
+        <h2>3. switch</h2>
+        <p>Ideal quando você precisa comparar uma variável com <strong>vários valores possíveis</strong>.</p>
+
+        <div class="code-display">switch (diaDaSemana) {
+    case 1:  texto = "Segunda"; break;
+    case 2:  texto = "Terça";   break;
+    case 3:  texto = "Quarta";  break;
+    // ... etc
+    default: texto = "Dia inválido";
+}</div>
+
+        <p>Selecione um dia:</p>
+        <select id="select-dia">
+            <option value="1">1 - Segunda</option>
+            <option value="2">2 - Terça</option>
+            <option value="3">3 - Quarta</option>
+            <option value="4">4 - Quinta</option>
+            <option value="5">5 - Sexta</option>
+            <option value="6">6 - Sábado</option>
+            <option value="7">7 - Domingo</option>
+        </select>
+        <button onclick="verificarDia()">▶ Verificar</button>
+        <div class="output" id="output-dia"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 4: for ==================== -->
+    <div class="section">
+        <h2>4. Loop for</h2>
+        <p>O <code>for</code> repete um bloco de código um número <strong>determinado</strong> de vezes.</p>
+
+        <div class="code-display">// Estrutura:  for (início; condição; incremento)
+
+for (let i = 1; i <= 5; i++) {
+    console.log(`Número: ${i}`);
+}
+// Imprime: 1, 2, 3, 4, 5</div>
+
+        <p>Gerar tabuada do número:</p>
+        <input type="number" id="input-tabuada" placeholder="Número" value="7" min="1" max="20">
+        <button onclick="gerarTabuada()">▶ Gerar Tabuada</button>
+        <div class="output" id="output-tabuada"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 5: while ==================== -->
+    <div class="section">
+        <h2>5. Loop while</h2>
+        <p>O <code>while</code> repete <strong>enquanto</strong> a condição for verdadeira. Use quando não sabe exatamente quantas vezes repetir.</p>
+
+        <div class="code-display">// Contagem regressiva
+let contador = 5;
+while (contador > 0) {
+    console.log(contador);
+    contador--;  // diminui 1 a cada volta
+}
+console.log("🚀 Lançar!");</div>
+
+        <p>Contagem regressiva a partir de:</p>
+        <input type="number" id="input-contagem" placeholder="Início" value="10" min="1" max="20">
+        <button onclick="contagemRegressiva()">▶ Iniciar Contagem</button>
+        <div class="output" id="output-contagem"></div>
+
+        <div class="aviso">
+            <strong>⚠️ Cuidado:</strong> Um loop <code>while</code> sem condição de parada causa um <strong>loop infinito</strong> que trava o navegador! Sempre garanta que a condição vai se tornar falsa em algum momento.
+        </div>
+    </div>
+
+    <!-- ==================== SEÇÃO 6: for...of ==================== -->
+    <div class="section">
+        <h2>6. for...of (Percorrer Arrays)</h2>
+        <p>O <code>for...of</code> é a forma mais simples de percorrer todos os itens de um array.</p>
+
+        <div class="code-display">const frutas = ["Maçã", "Banana", "Laranja", "Manga"];
+
+for (const fruta of frutas) {
+    console.log(`Fruta: ${fruta}`);
+}
+// Imprime cada fruta, uma por vez</div>
+
+        <button onclick="exemploForOf()">▶ Percorrer Lista de Frutas</button>
+        <div class="output" id="output-forof"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 7: Exercício Interativo ==================== -->
+    <div class="section">
+        <h2>7. Exercício: Jogo de Adivinhação</h2>
+        <p>Usando <strong>condicionais</strong> e <strong>loops</strong> juntos! Tente adivinhar o número secreto de 1 a 10.</p>
+
+        <input type="number" id="input-palpite" placeholder="Seu palpite (1-10)" min="1" max="10">
+        <button onclick="adivinhar()">🎯 Adivinhar</button>
+        <button onclick="novoJogo()" style="background: #2ecc71;">🔄 Novo Jogo</button>
+        <div class="output" id="output-jogo"></div>
+
+        <div class="nota">
+            <strong>💡 Conceitos usados:</strong> <code>Math.random()</code> para gerar número aleatório, <code>if/else</code> para comparar, variável para contar tentativas.
+        </div>
+    </div>
+
+    <!-- ==================== SEÇÃO 8: Comparativo ==================== -->
+    <div class="section">
+        <h2>8. Quando Usar Cada Loop?</h2>
+        <button onclick="exemploComparativo()">▶ Ver Comparativo</button>
+        <div class="output" id="output-comparativo"></div>
+    </div>
+
+    <script>
+        /* ==========================================
+           FUNÇÕES DOS EXEMPLOS INTERATIVOS
+           ========================================== */
+
+        // --- Exemplo 1: Verificar Idade ---
+        function verificarIdade() {
+            const el = document.getElementById('output-idade');
+            const idade = Number(document.getElementById('input-idade').value);
+            let resultado = `Idade informada: ${idade}\n\n`;
+
+            resultado += `Código executado:\n`;
+            resultado += `─────────────────\n`;
+
+            if (idade < 0 || idade > 150) {
+                resultado += `❌ Idade inválida!`;
+            } else if (idade < 12) {
+                resultado += `if (${idade} < 12)  → ✅ VERDADEIRO\n`;
+                resultado += `Resultado: 👶 Criança`;
+            } else if (idade < 18) {
+                resultado += `if (${idade} < 12)  → ❌ falso\n`;
+                resultado += `else if (${idade} < 18) → ✅ VERDADEIRO\n`;
+                resultado += `Resultado: 🧑 Adolescente`;
+            } else if (idade < 60) {
+                resultado += `if (${idade} < 12)  → ❌ falso\n`;
+                resultado += `else if (${idade} < 18) → ❌ falso\n`;
+                resultado += `else if (${idade} < 60) → ✅ VERDADEIRO\n`;
+                resultado += `Resultado: 🧑‍💼 Adulto`;
+            } else {
+                resultado += `if (${idade} < 12)  → ❌ falso\n`;
+                resultado += `else if (${idade} < 18) → ❌ falso\n`;
+                resultado += `else if (${idade} < 60) → ❌ falso\n`;
+                resultado += `else → (nenhuma condição anterior foi verdadeira)\n`;
+                resultado += `Resultado: 👴 Idoso`;
+            }
+
+            el.textContent = resultado;
+        }
+
+        // --- Exemplo 2: Nota com Ternário ---
+        function verificarNota() {
+            const el = document.getElementById('output-nota');
+            const nota = Number(document.getElementById('input-nota').value);
+
+            let resultado = `Nota: ${nota}\n\n`;
+
+            // Ternário
+            const status = nota >= 7 ? "✅ Aprovado" : "❌ Reprovado";
+            resultado += `Ternário: nota >= 7 ? "Aprovado" : "Reprovado"\n`;
+            resultado += `${nota} >= 7 ? → ${nota >= 7}\n`;
+            resultado += `Resultado: ${status}\n\n`;
+
+            // Ternários encadeados (mais complexo)
+            const conceito = nota >= 9 ? "A" : nota >= 7 ? "B" : nota >= 5 ? "C" : "D";
+            resultado += `Conceito: ${conceito}\n`;
+            resultado += `(A: ≥9 | B: ≥7 | C: ≥5 | D: <5)`;
+
+            el.textContent = resultado;
+        }
+
+        // --- Exemplo 3: Switch ---
+        function verificarDia() {
+            const el = document.getElementById('output-dia');
+            const dia = Number(document.getElementById('select-dia').value);
+            let resultado = `switch (${dia}) {\n`;
+
+            let nomeDia, tipo;
+            switch (dia) {
+                case 1: nomeDia = "Segunda-feira"; tipo = "💼 Dia útil"; break;
+                case 2: nomeDia = "Terça-feira"; tipo = "💼 Dia útil"; break;
+                case 3: nomeDia = "Quarta-feira"; tipo = "💼 Dia útil"; break;
+                case 4: nomeDia = "Quinta-feira"; tipo = "💼 Dia útil"; break;
+                case 5: nomeDia = "Sexta-feira"; tipo = "🎉 Sextou!"; break;
+                case 6: nomeDia = "Sábado"; tipo = "😎 Final de semana!"; break;
+                case 7: nomeDia = "Domingo"; tipo = "😴 Final de semana!"; break;
+                default: nomeDia = "Inválido"; tipo = "❌";
+            }
+
+            resultado += `    case ${dia}: → "${nomeDia}" ✅\n`;
+            resultado += `}\n\n`;
+            resultado += `Dia: ${nomeDia}\n`;
+            resultado += `Tipo: ${tipo}`;
+
+            el.textContent = resultado;
+        }
+
+        // --- Exemplo 4: Tabuada ---
+        function gerarTabuada() {
+            const el = document.getElementById('output-tabuada');
+            const num = Number(document.getElementById('input-tabuada').value);
+            let resultado = `Tabuada do ${num}:\n`;
+            resultado += `─────────────────\n`;
+
+            for (let i = 1; i <= 10; i++) {
+                resultado += `${num} × ${String(i).padStart(2)} = ${String(num * i).padStart(3)}\n`;
+            }
+
+            resultado += `\nCódigo: for (let i = 1; i <= 10; i++)\n`;
+            resultado += `        console.log(\`${num} × \${i} = \${${num} * i}\`)`;
+
+            el.textContent = resultado;
+        }
+
+        // --- Exemplo 5: Contagem Regressiva ---
+        function contagemRegressiva() {
+            const el = document.getElementById('output-contagem');
+            const inicio = Number(document.getElementById('input-contagem').value);
+            let resultado = '';
+
+            let contador = inicio;
+            while (contador > 0) {
+                resultado += `${contador}... `;
+                contador--;
+            }
+            resultado += `\n🚀 Lançar!\n\n`;
+            resultado += `Loop executou ${inicio} vezes.\n`;
+            resultado += `Condição final: ${contador} > 0 → false → loop parou.`;
+
+            el.textContent = resultado;
+        }
+
+        // --- Exemplo 6: for...of ---
+        function exemploForOf() {
+            const el = document.getElementById('output-forof');
+            const frutas = ["🍎 Maçã", "🍌 Banana", "🍊 Laranja", "🥭 Manga", "🍇 Uva"];
+            let resultado = `const frutas = ["Maçã", "Banana", "Laranja", "Manga", "Uva"];\n\n`;
+            resultado += `for (const fruta of frutas) {\n`;
+            resultado += `─────────────────────────────\n`;
+
+            let volta = 1;
+            for (const fruta of frutas) {
+                resultado += `  Volta ${volta}: fruta = "${fruta}"\n`;
+                volta++;
+            }
+
+            resultado += `─────────────────────────────\n`;
+            resultado += `Loop terminou! ${frutas.length} itens percorridos.\n\n`;
+
+            // Bonus: for...of com string
+            resultado += `💡 for...of também funciona com strings:\n`;
+            const palavra = "Web";
+            resultado += `for (const letra of "Web") →`;
+            for (const letra of palavra) {
+                resultado += ` "${letra}"`;
+            }
+
+            el.textContent = resultado;
+        }
+
+        // --- Exemplo 7: Jogo de Adivinhação ---
+        let numeroSecreto = Math.floor(Math.random() * 10) + 1;
+        let tentativas = 0;
+        let historicoJogo = '';
+
+        function adivinhar() {
+            const el = document.getElementById('output-jogo');
+            const palpite = Number(document.getElementById('input-palpite').value);
+
+            if (palpite < 1 || palpite > 10 || isNaN(palpite)) {
+                el.textContent = "❌ Digite um número de 1 a 10!";
+                return;
+            }
+
+            tentativas++;
+            historicoJogo += `Tentativa ${tentativas}: ${palpite}`;
+
+            if (palpite === numeroSecreto) {
+                historicoJogo += ` → 🎉 ACERTOU!\n`;
+                historicoJogo += `\nVocê acertou em ${tentativas} tentativa(s)!\n`;
+                historicoJogo += `O número era: ${numeroSecreto}`;
+                el.textContent = historicoJogo;
+            } else if (palpite < numeroSecreto) {
+                historicoJogo += ` → 📈 Tente um número MAIOR\n`;
+                el.textContent = historicoJogo;
+            } else {
+                historicoJogo += ` → 📉 Tente um número MENOR\n`;
+                el.textContent = historicoJogo;
+            }
+        }
+
+        function novoJogo() {
+            numeroSecreto = Math.floor(Math.random() * 10) + 1;
+            tentativas = 0;
+            historicoJogo = '';
+            document.getElementById('output-jogo').textContent = '🎮 Novo jogo! Adivinhe o número de 1 a 10.';
+            document.getElementById('input-palpite').value = '';
+        }
+
+        // --- Exemplo 8: Comparativo ---
+        function exemploComparativo() {
+            const el = document.getElementById('output-comparativo');
+            let resultado = '';
+
+            resultado += `╔══════════════════════════════════════════════════════╗\n`;
+            resultado += `║          QUANDO USAR CADA LOOP?                     ║\n`;
+            resultado += `╠══════════════════════════════════════════════════════╣\n`;
+            resultado += `║                                                     ║\n`;
+            resultado += `║  for         Sabe quantas vezes repetir             ║\n`;
+            resultado += `║             Ex: de 1 a 10, tabuada                  ║\n`;
+            resultado += `║                                                     ║\n`;
+            resultado += `║  while       NÃO sabe quantas vezes                 ║\n`;
+            resultado += `║             Ex: até acertar, até condição            ║\n`;
+            resultado += `║                                                     ║\n`;
+            resultado += `║  for...of    Percorrer arrays/strings               ║\n`;
+            resultado += `║             Ex: lista de nomes, frutas              ║\n`;
+            resultado += `║                                                     ║\n`;
+            resultado += `║  for...in    Percorrer chaves de objetos            ║\n`;
+            resultado += `║             Ex: propriedades de um objeto           ║\n`;
+            resultado += `║                                                     ║\n`;
+            resultado += `║  forEach     Método de array (veremos adiante)      ║\n`;
+            resultado += `║             Ex: frutas.forEach(f => ...)            ║\n`;
+            resultado += `╚══════════════════════════════════════════════════════╝\n\n`;
+
+            // Exemplo prático de cada
+            resultado += `Exemplo prático - Somar 1 a 5:\n`;
+            resultado += `─────────────────────────────\n`;
+
+            // for
+            let somaFor = 0;
+            for (let i = 1; i <= 5; i++) { somaFor += i; }
+            resultado += `for:      ${somaFor}\n`;
+
+            // while
+            let somaWhile = 0, j = 1;
+            while (j <= 5) { somaWhile += j; j++; }
+            resultado += `while:    ${somaWhile}\n`;
+
+            // for...of
+            let somaForOf = 0;
+            for (const n of [1, 2, 3, 4, 5]) { somaForOf += n; }
+            resultado += `for...of: ${somaForOf}\n\n`;
+
+            resultado += `Todos chegam ao mesmo resultado: 15! ✅`;
+
+            el.textContent = resultado;
+        }
+
+        // Inicializar jogo
+        document.getElementById('output-jogo').textContent = '🎮 Adivinhe o número secreto de 1 a 10!';
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulários - Exemplos HTML</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        fieldset { margin: 20px 0; padding: 20px; border: 2px solid #3498db; border-radius: 8px; }
+        legend { font-weight: bold; color: #3498db; padding: 0 10px; font-size: 1.1em; }
+        label { display: block; margin-top: 12px; font-weight: bold; color: #333; }
+        input[type="text"], input[type="email"], input[type="password"], input[type="tel"],
+        input[type="number"], input[type="url"], input[type="date"], input[type="search"],
+        select, textarea {
+            width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc;
+            border-radius: 4px; font-size: 1em; box-sizing: border-box;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #3498db; outline: none; box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+        input:invalid { border-color: #e74c3c; }
+        input:valid { border-color: #2ecc71; }
+        button, input[type="submit"], input[type="reset"] {
+            padding: 12px 24px; margin: 10px 5px 10px 0; border: none; border-radius: 4px;
+            font-size: 1em; cursor: pointer; color: white;
+        }
+        input[type="submit"], button[type="submit"] { background-color: #2ecc71; }
+        input[type="reset"], button[type="reset"] { background-color: #e74c3c; }
+        button[type="submit"]:hover { background-color: #27ae60; }
+        button[type="reset"]:hover { background-color: #c0392b; }
+        .checkbox-group label, .radio-group label {
+            display: inline-block; font-weight: normal; margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Formulários HTML</h1>
+
+    <!-- Formulário de Contato Completo -->
+    <h2>Formulário de Contato</h2>
+    <form action="#" method="POST">
+
+        <fieldset>
+            <legend>Dados Pessoais</legend>
+
+            <label for="nome">Nome Completo: *</label>
+            <input
+                type="text"
+                id="nome"
+                name="nome"
+                placeholder="Digite seu nome completo"
+                required
+                minlength="3"
+                maxlength="100"
+                autofocus
+            >
+
+            <label for="email">E-mail: *</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="exemplo@email.com"
+                required
+            >
+
+            <label for="telefone">Telefone:</label>
+            <input
+                type="tel"
+                id="telefone"
+                name="telefone"
+                placeholder="(11) 99999-9999"
+                pattern="\([0-9]{2}\) [0-9]{4,5}-[0-9]{4}"
+                title="Formato: (11) 99999-9999"
+            >
+
+            <label for="nascimento">Data de Nascimento:</label>
+            <input
+                type="date"
+                id="nascimento"
+                name="nascimento"
+                min="1950-01-01"
+                max="2010-12-31"
+            >
+
+            <label for="site">Website:</label>
+            <input
+                type="url"
+                id="site"
+                name="site"
+                placeholder="https://www.seusite.com.br"
+            >
+        </fieldset>
+
+        <fieldset>
+            <legend>Informações de Contato</legend>
+
+            <label for="assunto">Assunto: *</label>
+            <select id="assunto" name="assunto" required>
+                <option value="">Selecione um assunto...</option>
+                <option value="duvida">Dúvida sobre o curso</option>
+                <option value="sugestao">Sugestão</option>
+                <option value="problema">Reportar problema</option>
+                <option value="parceria">Proposta de parceria</option>
+                <option value="outro">Outro</option>
+            </select>
+
+            <label for="prioridade">Prioridade:</label>
+            <select id="prioridade" name="prioridade">
+                <optgroup label="Urgência">
+                    <option value="baixa">Baixa</option>
+                    <option value="media" selected>Média</option>
+                    <option value="alta">Alta</option>
+                </optgroup>
+                <optgroup label="Especial">
+                    <option value="critica">Crítica</option>
+                </optgroup>
+            </select>
+
+            <label for="mensagem">Mensagem: *</label>
+            <textarea
+                id="mensagem"
+                name="mensagem"
+                rows="6"
+                placeholder="Escreva sua mensagem aqui..."
+                required
+                minlength="10"
+                maxlength="1000"
+            ></textarea>
+        </fieldset>
+
+        <fieldset>
+            <legend>Preferências</legend>
+
+            <label>Como conheceu o curso?</label>
+            <div class="radio-group">
+                <label><input type="radio" name="como_conheceu" value="google"> Google</label>
+                <label><input type="radio" name="como_conheceu" value="redes_sociais"> Redes Sociais</label>
+                <label><input type="radio" name="como_conheceu" value="indicacao"> Indicação</label>
+                <label><input type="radio" name="como_conheceu" value="outro"> Outro</label>
+            </div>
+
+            <label>Interesses (selecione todos que se aplicam):</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="interesses" value="html"> HTML</label>
+                <label><input type="checkbox" name="interesses" value="css"> CSS</label>
+                <label><input type="checkbox" name="interesses" value="javascript"> JavaScript</label>
+                <label><input type="checkbox" name="interesses" value="react"> React</label>
+            </div>
+
+            <label for="experiencia">Nível de Experiência:</label>
+            <input
+                type="range"
+                id="experiencia"
+                name="experiencia"
+                min="0"
+                max="10"
+                value="3"
+                step="1"
+            >
+            <small>0 = Iniciante | 10 = Avançado</small>
+
+            <label for="cor_favorita">Cor Favorita:</label>
+            <input type="color" id="cor_favorita" name="cor_favorita" value="#3498db">
+
+            <label for="arquivo">Enviar currículo (PDF):</label>
+            <input
+                type="file"
+                id="arquivo"
+                name="arquivo"
+                accept=".pdf,.doc,.docx"
+            >
+        </fieldset>
+
+        <fieldset>
+            <legend>Pesquisa com Datalist</legend>
+
+            <label for="linguagem">Linguagem de programação favorita:</label>
+            <input type="text" id="linguagem" name="linguagem" list="linguagens" placeholder="Comece a digitar...">
+            <datalist id="linguagens">
+                <option value="JavaScript">
+                <option value="Python">
+                <option value="Java">
+                <option value="TypeScript">
+                <option value="C#">
+                <option value="PHP">
+                <option value="Ruby">
+                <option value="Go">
+                <option value="Rust">
+                <option value="Swift">
+            </datalist>
+
+            <label for="busca">Buscar no curso:</label>
+            <input type="search" id="busca" name="busca" placeholder="Pesquisar...">
+        </fieldset>
+
+        <fieldset>
+            <legend>Termos e Envio</legend>
+
+            <label>
+                <input type="checkbox" name="termos" required>
+                Li e aceito os <a href="#">termos de uso</a> *
+            </label>
+
+            <label>
+                <input type="checkbox" name="newsletter">
+                Desejo receber novidades por e-mail
+            </label>
+
+            <br><br>
+
+            <button type="submit">Enviar Formulário</button>
+            <button type="reset">Limpar Tudo</button>
+        </fieldset>
+
+    </form>
+
+    <hr>
+
+    <!-- Campos desabilitados e somente leitura -->
+    <h2>Campos Especiais</h2>
+    <form>
+        <label for="campo_readonly">Campo Somente Leitura:</label>
+        <input type="text" id="campo_readonly" value="Este valor não pode ser alterado" readonly>
+
+        <label for="campo_disabled">Campo Desabilitado:</label>
+        <input type="text" id="campo_disabled" value="Este campo está desabilitado" disabled>
+
+        <label for="campo_hidden">Campo Oculto (não aparece na tela):</label>
+        <input type="hidden" id="campo_hidden" name="campo_hidden" value="valor-secreto">
+        <small>O campo hidden está aqui, mas não é visível.</small>
+    </form>
+
+    <hr>
+    <p><strong>Campos marcados com * são obrigatórios.</strong></p>
+    <p><em>Tente enviar o formulário sem preencher os campos obrigatórios para ver a validação HTML5 em ação!</em></p>
+
+</body>
+</html>

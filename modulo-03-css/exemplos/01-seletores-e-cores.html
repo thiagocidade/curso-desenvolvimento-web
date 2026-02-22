@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seletores e Cores CSS - Exemplos</title>
+    <style>
+        /* ==========================================
+           SELETORES CSS - EXEMPLOS PRÁTICOS
+           ========================================== */
+
+        /* Seletor Universal - aplica a todos os elementos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Seletor de Elemento/Tag */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #34495e;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 8px;
+            margin: 25px 0 15px;
+        }
+
+        p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        /* Seletor de Classe (.) */
+        .destaque {
+            background-color: #f1c40f;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .texto-azul {
+            color: #3498db;
+        }
+
+        .texto-verde {
+            color: #2ecc71;
+        }
+
+        .texto-vermelho {
+            color: #e74c3c;
+        }
+
+        .caixa {
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        /* Seletor de ID (#) */
+        #secao-principal {
+            background-color: white;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Seletor de Atributo */
+        a[target="_blank"] {
+            color: #e74c3c;
+        }
+
+        a[target="_blank"]::after {
+            content: " ↗";
+        }
+
+        input[type="text"] {
+            border: 2px solid #3498db;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        /* Seletor Descendente (espaço) */
+        .lista-cores li {
+            padding: 8px 15px;
+            margin: 5px 0;
+            border-radius: 4px;
+        }
+
+        /* Seletor Filho Direto (>) */
+        .container-direto > p {
+            font-weight: bold;
+            color: #8e44ad;
+        }
+
+        /* Seletor Irmão Adjacente (+) */
+        h3 + p {
+            font-size: 1.1em;
+            color: #2980b9;
+        }
+
+        /* Pseudo-classes */
+        .botao {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .botao:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .botao:active {
+            transform: translateY(0);
+        }
+
+        .botao-azul { background-color: #3498db; }
+        .botao-verde { background-color: #2ecc71; }
+        .botao-vermelho { background-color: #e74c3c; }
+
+        /* :first-child e :last-child */
+        .lista-pseudo li:first-child {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .lista-pseudo li:last-child {
+            font-style: italic;
+            color: #3498db;
+        }
+
+        /* :nth-child */
+        .lista-zebrada li:nth-child(odd) {
+            background-color: #ecf0f1;
+        }
+
+        .lista-zebrada li:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        /* Pseudo-elementos */
+        .citacao::before {
+            content: """;
+            font-size: 3em;
+            color: #3498db;
+            line-height: 0;
+            vertical-align: -0.4em;
+        }
+
+        .citacao::after {
+            content: """;
+            font-size: 3em;
+            color: #3498db;
+            line-height: 0;
+            vertical-align: -0.4em;
+        }
+
+        .item-lista::before {
+            content: "✅ ";
+        }
+
+        /* ::first-letter */
+        .primeiro-paragrafo::first-letter {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #e74c3c;
+            float: left;
+            margin-right: 8px;
+            line-height: 1;
+        }
+
+        /* ::selection */
+        ::selection {
+            background-color: #3498db;
+            color: white;
+        }
+
+        /* ==========================================
+           CORES CSS - TODOS OS FORMATOS
+           ========================================== */
+
+        .cor-nome { background-color: tomato; color: white; }
+        .cor-hex { background-color: #3498db; color: white; }
+        .cor-hex-curto { background-color: #f00; color: white; }
+        .cor-rgb { background-color: rgb(46, 204, 113); color: white; }
+        .cor-rgba { background-color: rgba(155, 89, 182, 0.7); color: white; }
+        .cor-hsl { background-color: hsl(348, 100%, 61%); color: white; }
+        .cor-hsla { background-color: hsla(48, 89%, 50%, 0.8); color: white; }
+
+        /* Gradientes */
+        .gradiente-linear {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .gradiente-radial {
+            background: radial-gradient(circle, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .gradiente-multi {
+            background: linear-gradient(to right, #e74c3c, #f39c12, #2ecc71, #3498db, #9b59b6);
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="secao-principal">
+        <h1>Seletores e Cores CSS</h1>
+
+        <!-- Seletores de Classe -->
+        <h2>Seletores de Classe</h2>
+        <p class="texto-azul">Este texto usa a classe .texto-azul</p>
+        <p class="texto-verde">Este texto usa a classe .texto-verde</p>
+        <p class="texto-vermelho">Este texto usa a classe .texto-vermelho</p>
+        <p>Este parágrafo tem um <span class="destaque">texto destacado</span> no meio.</p>
+
+        <!-- Seletor de Atributo -->
+        <h2>Seletor de Atributo</h2>
+        <p><a href="https://google.com" target="_blank" rel="noopener">Link externo (target="_blank")</a></p>
+        <p><a href="#cores">Link interno</a></p>
+        <p><input type="text" placeholder="Input type=text (borda azul)"></p>
+
+        <!-- Seletor Filho Direto -->
+        <h2>Seletor Filho Direto (&gt;)</h2>
+        <div class="container-direto">
+            <p>Filho direto - fica roxo e negrito</p>
+            <div>
+                <p>Filho indireto (dentro de uma div) - não afetado</p>
+            </div>
+        </div>
+
+        <!-- Pseudo-classes -->
+        <h2>Pseudo-classes (:hover, :active)</h2>
+        <button class="botao botao-azul">Passe o mouse</button>
+        <button class="botao botao-verde">Clique aqui</button>
+        <button class="botao botao-vermelho">Experimente</button>
+
+        <h2>:first-child e :last-child</h2>
+        <ul class="lista-pseudo">
+            <li>Primeiro item (vermelho e negrito)</li>
+            <li>Segundo item (normal)</li>
+            <li>Terceiro item (normal)</li>
+            <li>Último item (azul e itálico)</li>
+        </ul>
+
+        <h2>:nth-child (lista zebrada)</h2>
+        <ul class="lista-zebrada">
+            <li>Item 1 (ímpar - cinza)</li>
+            <li>Item 2 (par - branco)</li>
+            <li>Item 3 (ímpar - cinza)</li>
+            <li>Item 4 (par - branco)</li>
+            <li>Item 5 (ímpar - cinza)</li>
+            <li>Item 6 (par - branco)</li>
+        </ul>
+
+        <!-- Pseudo-elementos -->
+        <h2>Pseudo-elementos (::before, ::after)</h2>
+        <p class="citacao">A web é para todos.</p>
+
+        <p class="item-lista">Tarefa concluída com sucesso</p>
+
+        <h3>::first-letter</h3>
+        <p class="primeiro-paragrafo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+
+        <p><em>Selecione qualquer texto nesta página para ver o ::selection em ação (fundo azul)!</em></p>
+
+        <!-- Cores -->
+        <h2 id="cores">Formatos de Cores CSS</h2>
+        <div class="caixa cor-nome">Nome: tomato</div>
+        <div class="caixa cor-hex">Hexadecimal: #3498db</div>
+        <div class="caixa cor-hex-curto">Hex curto: #f00</div>
+        <div class="caixa cor-rgb">RGB: rgb(46, 204, 113)</div>
+        <div class="caixa cor-rgba">RGBA: rgba(155, 89, 182, 0.7) - com transparência</div>
+        <div class="caixa cor-hsl">HSL: hsl(348, 100%, 61%)</div>
+        <div class="caixa cor-hsla">HSLA: hsla(48, 89%, 50%, 0.8) - com transparência</div>
+
+        <h2>Gradientes</h2>
+        <div class="caixa gradiente-linear">Gradiente Linear (135deg)</div>
+        <div class="caixa gradiente-radial">Gradiente Radial (circle)</div>
+        <div class="caixa gradiente-multi">Gradiente com Múltiplas Cores</div>
+    </div>
+
+</body>
+</html>

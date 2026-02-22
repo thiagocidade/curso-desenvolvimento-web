@@ -1,0 +1,61 @@
+name: Erro no Material
+description: Use para reportar erro de conteúdo, link quebrado ou exemplo com problema.
+title: "[Erro Material] Modulo XX - Turma Tarde/Noite - Nome"
+labels:
+  - "tipo:erro-material"
+  - "status:triagem"
+body:
+  - type: dropdown
+    id: turma
+    attributes:
+      label: Turma
+      options:
+        - Turma Tarde
+        - Turma Noite
+    validations:
+      required: true
+
+  - type: dropdown
+    id: modulo
+    attributes:
+      label: Módulo
+      options:
+        - modulo:01
+        - modulo:02
+        - modulo:03
+        - modulo:04
+        - modulo:05
+    validations:
+      required: true
+
+  - type: input
+    id: arquivo
+    attributes:
+      label: Arquivo/página afetada
+      placeholder: "ex: modulo-02-html/README.md"
+    validations:
+      required: true
+
+  - type: textarea
+    id: erro
+    attributes:
+      label: Descrição do erro
+      placeholder: Explique o que está incorreto.
+    validations:
+      required: true
+
+  - type: textarea
+    id: esperado
+    attributes:
+      label: Como deveria estar
+      placeholder: Sugestão de correção.
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidencias
+    attributes:
+      label: Evidências (opcional)
+      placeholder: Prints, links, reprodução.
+    validations:
+      required: false

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exemplos do Módulo 3 - CSS</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --paper: #ffffff;
+      --text: #142033;
+      --muted: #53627b;
+      --primary: #0f5eb8;
+      --primary-soft: #e7f1ff;
+      --border: #d8e1ee;
+      --shadow: 0 18px 38px rgba(15, 31, 53, 0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+      background:
+        radial-gradient(circle at 10% -10%, #c7e2ff 0%, transparent 42%),
+        radial-gradient(circle at 100% 0%, #ffd8b4 0%, transparent 36%),
+        var(--bg);
+      color: var(--text);
+      padding: 28px 16px 42px;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    header {
+      padding: 26px 24px 18px;
+      background: linear-gradient(135deg, #f7fbff 0%, #fff7ee 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .back {
+      text-decoration: none;
+      color: var(--primary);
+      background: var(--primary-soft);
+      border: 1px solid #cde2ff;
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    h1 { font-size: 1.6rem; margin-bottom: 6px; }
+    .subtitle { color: var(--muted); line-height: 1.55; }
+
+    .content { padding: 22px 24px 28px; display: grid; gap: 18px; }
+
+    .summary {
+      border: 1px solid var(--border);
+      background: #fbfdff;
+      border-radius: 12px;
+      padding: 14px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .examples {
+      display: grid;
+      gap: 10px;
+    }
+
+    .example-card {
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      border-radius: 10px;
+      padding: 12px 14px;
+      background: #fff;
+    }
+
+    .example-card a {
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .example-card p {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    @media (max-width: 720px) {
+      header, .content { padding-left: 16px; padding-right: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <div class="top">
+        <a class="back" href="../../index.html">← Voltar para início</a>
+        <a class="back" href="../index.html">Ver módulo em HTML</a>
+      </div>
+      <h1>Módulo 3: CSS - Exemplos Práticos</h1>
+      <p class="subtitle">Coleção de exemplos para praticar estilos, layout moderno e responsividade.</p>
+    </header>
+
+    <section class="content">
+      <article class="summary">
+        Este módulo foca na criação de interfaces visualmente consistentes com CSS moderno. Os exemplos abaixo cobrem seletores, box model e principais técnicas de layout.
+      </article>
+
+      <div class="examples">
+        <article class="example-card">
+          <a href="./01-seletores-e-cores.html">01 - Seletores e cores</a>
+          <p>Aplicação de regras CSS com classes, IDs e paleta visual.</p>
+        </article>
+        <article class="example-card">
+          <a href="./02-box-model.html">02 - Box model</a>
+          <p>Margin, border, padding e content na prática.</p>
+        </article>
+        <article class="example-card">
+          <a href="./03-flexbox.html">03 - Flexbox</a>
+          <p>Distribuição e alinhamento de elementos em uma dimensão.</p>
+        </article>
+        <article class="example-card">
+          <a href="./04-grid.html">04 - Grid</a>
+          <p>Construção de layouts bidimensionais com CSS Grid.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

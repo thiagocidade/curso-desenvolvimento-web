@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Meu portfólio pessoal - Projeto Final do curso Fundamentos de Desenvolvimento Web">
+    <title>Meu Portfólio | Home</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ===== CABEÇALHO E NAVEGAÇÃO ===== -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">Meu Portfólio</a>
+            </div>
+            <nav>
+                <ul class="menu" id="menu">
+                    <li><a href="home.html" class="ativo">Home</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+                <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
+                    &#9776;
+                </button>
+            </nav>
+            <!-- TODO: Adicione aqui um botão de tema claro/escuro (bônus) -->
+        </div>
+    </header>
+
+    <!-- ===== SEÇÃO HERO (BANNER PRINCIPAL) ===== -->
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Olá, eu sou <span class="destaque">Seu Nome</span></h1>
+                <p>Desenvolvedor(a) Web em formação. Este é meu portfólio do curso Fundamentos de Desenvolvimento Web.</p>
+                <a href="sobre.html" class="btn">Saiba mais sobre mim</a>
+            </div>
+        </section>
+
+        <!-- ===== SEÇÃO DE PROJETOS ===== -->
+        <section class="secao" id="projetos">
+            <div class="container">
+                <h2>Meus Projetos</h2>
+                <p class="secao-descricao">Aqui estão alguns projetos que desenvolvi durante o curso.</p>
+
+                <div class="grid-projetos">
+                    <!-- Card de Projeto 1 -->
+                    <div class="card">
+                        <div class="card-img">
+                            <!-- TODO: Adicione uma imagem/screenshot do projeto -->
+                            <div class="placeholder-img">Imagem do Projeto 1</div>
+                        </div>
+                        <div class="card-conteudo">
+                            <h3>Projeto 1</h3>
+                            <p>Descrição breve do projeto. O que ele faz e quais tecnologias foram usadas.</p>
+                            <div class="card-tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card de Projeto 2 -->
+                    <div class="card">
+                        <div class="card-img">
+                            <div class="placeholder-img">Imagem do Projeto 2</div>
+                        </div>
+                        <div class="card-conteudo">
+                            <h3>Projeto 2</h3>
+                            <p>Descrição breve do projeto. O que ele faz e quais tecnologias foram usadas.</p>
+                            <div class="card-tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card de Projeto 3 -->
+                    <div class="card">
+                        <div class="card-img">
+                            <div class="placeholder-img">Imagem do Projeto 3</div>
+                        </div>
+                        <div class="card-conteudo">
+                            <h3>Projeto 3</h3>
+                            <p>Descrição breve do projeto. O que ele faz e quais tecnologias foram usadas.</p>
+                            <div class="card-tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SEÇÃO DE HABILIDADES ===== -->
+        <section class="secao secao-alt" id="habilidades">
+            <div class="container">
+                <h2>Habilidades</h2>
+                <div class="grid-habilidades">
+                    <div class="habilidade">
+                        <span class="habilidade-icone">🌐</span>
+                        <h3>HTML5</h3>
+                        <p>Estruturação semântica de páginas web</p>
+                    </div>
+                    <div class="habilidade">
+                        <span class="habilidade-icone">🎨</span>
+                        <h3>CSS3</h3>
+                        <p>Estilização e layouts responsivos</p>
+                    </div>
+                    <div class="habilidade">
+                        <span class="habilidade-icone">⚡</span>
+                        <h3>JavaScript</h3>
+                        <p>Interatividade e lógica de programação</p>
+                    </div>
+                    <div class="habilidade">
+                        <span class="habilidade-icone">🔧</span>
+                        <h3>Git & GitHub</h3>
+                        <p>Controle de versão e colaboração</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== RODAPÉ ===== -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Seu Nome. Projeto Final - Fundamentos de Desenvolvimento Web.</p>
+            <p>
+                <a href="https://github.com/seu-usuario" target="_blank" rel="noopener">GitHub</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

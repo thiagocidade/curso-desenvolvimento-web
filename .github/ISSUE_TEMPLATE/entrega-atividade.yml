@@ -1,0 +1,61 @@
+name: Entrega de Atividade
+description: Use para registrar entrega/check-in das atividades por módulo.
+title: "[Atividade] Modulo XX - Turma Tarde/Noite - Nome"
+labels:
+  - "tipo:atividade"
+  - "status:triagem"
+body:
+  - type: dropdown
+    id: turma
+    attributes:
+      label: Turma
+      options:
+        - Turma Tarde
+        - Turma Noite
+    validations:
+      required: true
+
+  - type: dropdown
+    id: modulo
+    attributes:
+      label: Módulo
+      options:
+        - modulo:01
+        - modulo:02
+        - modulo:03
+        - modulo:04
+        - modulo:05
+    validations:
+      required: true
+
+  - type: input
+    id: nome
+    attributes:
+      label: Nome
+      placeholder: Seu nome completo
+    validations:
+      required: true
+
+  - type: textarea
+    id: entregas
+    attributes:
+      label: O que foi entregue
+      placeholder: Liste os arquivos/atividades concluídos.
+    validations:
+      required: true
+
+  - type: input
+    id: commit
+    attributes:
+      label: Link do commit/branch (opcional)
+      placeholder: URL do GitHub
+    validations:
+      required: false
+
+  - type: textarea
+    id: observacoes
+    attributes:
+      label: Observações
+      placeholder: Dificuldades, dúvidas pendentes, próximos passos.
+    validations:
+      required: false

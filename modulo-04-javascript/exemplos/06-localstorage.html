@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>localStorage - Exemplos JavaScript</title>
+    <style>
+        /* ==========================================
+           LOCALSTORAGE - EXEMPLOS
+           ========================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #f4f4f4;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Tema escuro */
+        body.tema-escuro {
+            background-color: #1a1a2e;
+            color: #eee;
+        }
+
+        body.tema-escuro .section {
+            background: #16213e;
+            color: #eee;
+        }
+
+        body.tema-escuro h2 {
+            color: #e0e0e0;
+        }
+
+        body.tema-escuro p {
+            color: #ccc;
+        }
+
+        body.tema-escuro .output {
+            background: #0f0f23;
+        }
+
+        body.tema-escuro .code-display {
+            background: #0f3460;
+            border-color: #3498db;
+            color: #eee;
+        }
+
+        body.tema-escuro input,
+        body.tema-escuro textarea {
+            background: #1a1a2e;
+            color: #eee;
+            border-color: #3498db;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        body.tema-escuro h1 {
+            color: #ecf0f1;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #34495e;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: background-color 0.3s;
+        }
+
+        .output {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            margin-top: 10px;
+            min-height: 40px;
+            white-space: pre-wrap;
+            font-size: 14px;
+        }
+
+        .code-display {
+            background: #f8f8f8;
+            border: 1px solid #ddd;
+            border-left: 4px solid #3498db;
+            padding: 12px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px 5px 5px 0;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        .btn-verde { background: #2ecc71; }
+        .btn-verde:hover { background: #27ae60; }
+        .btn-vermelho { background: #e74c3c; }
+        .btn-vermelho:hover { background: #c0392b; }
+        .btn-roxo { background: #9b59b6; }
+        .btn-roxo:hover { background: #8e44ad; }
+        .btn-laranja { background: #e67e22; }
+        .btn-laranja:hover { background: #d35400; }
+
+        input[type="text"], textarea {
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            margin: 5px;
+            transition: border-color 0.3s, background-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .nota {
+            background: #eaf6ff;
+            border-left: 4px solid #3498db;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        body.tema-escuro .nota {
+            background: #0f3460;
+        }
+
+        .aviso {
+            background: #fff9e6;
+            border-left: 4px solid #f1c40f;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        body.tema-escuro .aviso {
+            background: #3d3100;
+        }
+
+        /* Lista de favoritos */
+        .fav-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            margin: 5px 0;
+            background: #ecf0f1;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        body.tema-escuro .fav-item {
+            background: #1a1a2e;
+        }
+
+        .fav-item span {
+            flex: 1;
+        }
+
+        .fav-item button {
+            padding: 4px 10px;
+            font-size: 12px;
+            margin: 0;
+        }
+
+        /* Contador de visitas */
+        .visitas-numero {
+            font-size: 64px;
+            font-weight: bold;
+            text-align: center;
+            color: #3498db;
+        }
+
+        /* Toggle de tema */
+        .tema-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: #bdc3c7;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .toggle-switch.ativo {
+            background: #3498db;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s;
+        }
+
+        .toggle-switch.ativo::after {
+            transform: translateX(30px);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>💾 localStorage</h1>
+    <p class="subtitle">Módulo 4 - JavaScript | Exemplo 06</p>
+
+    <!-- ==================== SEÇÃO 1: Conceito ==================== -->
+    <div class="section">
+        <h2>1. O que é localStorage?</h2>
+        <p>O <code>localStorage</code> permite <strong>salvar dados no navegador</strong> que persistem mesmo depois de fechar a página. É como um "mini banco de dados" local.</p>
+
+        <div class="code-display">// SALVAR um dado
+localStorage.setItem("nome", "Maria");
+
+// LER um dado
+const nome = localStorage.getItem("nome");  // "Maria"
+
+// REMOVER um dado
+localStorage.removeItem("nome");
+
+// LIMPAR tudo
+localStorage.clear();</div>
+
+        <p>Salve um valor e veja que ele persiste ao recarregar a página:</p>
+        <input type="text" id="input-chave" placeholder="Chave" value="meuNome" style="width: 150px">
+        <input type="text" id="input-valor" placeholder="Valor" value="Maria" style="width: 200px">
+        <br>
+        <button class="btn-verde" onclick="salvarItem()">💾 setItem</button>
+        <button onclick="lerItem()">📖 getItem</button>
+        <button class="btn-vermelho" onclick="removerItem()">🗑️ removeItem</button>
+        <button class="btn-laranja" onclick="listarTodos()">📋 Ver Todos</button>
+        <div class="output" id="output-basico"></div>
+
+        <div class="aviso">
+            <strong>⚠️ Importante:</strong> O localStorage só armazena <strong>strings</strong>! Para salvar objetos ou arrays, use <code>JSON.stringify()</code> e <code>JSON.parse()</code>.
+        </div>
+    </div>
+
+    <!-- ==================== SEÇÃO 2: JSON ==================== -->
+    <div class="section">
+        <h2>2. Salvando Objetos e Arrays (JSON)</h2>
+
+        <div class="code-display">// Salvar um objeto
+const usuario = { nome: "Ana", idade: 25 };
+localStorage.setItem("usuario", JSON.stringify(usuario));
+
+// Recuperar o objeto
+const dados = JSON.parse(localStorage.getItem("usuario"));
+console.log(dados.nome);  // "Ana"
+
+// Salvar um array
+const frutas = ["Maçã", "Banana", "Laranja"];
+localStorage.setItem("frutas", JSON.stringify(frutas));</div>
+
+        <button onclick="salvarObjeto()">💾 Salvar Objeto</button>
+        <button onclick="salvarArray()">💾 Salvar Array</button>
+        <button onclick="lerJSON()">📖 Ler Dados JSON</button>
+        <div class="output" id="output-json"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 3: Bloco de Notas ==================== -->
+    <div class="section">
+        <h2>3. Projeto: Bloco de Notas Persistente</h2>
+        <p>Escreva suas notas — elas ficam salvas mesmo se você fechar o navegador!</p>
+
+        <textarea id="bloco-notas" rows="6" style="width: 100%; font-size: 15px;" placeholder="Escreva suas notas aqui..."></textarea>
+        <br>
+        <button class="btn-verde" onclick="salvarNotas()">💾 Salvar Notas</button>
+        <button class="btn-vermelho" onclick="limparNotas()">🗑️ Limpar Notas</button>
+        <span id="status-notas" style="margin-left: 10px; color: #2ecc71;"></span>
+        <div class="output" id="output-notas"></div>
+
+        <div class="nota">
+            <strong>💡 Como funciona:</strong> Ao clicar "Salvar", o texto é armazenado com <code>localStorage.setItem("notas", texto)</code>. Ao carregar a página, recuperamos com <code>getItem</code>.
+        </div>
+    </div>
+
+    <!-- ==================== SEÇÃO 4: Tema Claro/Escuro ==================== -->
+    <div class="section">
+        <h2>4. Projeto: Tema Claro/Escuro Persistente</h2>
+        <p>Alterne o tema e veja que a preferência é salva!</p>
+
+        <div class="tema-toggle">
+            <span>☀️ Claro</span>
+            <div class="toggle-switch" id="toggle-tema" onclick="alternarTema()"></div>
+            <span>🌙 Escuro</span>
+        </div>
+
+        <div class="output" id="output-tema"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 5: Lista de Favoritos ==================== -->
+    <div class="section">
+        <h2>5. Projeto: Lista de Favoritos</h2>
+        <p>Adicione seus sites favoritos — a lista é salva no localStorage!</p>
+
+        <div style="display: flex; gap: 5px; margin-bottom: 10px;">
+            <input type="text" id="input-favorito" placeholder="Nome do site ou item favorito" style="flex: 1;">
+            <button class="btn-verde" onclick="adicionarFavorito()">⭐ Adicionar</button>
+        </div>
+
+        <div id="lista-favoritos"></div>
+
+        <button class="btn-vermelho" onclick="limparFavoritos()" style="margin-top: 10px;">🗑️ Limpar Todos</button>
+        <div class="output" id="output-favoritos"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 6: Contador de Visitas ==================== -->
+    <div class="section">
+        <h2>6. Projeto: Contador de Visitas</h2>
+        <p>Cada vez que você abre esta página, o contador aumenta!</p>
+
+        <div class="visitas-numero" id="contador-visitas">0</div>
+        <p style="text-align: center; color: #7f8c8d;">vezes que você visitou esta página</p>
+
+        <div style="text-align: center; margin-top: 10px;">
+            <button class="btn-vermelho" onclick="resetarVisitas()">🔄 Resetar Contador</button>
+        </div>
+
+        <div class="output" id="output-visitas"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 7: Ver Todo o localStorage ==================== -->
+    <div class="section">
+        <h2>7. Inspecionando o localStorage</h2>
+        <p>Veja tudo que está salvo no localStorage desta página:</p>
+
+        <button onclick="inspecionar()">🔍 Inspecionar localStorage</button>
+        <button class="btn-vermelho" onclick="limparTudo()">⚠️ Limpar TUDO</button>
+        <div class="output" id="output-inspecionar"></div>
+
+        <div class="nota">
+            <strong>💡 Dica:</strong> No navegador, abra o DevTools (F12) → aba "Application" → "Local Storage" para ver os dados salvos graficamente!
+        </div>
+    </div>
+
+    <script>
+        /* ==========================================
+           FUNÇÕES DOS EXEMPLOS
+           ========================================== */
+
+        // --- Exemplo 1: Operações básicas ---
+        function salvarItem() {
+            const chave = document.getElementById('input-chave').value;
+            const valor = document.getElementById('input-valor').value;
+
+            if (!chave) {
+                document.getElementById('output-basico').textContent = "❌ Digite uma chave!";
+                return;
+            }
+
+            localStorage.setItem(chave, valor);
+            document.getElementById('output-basico').textContent =
+                `✅ localStorage.setItem("${chave}", "${valor}")\n\nDado salvo com sucesso!\nRecarregue a página e clique em getItem para verificar.`;
+        }
+
+        function lerItem() {
+            const chave = document.getElementById('input-chave').value;
+            const valor = localStorage.getItem(chave);
+
+            document.getElementById('output-basico').textContent =
+                `localStorage.getItem("${chave}")\n\n` +
+                `Resultado: ${valor !== null ? `"${valor}"` : 'null (não encontrado)'}\n` +
+                `typeof: "${typeof valor}"`;
+        }
+
+        function removerItem() {
+            const chave = document.getElementById('input-chave').value;
+            localStorage.removeItem(chave);
+            document.getElementById('output-basico').textContent =
+                `🗑️ localStorage.removeItem("${chave}")\n\nChave "${chave}" removida!`;
+        }
+
+        function listarTodos() {
+            const el = document.getElementById('output-basico');
+            let resultado = `📋 Todos os itens no localStorage:\n`;
+            resultado += `Total: ${localStorage.length} item(ns)\n`;
+            resultado += `─────────────────────────────\n`;
+
+            for (let i = 0; i < localStorage.length; i++) {
+                const chave = localStorage.key(i);
+                const valor = localStorage.getItem(chave);
+                resultado += `  "${chave}": "${valor}"\n`;
+            }
+
+            if (localStorage.length === 0) {
+                resultado += `  (vazio)`;
+            }
+
+            el.textContent = resultado;
+        }
+
+        // --- Exemplo 2: JSON ---
+        function salvarObjeto() {
+            const usuario = {
+                nome: "Ana Silva",
+                idade: 25,
+                cidade: "São Paulo",
+                cursos: ["HTML", "CSS", "JavaScript"]
+            };
+
+            localStorage.setItem("usuario", JSON.stringify(usuario));
+
+            document.getElementById('output-json').textContent =
+                `Objeto original:\n${JSON.stringify(usuario, null, 2)}\n\n` +
+                `JSON.stringify(usuario):\n"${JSON.stringify(usuario)}"\n\n` +
+                `✅ Salvo como string no localStorage!`;
+        }
+
+        function salvarArray() {
+            const frutas = ["🍎 Maçã", "🍌 Banana", "🍊 Laranja", "🥭 Manga"];
+
+            localStorage.setItem("frutas", JSON.stringify(frutas));
+
+            document.getElementById('output-json').textContent =
+                `Array original: [${frutas.map(f => `"${f}"`).join(', ')}]\n\n` +
+                `JSON.stringify(frutas):\n"${JSON.stringify(frutas)}"\n\n` +
+                `✅ Salvo como string no localStorage!`;
+        }
+
+        function lerJSON() {
+            const el = document.getElementById('output-json');
+            let resultado = '';
+
+            const usuarioStr = localStorage.getItem("usuario");
+            const frutasStr = localStorage.getItem("frutas");
+
+            resultado += `--- Lendo "usuario" ---\n`;
+            if (usuarioStr) {
+                const usuario = JSON.parse(usuarioStr);
+                resultado += `String salva: "${usuarioStr.substring(0, 50)}..."\n`;
+                resultado += `JSON.parse() → Objeto:\n`;
+                resultado += `  nome: "${usuario.nome}"\n`;
+                resultado += `  idade: ${usuario.idade}\n`;
+                resultado += `  cidade: "${usuario.cidade}"\n`;
+                resultado += `  cursos: [${usuario.cursos.join(', ')}]\n\n`;
+            } else {
+                resultado += `  Não encontrado. Clique "Salvar Objeto" primeiro.\n\n`;
+            }
+
+            resultado += `--- Lendo "frutas" ---\n`;
+            if (frutasStr) {
+                const frutas = JSON.parse(frutasStr);
+                resultado += `String salva: "${frutasStr}"\n`;
+                resultado += `JSON.parse() → Array:\n`;
+                frutas.forEach((f, i) => resultado += `  [${i}]: "${f}"\n`);
+            } else {
+                resultado += `  Não encontrado. Clique "Salvar Array" primeiro.`;
+            }
+
+            el.textContent = resultado;
+        }
+
+        // --- Exemplo 3: Bloco de Notas ---
+        (function() {
+            const textarea = document.getElementById('bloco-notas');
+            const notasSalvas = localStorage.getItem('minhasNotas');
+
+            if (notasSalvas) {
+                textarea.value = notasSalvas;
+                document.getElementById('output-notas').textContent =
+                    `📖 Notas carregadas do localStorage!\nTamanho: ${notasSalvas.length} caracteres`;
+            }
+        })();
+
+        function salvarNotas() {
+            const texto = document.getElementById('bloco-notas').value;
+            localStorage.setItem('minhasNotas', texto);
+
+            document.getElementById('status-notas').textContent = '✅ Salvo!';
+            setTimeout(() => document.getElementById('status-notas').textContent = '', 2000);
+
+            document.getElementById('output-notas').textContent =
+                `💾 localStorage.setItem("minhasNotas", texto)\nTamanho: ${texto.length} caracteres\n\n` +
+                `Recarregue a página para ver que as notas persistem!`;
+        }
+
+        function limparNotas() {
+            document.getElementById('bloco-notas').value = '';
+            localStorage.removeItem('minhasNotas');
+            document.getElementById('output-notas').textContent = '🗑️ Notas removidas do localStorage!';
+        }
+
+        // --- Exemplo 4: Tema ---
+        (function() {
+            const temaSalvo = localStorage.getItem('tema');
+            const toggle = document.getElementById('toggle-tema');
+
+            if (temaSalvo === 'escuro') {
+                document.body.classList.add('tema-escuro');
+                toggle.classList.add('ativo');
+            }
+
+            atualizarOutputTema();
+        })();
+
+        function alternarTema() {
+            const toggle = document.getElementById('toggle-tema');
+            document.body.classList.toggle('tema-escuro');
+            toggle.classList.toggle('ativo');
+
+            const temaAtual = document.body.classList.contains('tema-escuro') ? 'escuro' : 'claro';
+            localStorage.setItem('tema', temaAtual);
+            atualizarOutputTema();
+        }
+
+        function atualizarOutputTema() {
+            const tema = localStorage.getItem('tema') || 'claro';
+            document.getElementById('output-tema').textContent =
+                `Tema atual: ${tema === 'escuro' ? '🌙 Escuro' : '☀️ Claro'}\n\n` +
+                `localStorage.getItem("tema") → "${tema}"\n\n` +
+                `Código:\n` +
+                `  // Salvar\n` +
+                `  localStorage.setItem("tema", "${tema}");\n\n` +
+                `  // Ao carregar a página\n` +
+                `  const tema = localStorage.getItem("tema");\n` +
+                `  if (tema === "escuro") body.classList.add("tema-escuro");`;
+        }
+
+        // --- Exemplo 5: Lista de Favoritos ---
+        function carregarFavoritos() {
+            const dados = localStorage.getItem('favoritos');
+            return dados ? JSON.parse(dados) : [];
+        }
+
+        function salvarFavoritos(lista) {
+            localStorage.setItem('favoritos', JSON.stringify(lista));
+        }
+
+        function renderizarFavoritos() {
+            const container = document.getElementById('lista-favoritos');
+            const favoritos = carregarFavoritos();
+            container.innerHTML = '';
+
+            if (favoritos.length === 0) {
+                container.innerHTML = '<p style="color: #95a5a6; text-align: center;">Nenhum favorito ainda. Adicione um!</p>';
+                return;
+            }
+
+            favoritos.forEach((fav, index) => {
+                const div = document.createElement('div');
+                div.className = 'fav-item';
+                div.innerHTML = `<span>⭐ ${fav}</span>`;
+
+                const btn = document.createElement('button');
+                btn.textContent = '🗑️';
+                btn.className = 'btn-vermelho';
+                btn.addEventListener('click', () => {
+                    const lista = carregarFavoritos();
+                    lista.splice(index, 1);
+                    salvarFavoritos(lista);
+                    renderizarFavoritos();
+                    document.getElementById('output-favoritos').textContent =
+                        `🗑️ Removido: "${fav}"\nTotal: ${lista.length} favorito(s)`;
+                });
+
+                div.appendChild(btn);
+                container.appendChild(div);
+            });
+
+            document.getElementById('output-favoritos').textContent =
+                `Total: ${favoritos.length} favorito(s)\n` +
+                `localStorage: ${JSON.stringify(favoritos)}`;
+        }
+
+        function adicionarFavorito() {
+            const input = document.getElementById('input-favorito');
+            const texto = input.value.trim();
+
+            if (!texto) {
+                document.getElementById('output-favoritos').textContent = "❌ Digite um nome!";
+                return;
+            }
+
+            const favoritos = carregarFavoritos();
+            favoritos.push(texto);
+            salvarFavoritos(favoritos);
+            renderizarFavoritos();
+            input.value = '';
+            input.focus();
+
+            document.getElementById('output-favoritos').textContent =
+                `⭐ Adicionado: "${texto}"\n` +
+                `Total: ${favoritos.length} favorito(s)\n\n` +
+                `Código:\n` +
+                `  const lista = JSON.parse(localStorage.getItem("favoritos"));\n` +
+                `  lista.push("${texto}");\n` +
+                `  localStorage.setItem("favoritos", JSON.stringify(lista));`;
+        }
+
+        function limparFavoritos() {
+            localStorage.removeItem('favoritos');
+            renderizarFavoritos();
+            document.getElementById('output-favoritos').textContent = '🗑️ Todos os favoritos removidos!';
+        }
+
+        // Carregar favoritos ao iniciar
+        renderizarFavoritos();
+
+        // Enter para adicionar
+        document.getElementById('input-favorito').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') adicionarFavorito();
+        });
+
+        // --- Exemplo 6: Contador de Visitas ---
+        (function() {
+            let visitas = Number(localStorage.getItem('visitas')) || 0;
+            visitas++;
+            localStorage.setItem('visitas', visitas);
+
+            document.getElementById('contador-visitas').textContent = visitas;
+            document.getElementById('output-visitas').textContent =
+                `Visita #${visitas}\n\n` +
+                `Código:\n` +
+                `  let visitas = Number(localStorage.getItem("visitas")) || 0;\n` +
+                `  visitas++;\n` +
+                `  localStorage.setItem("visitas", visitas);\n\n` +
+                `💡 Recarregue a página (F5) para ver o número aumentar!`;
+        })();
+
+        function resetarVisitas() {
+            localStorage.setItem('visitas', 0);
+            document.getElementById('contador-visitas').textContent = 0;
+            document.getElementById('output-visitas').textContent = '🔄 Contador resetado! Recarregue para começar do 1.';
+        }
+
+        // --- Exemplo 7: Inspecionar ---
+        function inspecionar() {
+            const el = document.getElementById('output-inspecionar');
+            let resultado = `🔍 Conteúdo do localStorage:\n`;
+            resultado += `Total de chaves: ${localStorage.length}\n`;
+            resultado += `═══════════════════════════════════════\n\n`;
+
+            for (let i = 0; i < localStorage.length; i++) {
+                const chave = localStorage.key(i);
+                const valor = localStorage.getItem(chave);
+                const tamanho = valor.length;
+
+                resultado += `📌 Chave: "${chave}"\n`;
+
+                // Tentar parsear como JSON
+                try {
+                    const parsed = JSON.parse(valor);
+                    if (typeof parsed === 'object') {
+                        resultado += `   Tipo: JSON (${Array.isArray(parsed) ? 'array' : 'objeto'})\n`;
+                        resultado += `   Valor: ${JSON.stringify(parsed, null, 2).split('\n').map((l, i) => i === 0 ? l : '   ' + l).join('\n')}\n`;
+                    } else {
+                        resultado += `   Tipo: ${typeof parsed}\n`;
+                        resultado += `   Valor: "${valor}"\n`;
+                    }
+                } catch {
+                    resultado += `   Tipo: string\n`;
+                    resultado += `   Valor: "${valor.length > 80 ? valor.substring(0, 80) + '...' : valor}"\n`;
+                }
+
+                resultado += `   Tamanho: ${tamanho} caracteres\n`;
+                resultado += `───────────────────────────────────────\n`;
+            }
+
+            if (localStorage.length === 0) {
+                resultado += `(localStorage está vazio)`;
+            }
+
+            // Espaço total estimado
+            let totalBytes = 0;
+            for (let i = 0; i < localStorage.length; i++) {
+                const chave = localStorage.key(i);
+                totalBytes += chave.length + localStorage.getItem(chave).length;
+            }
+            resultado += `\nEspaço usado: ~${totalBytes} caracteres (~${(totalBytes * 2 / 1024).toFixed(1)} KB)`;
+            resultado += `\nLimite típico: ~5 MB`;
+
+            el.textContent = resultado;
+        }
+
+        function limparTudo() {
+            if (confirm('Tem certeza? Isso vai apagar TODOS os dados do localStorage!')) {
+                localStorage.clear();
+                document.getElementById('output-inspecionar').textContent =
+                    '⚠️ localStorage.clear() executado!\nTodos os dados foram apagados.\n\nRecarregue a página para ver o efeito.';
+
+                // Atualizar componentes
+                renderizarFavoritos();
+                document.getElementById('bloco-notas').value = '';
+                document.getElementById('contador-visitas').textContent = '0';
+            }
+        }
+    </script>
+
+</body>
+</html>

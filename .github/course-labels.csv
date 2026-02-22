@@ -1,0 +1,9 @@
+name,color,description
+"tipo:duvida",1D76DB,"Duvida de conteudo ou tecnica"
+"tipo:erro-material",D73A4A,"Erro no texto, exemplo ou instrucao"
+"tipo:atividade",0E8A16,"Entrega ou acompanhamento de atividade"
+"tipo:melhoria",A2EEEF,"Sugestao de melhoria no material"
+"turma:tarde",FBCA04,"Relacionada a turma da tarde"
+"turma:noite",FBCA04,"Relacionada a turma da noite"
+"status:triagem",F9D0C4,"Aguardando avaliacao inicial"
+"status:resolvido",0E8A16,"Resolvido ou concluido"

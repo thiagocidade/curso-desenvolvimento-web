@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fundamentos do Desenvolvimento Web</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 0;
+    }
+    .page {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      background: #fff;
+    }
+    .content-row {
+      display: flex;
+      align-items: stretch;
+      width: 100%;
+      min-height: calc(100vh - 72px);
+    }
+    .sidebar {
+      position: sticky;
+      top: 100px;
+      align-self: stretch;
+      background: #fff;
+      padding: 16px;
+      width: 240px;
+      flex: 0 0 240px;
+      height: calc(100vh - 72px);
+      border-right: 1px solid #e5e7eb;
+      overflow: auto;
+      scrollbar-width: none;
+    }
+    .sidebar::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar li {
+      margin: 6px 0;
+    }
+    .sidebar a {
+      text-decoration: none;
+      color: #4b5563;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 8px;
+      border-radius: 0;
+      transition: background 0.2s, color 0.2s;
+    }
+    .sidebar a::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #d1d5db;
+      flex: 0 0 auto;
+    }
+    .sidebar a:hover {
+      background: #eef2ff;
+      color: #1f2937;
+    }
+    .sidebar a.active {
+      background: #e0e7ff;
+      color: #312e81;
+      font-weight: 600;
+    }
+    .sidebar a.active::before {
+      background: #4f46e5;
+    }
+    .sidebar details {
+      border-radius: 0;
+      margin-bottom: 8px;
+      background: transparent;
+      border: 0;
+      padding: 6px 0;
+    }
+    .sidebar summary {
+      cursor: pointer;
+      list-style: none;
+      font-weight: 600;
+      color: #111827;
+      font-size: 0.9rem;
+      outline: none;
+    }
+    .sidebar summary::-webkit-details-marker { display: none; }
+    .sidebar summary::after {
+      content: "▾";
+      float: right;
+      color: #6b7280;
+      font-size: 0.8rem;
+      margin-top: 2px;
+    }
+    .sidebar details[open] summary::after { content: "▴"; }
+    .sidebar details ul {
+      margin-top: 8px;
+    }
+    .sidebar details ul li:last-child {
+      margin-bottom: 6px;
+    }
+    .topbar {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      padding: 16px 20px;
+      border-bottom: 1px solid #e5e7eb;
+      z-index: 5;
+    }
+    .mobile-nav {
+      display: none;
+      background: #fff;
+      padding: 12px 0 0;
+      border-radius: 0;
+    }
+    .mobile-nav label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #4b5563;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .mobile-nav select {
+      width: 100%;
+      border: 1px solid #d1d5db;
+      border-radius: 0;
+      padding: 10px 12px;
+      font-size: 0.95rem;
+      background: #fff;
+      color: #111827;
+    }
+    .container {
+      background: #fff;
+      padding: 10px 28px 28px;
+      border-right: 1px solid #e5e7eb;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+    .nav-actions {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .repo-link {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .repo-link:hover {
+      transform: translateY(-1px);
+    }
+    .repo-link.discussions {
+      color: #7c2d12;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+    }
+    .repo-link.discussions:hover {
+      border-color: #fdba74;
+      box-shadow: 0 6px 16px rgba(124, 45, 18, 0.14);
+    }
+    .repo-link.issues {
+      color: #064e3b;
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+    }
+    .repo-link.issues:hover {
+      border-color: #6ee7b7;
+      box-shadow: 0 6px 16px rgba(6, 78, 59, 0.14);
+    }
+    .activities-link {
+      display: none;
+      align-items: center;
+      text-decoration: none;
+      font-weight: 600;
+      color: #14532d;
+      background: #ecfdf3;
+      border: 1px solid #bbf7d0;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .activities-link:hover {
+      transform: translateY(-1px);
+      border-color: #86efac;
+      box-shadow: 0 6px 16px rgba(22, 101, 52, 0.14);
+    }
+    .activities-link.visible {
+      display: inline-flex;
+    }
+    .examples-link {
+      display: none;
+      align-items: center;
+      text-decoration: none;
+      font-weight: 600;
+      color: #1e3a8a;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .examples-link:hover {
+      transform: translateY(-1px);
+      border-color: #93c5fd;
+      box-shadow: 0 6px 16px rgba(30, 58, 138, 0.14);
+    }
+    .examples-link.visible {
+      display: inline-flex;
+    }
+    .title-group {
+      margin-left: 150px;
+    }
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      color: #4f46e5;
+      background: #eef2ff;
+      border: 1px solid #e0e7ff;
+      padding: 8px 12px;
+      border-radius: 999px;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .back:hover {
+      transform: translateY(-2px);
+      border-color: #c7d2fe;
+      box-shadow: 0 8px 18px rgba(79,70,229,0.18);
+    }
+    h1 {
+      color: #111827;
+      font-size: 1.6rem;
+      text-align: left;
+    }
+    .subtitle {
+      color: #6b7280;
+      font-size: 0.95rem;
+      text-align: left;
+    }
+    .content {
+      padding: 6px 4px 12px;
+    }
+    .chapter-info {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      margin-top: 6px;
+      padding: 10px 12px;
+      border-radius: 0;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+    }
+    .chapter-label {
+      font-weight: 700;
+      color: #111827;
+    }
+    .content h1, .content h2, .content h3 {
+      color: #111827;
+      margin: 18px 0 8px;
+    }
+    .content h1 { font-size: 1.5rem; margin-top: 0; }
+    .content p { color: #374151; line-height: 1.7; margin: 8px 0; }
+    .content ul, .content ol { padding-left: 20px; color: #374151; margin: 8px 0; }
+    .content li { margin: 4px 0; }
+    .content pre {
+      position: relative;
+      background: linear-gradient(180deg, #f8fbff 0%, #f3f8ff 100%);
+      color: #0f172a;
+      border: 1px dashed #9fb9dc;
+      padding: 14px 16px 12px;
+      border-radius: 10px;
+      overflow: auto;
+      margin: 12px 0;
+      line-height: 1.6;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    }
+    .content pre:not(.code-block) {
+      border-top: 4px solid #7aa2d6;
+    }
+    .content pre:not(.code-block)::before {
+      content: attr(data-label);
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #e0ecfb;
+      color: #26476f;
+      border: 1px solid #bcd3ef;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    .content code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    .content pre.code-block {
+      margin: 14px 0;
+      padding: 0;
+      border: 1px solid #1f2937;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #0f172a;
+    }
+    .content .code-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 10px;
+      border-bottom: 1px solid #1e293b;
+      background: #111827;
+    }
+    .content .code-language {
+      color: #cbd5e1;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .content .copy-code-btn {
+      border: 1px solid #334155;
+      background: #0b1220;
+      color: #e2e8f0;
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .content .copy-code-btn:hover {
+      background: #172554;
+      border-color: #475569;
+      transform: translateY(-1px);
+    }
+    .content .copy-code-btn.copied {
+      background: #14532d;
+      border-color: #166534;
+      color: #dcfce7;
+    }
+    .content pre.code-block code {
+      display: block;
+      overflow: auto;
+      padding: 14px 16px;
+      color: #e2e8f0;
+      line-height: 1.6;
+      background: #0f172a;
+    }
+    .content pre.code-block code.hljs {
+      background: #0f172a;
+    }
+    .content code.hljs-keyword,
+    .content .hljs-keyword { color: #c084fc; font-weight: 700; }
+    .content code.hljs-string,
+    .content .hljs-string { color: #86efac; }
+    .content code.hljs-number,
+    .content .hljs-number { color: #fbbf24; }
+    .content code.hljs-title,
+    .content .hljs-title { color: #67e8f9; }
+    .content code.hljs-tag,
+    .content .hljs-tag { color: #fda4af; }
+    .content code.hljs-name,
+    .content .hljs-name { color: #93c5fd; }
+    .content code.hljs-attr,
+    .content .hljs-attr,
+    .content code.hljs-attribute,
+    .content .hljs-attribute { color: #fdba74; }
+    .content code.hljs-comment,
+    .content .hljs-comment { color: #94a3b8; font-style: italic; }
+    .content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 0.95rem;
+    }
+    .content th, .content td {
+      border: 1px solid #e5e7eb;
+      padding: 10px 12px;
+      text-align: left;
+    }
+    .content blockquote {
+      margin: 12px 0;
+      padding: 12px 16px;
+      border-left: 4px solid #6366f1;
+      background: #eef2ff;
+      color: #4b5563;
+    }
+    .content blockquote.meta-info {
+      border-left-color: #2563eb;
+      background: #eff6ff;
+      padding: 12px 14px;
+    }
+    .content blockquote.meta-info p.meta-line {
+      margin: 6px 0;
+      color: #1f2937;
+      line-height: 1.5;
+    }
+    .content blockquote.meta-info p.meta-line strong {
+      color: #1d4ed8;
+      min-width: 120px;
+      display: inline-block;
+    }
+    .content ul.checklist,
+    .content ol.checklist {
+      list-style: none;
+      padding-left: 0;
+    }
+    .content li.checklist-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin: 8px 0;
+      color: #374151;
+    }
+    .content li.checklist-item input.checklist-box {
+      accent-color: #4f46e5;
+      width: 16px;
+      height: 16px;
+      margin-top: 4px;
+      flex: 0 0 auto;
+    }
+    .status {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: #6b7280;
+      text-align: left;
+    }
+    .error {
+      color: #b91c1c;
+      font-weight: 600;
+    }
+    .markdown-fallback {
+      white-space: pre-wrap;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: #1f2937;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 14px;
+    }
+    @media (max-width: 900px) {
+      .content-row { flex-direction: column; }
+      .container {
+        padding: 20px 18px 28px;
+        border-right: 0;
+        border-bottom: 1px solid #e5e7eb;
+      }
+      .nav { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .nav-actions { margin-left: 0; }
+      .title-group { margin-left: 0; }
+      h1, .subtitle, .status { text-align: left; }
+      .sidebar { width: 100%; border-left: 0; border-right: 0; display: none; }
+      .mobile-nav { display: block; }
+    }
+  </style>
+</head>
+<body data-source="README.md">
+  <div class="page">
+    <div class="topbar">
+      <div class="nav">
+        <a class="back" href="../index.html">← Voltar</a>
+        <div class="title-group">
+          <h1>Fundamentos do Desenvolvimento Web</h1>
+          <p class="subtitle"><span id="chapter-subtitle">Capitulo</span></p>
+        </div>
+        <div class="nav-actions">
+          <a class="repo-link discussions" href="https://github.com/thiagocidade/curso-desenvolvimento-web/discussions" target="_blank" rel="noopener noreferrer">Discussion</a>
+          <a class="repo-link issues" href="https://github.com/thiagocidade/curso-desenvolvimento-web/issues" target="_blank" rel="noopener noreferrer">Issue</a>
+          <a class="activities-link" id="activities-link" href="#">Atividades</a>
+          <a class="examples-link" id="examples-link" href="#">Exemplos</a>
+        </div>
+      </div>
+      <div class="mobile-nav" id="mobile-nav">
+        <label for="mobile-select">Navegacao rapida</label>
+        <select id="mobile-select">
+          <option value="">Ir para...</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="content-row">
+      <aside class="sidebar" id="sidebar">
+        <ul id="topic-list"></ul>
+      </aside>
+      <div class="container">
+        <section class="content" id="content">
+          <p>Carregando conteudo...</p>
+        </section>
+        <div class="status" id="status"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/vendor/marked.min.js"></script>
+  <script src="../assets/vendor/highlight.common.min.js"></script>
+  <script>
+    const source = document.body.dataset.source;
+    const contentEl = document.getElementById('content');
+    const statusEl = document.getElementById('status');
+
+    const hasMarked = typeof window.marked !== 'undefined' && typeof window.marked.parse === 'function';
+    if (hasMarked) {
+      marked.setOptions({
+        gfm: true,
+        breaks: false
+      });
+    }
+
+    const storageKey = `fundamentos-web-checklist:${source}`;
+
+    const normalizeText = (text) => text.replace(/\s+/g, ' ').trim();
+
+    const loadState = () => {
+      try {
+        return JSON.parse(localStorage.getItem(storageKey) || '{}');
+      } catch (err) {
+        return {};
+      }
+    };
+
+    const saveState = (state) => {
+      localStorage.setItem(storageKey, JSON.stringify(state));
+    };
+
+    const escapeHtml = (value) =>
+      value
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+
+    const applyChecklist = () => {
+      const state = loadState();
+      const items = Array.from(contentEl.querySelectorAll('li'));
+      let checklistCount = 0;
+
+      items.forEach((item, index) => {
+        let checkbox = item.querySelector('input[type="checkbox"]');
+
+        if (!checkbox) {
+          const firstNode = item.childNodes[0];
+          if (!firstNode || firstNode.nodeType !== Node.TEXT_NODE) {
+            return;
+          }
+
+          const match = firstNode.textContent.match(/^\s*\[( |x|X)\]\s+/);
+          if (!match) {
+            return;
+          }
+
+          const isChecked = match[1].toLowerCase() === 'x';
+          firstNode.textContent = firstNode.textContent.replace(/^\s*\[( |x|X)\]\s+/, '');
+
+          checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.checked = isChecked;
+          checkbox.className = 'checklist-box';
+          item.insertBefore(checkbox, item.firstChild);
+        } else {
+          checkbox.disabled = false;
+          checkbox.classList.add('checklist-box');
+        }
+
+        item.classList.add('checklist-item');
+        if (item.parentElement) {
+          item.parentElement.classList.add('checklist');
+        }
+
+        const id = `item-${index}-${normalizeText(item.textContent).slice(0, 80)}`;
+        if (Object.prototype.hasOwnProperty.call(state, id)) {
+          checkbox.checked = state[id];
+        } else {
+          state[id] = checkbox.checked;
+        }
+
+        checkbox.addEventListener('change', () => {
+          state[id] = checkbox.checked;
+          saveState(state);
+        });
+
+        checklistCount += 1;
+      });
+
+      if (checklistCount > 0) {
+        saveState(state);
+      }
+    };
+
+    const copyText = async (text) => {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.setAttribute('readonly', '');
+      textArea.style.position = 'fixed';
+      textArea.style.opacity = '0';
+      textArea.style.pointerEvents = 'none';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+    };
+
+    const getLanguageLabel = (codeEl) => {
+      const classes = Array.from(codeEl.classList);
+      const languageClass = classes.find((name) => name.startsWith('language-'));
+      if (!languageClass) return 'codigo';
+      return languageClass.replace('language-', '') || 'codigo';
+    };
+
+    const getSupportedLanguage = (codeEl) => {
+      const raw = getLanguageLabel(codeEl).toLowerCase();
+      if (raw === 'html') return 'html';
+      if (raw === 'css') return 'css';
+      if (raw === 'javascript' || raw === 'js') return 'javascript';
+      return null;
+    };
+
+    const enhanceCodeBlocks = () => {
+      const blocks = Array.from(contentEl.querySelectorAll('pre > code'));
+
+      blocks.forEach((codeEl) => {
+        const preEl = codeEl.parentElement;
+        if (!preEl || preEl.classList.contains('code-block')) {
+          return;
+        }
+
+        const languageId = getSupportedLanguage(codeEl);
+        if (!languageId) {
+          return;
+        }
+
+        preEl.classList.add('code-block');
+
+        const toolbar = document.createElement('div');
+        toolbar.className = 'code-toolbar';
+
+        const language = document.createElement('span');
+        language.className = 'code-language';
+        language.textContent = languageId;
+
+        const copyButton = document.createElement('button');
+        copyButton.type = 'button';
+        copyButton.className = 'copy-code-btn';
+        copyButton.textContent = 'Copiar';
+
+        copyButton.addEventListener('click', async () => {
+          const originalText = copyButton.textContent;
+          try {
+            await copyText(codeEl.textContent || '');
+            copyButton.textContent = 'Copiado!';
+            copyButton.classList.add('copied');
+            setTimeout(() => {
+              copyButton.textContent = originalText;
+              copyButton.classList.remove('copied');
+            }, 1600);
+          } catch (err) {
+            copyButton.textContent = 'Falhou';
+            setTimeout(() => {
+              copyButton.textContent = originalText;
+            }, 1600);
+          }
+        });
+
+        toolbar.appendChild(language);
+        toolbar.appendChild(copyButton);
+        preEl.insertBefore(toolbar, codeEl);
+
+        codeEl.classList.remove('language-js');
+        const highlightLanguage = languageId === 'html' ? 'xml' : languageId;
+        codeEl.classList.add(`language-${highlightLanguage}`);
+        if (window.hljs) {
+          hljs.highlightElement(codeEl);
+        }
+      });
+    };
+
+    const classifyReferenceBlock = (text) => {
+      const lines = text.split('\n').map((line) => line.trim()).filter(Boolean);
+      const hasAsciiBox = /[+\u2500\u2502\u2510\u2514\u2518]/.test(text) || /\|/.test(text);
+      const hasFlowArrows = /--?>|<--?|=>|<=/.test(text);
+      const hasTimelineYears = lines.filter((line) => /^(19|20)\d{2}\b/.test(line)).length >= 2;
+      const hasVerticalTimeline = lines.some((line) => line === '|');
+
+      if (hasTimelineYears || (hasVerticalTimeline && lines.length >= 4)) {
+        return 'Linha do tempo';
+      }
+      if (hasAsciiBox) {
+        return 'Diagrama';
+      }
+      if (hasFlowArrows) {
+        return 'Fluxo';
+      }
+      return 'Referencia';
+    };
+
+    const enhanceReferenceBlocks = () => {
+      const blocks = Array.from(contentEl.querySelectorAll('pre:not(.code-block)'));
+      blocks.forEach((block) => {
+        const label = classifyReferenceBlock(block.textContent || '');
+        block.dataset.label = label;
+      });
+    };
+
+    const buildTopicMenu = () => {
+      const headings = Array.from(contentEl.querySelectorAll('h2, h3'));
+      if (headings.length === 0) {
+        return;
+      }
+
+      const chapterHeading = headings.find((heading) => heading.tagName === 'H2') || headings[0];
+      const chapterText = chapterHeading ? chapterHeading.textContent.trim() : '';
+
+      const subtitleEl = document.getElementById('chapter-subtitle');
+      if (subtitleEl && chapterText) {
+        subtitleEl.textContent = chapterText;
+      }
+
+      const subtopics = headings.filter((heading) => heading.tagName === 'H3');
+      const topicList = document.getElementById('topic-list');
+      topicList.innerHTML = '';
+
+      const groups = [];
+      let currentGroup = { title: chapterText || 'Subtopicos', items: [] };
+
+      headings.forEach((heading) => {
+        if (heading.tagName === 'H2') {
+          if (currentGroup.items.length > 0) {
+            groups.push(currentGroup);
+          }
+          currentGroup = { title: heading.textContent.trim(), items: [] };
+          return;
+        }
+
+        const anchor = `subtopico-${currentGroup.items.length + 1}-${groups.length + 1}`;
+        heading.id = heading.id || anchor;
+        heading.style.scrollMarginTop = '200px';
+        currentGroup.items.push({ id: heading.id, text: heading.textContent.trim() });
+      });
+
+      if (currentGroup.items.length > 0) {
+        groups.push(currentGroup);
+      }
+
+      groups.forEach((group, index) => {
+        const details = document.createElement('details');
+        if (index === 0) details.open = true;
+
+        const summary = document.createElement('summary');
+        summary.textContent = group.title;
+        details.appendChild(summary);
+
+        const list = document.createElement('ul');
+        group.items.forEach((itemData) => {
+          const item = document.createElement('li');
+          const link = document.createElement('a');
+          link.href = `#${itemData.id}`;
+          link.textContent = itemData.text;
+          link.dataset.target = itemData.id;
+          item.appendChild(link);
+          list.appendChild(item);
+        });
+        details.appendChild(list);
+        topicList.appendChild(details);
+      });
+      const mobileSelect = document.getElementById('mobile-select');
+      if (mobileSelect) {
+        mobileSelect.innerHTML = '<option value=\"\">Ir para...</option>';
+        groups.forEach((group) => {
+          const optGroup = document.createElement('optgroup');
+          optGroup.label = group.title;
+          group.items.forEach((itemData) => {
+            const option = document.createElement('option');
+            option.value = itemData.id;
+            option.textContent = itemData.text;
+            optGroup.appendChild(option);
+          });
+          mobileSelect.appendChild(optGroup);
+        });
+      }
+
+      const topicOffset = 170;
+
+      const setActiveLink = (activeId) => {
+        const links = topicList.querySelectorAll('a');
+        links.forEach((link) => {
+          link.classList.toggle('active', link.dataset.target === activeId);
+        });
+
+        const activeLink = topicList.querySelector(`a[data-target=\"${activeId}\"]`);
+        if (activeLink) {
+          const parentDetails = activeLink.closest('details');
+          if (parentDetails) {
+            topicList.querySelectorAll('details').forEach((detail) => {
+              detail.open = detail === parentDetails;
+            });
+          }
+        }
+      };
+
+      topicList.addEventListener('click', (event) => {
+        const link = event.target.closest('a');
+        if (!link) return;
+        event.preventDefault();
+        const targetId = link.dataset.target;
+        const target = document.getElementById(targetId);
+        if (target) {
+          setActiveLink(targetId);
+          const targetTop = target.getBoundingClientRect().top + window.scrollY - topicOffset;
+          window.scrollTo({ top: targetTop, behavior: 'smooth' });
+          history.replaceState(null, '', `#${targetId}`);
+        }
+      });
+
+      if (mobileSelect) {
+        mobileSelect.addEventListener('change', () => {
+          if (!mobileSelect.value) return;
+          const target = document.getElementById(mobileSelect.value);
+          if (target) {
+            const targetTop = target.getBoundingClientRect().top + window.scrollY - topicOffset;
+            window.scrollTo({ top: targetTop, behavior: 'smooth' });
+            history.replaceState(null, '', `#${mobileSelect.value}`);
+            setActiveLink(mobileSelect.value);
+            mobileSelect.value = '';
+          }
+        });
+      }
+
+      topicList.addEventListener('toggle', (event) => {
+        const toggled = event.target;
+        if (!(toggled instanceof HTMLDetailsElement) || !toggled.open) return;
+        topicList.querySelectorAll('details').forEach((detail) => {
+          if (detail !== toggled) detail.open = false;
+        });
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const activeId = entry.target.id;
+          setActiveLink(activeId);
+        });
+      }, { rootMargin: '-40% 0px -55% 0px' });
+
+      subtopics.forEach((heading) => observer.observe(heading));
+      if (subtopics.length > 0) {
+        setActiveLink(subtopics[0].id);
+      }
+    };
+
+    const formatIntroMetaBlockquote = () => {
+      const firstQuote = contentEl.querySelector('blockquote');
+      if (!firstQuote) return;
+
+      const plain = (firstQuote.textContent || '').replace(/\s+/g, ' ').trim();
+      const hasMetaLabels = /(Duracao|Duração)\s*:/.test(plain) &&
+        /(Pre-requisitos|Pre requisitos|Prerequisitos)\s*:/.test(plain) &&
+        /Objetivo\s*:/.test(plain);
+
+      if (!hasMetaLabels) return;
+
+      const extract = (regex) => {
+        const match = plain.match(regex);
+        return match ? match[1].trim() : '';
+      };
+
+      const duracao = extract(/(?:Duracao|Duração)\s*:\s*(.*?)(?=(?:Pre-requisitos|Pre requisitos|Prerequisitos)\s*:|Objetivo\s*:|$)/i);
+      const prerequisitos = extract(/(?:Pre-requisitos|Pre requisitos|Prerequisitos)\s*:\s*(.*?)(?=Objetivo\s*:|$)/i);
+      const objetivo = extract(/Objetivo\s*:\s*(.*)$/i);
+
+      const rows = [
+        ['Duração', duracao],
+        ['Pré-requisitos', prerequisitos],
+        ['Objetivo', objetivo],
+      ].filter(([, value]) => value);
+
+      if (rows.length === 0) return;
+
+      firstQuote.classList.add('meta-info');
+      firstQuote.innerHTML = rows
+        .map(([label, value]) => `<p class="meta-line"><strong>${label}:</strong> ${value}</p>`)
+        .join('');
+    };
+
+    const setupActivitiesLink = () => {
+      const activitiesLink = document.getElementById('activities-link');
+      if (!activitiesLink) return;
+
+      const headings = Array.from(contentEl.querySelectorAll('h2, h3'));
+      const activitiesHeading = headings.find((heading) =>
+        /atividades/i.test(heading.textContent || '')
+      );
+
+      if (!activitiesHeading) {
+        return;
+      }
+
+      if (!activitiesHeading.id) {
+        const base = (activitiesHeading.textContent || 'atividades')
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '') || 'atividades';
+        activitiesHeading.id = `secao-${base}`;
+      }
+
+      activitiesLink.href = `#${activitiesHeading.id}`;
+      activitiesLink.classList.add('visible');
+      activitiesLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        const target = document.getElementById(activitiesHeading.id);
+        if (!target) return;
+        const targetTop = target.getBoundingClientRect().top + window.scrollY - 170;
+        window.scrollTo({ top: targetTop, behavior: 'smooth' });
+        history.replaceState(null, '', `#${activitiesHeading.id}`);
+      });
+    };
+
+    const setupExamplesLink = () => {
+      const examplesLink = document.getElementById('examples-link');
+      if (!examplesLink) return;
+
+      const path = window.location.pathname;
+      const supportsExamples =
+        path.includes('/modulo-02-html/') ||
+        path.includes('/modulo-03-css/') ||
+        path.includes('/modulo-04-javascript/');
+
+      if (!supportsExamples) {
+        return;
+      }
+
+      examplesLink.href = './exemplos/index.html';
+      examplesLink.classList.add('visible');
+    };
+
+    const parseMarkdownSafely = (md) => {
+      if (hasMarked) {
+        return marked.parse(md);
+      }
+      return `<pre class="markdown-fallback">${escapeHtml(md)}</pre>`;
+    };
+
+    fetch(source)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Falha ao carregar ${source} (HTTP ${res.status}).`);
+        }
+        return res.text();
+      })
+      .then((md) => {
+        contentEl.innerHTML = parseMarkdownSafely(md);
+        statusEl.textContent = hasMarked
+          ? `Fonte: ${source}`
+          : `Fonte: ${source} (modo basico: sem parser Markdown externo)`;
+        enhanceCodeBlocks();
+        enhanceReferenceBlocks();
+        formatIntroMetaBlockquote();
+        buildTopicMenu();
+        setupActivitiesLink();
+        setupExamplesLink();
+        applyChecklist();
+      })
+      .catch((err) => {
+        contentEl.innerHTML = '<p class="error">Nao foi possivel carregar o conteudo.</p>';
+        statusEl.textContent = err.message;
+      });
+  </script>
+</body>
+</html>

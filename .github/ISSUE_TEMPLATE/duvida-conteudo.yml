@@ -1,0 +1,62 @@
+name: Dúvida de Conteúdo
+description: Use para dúvidas sobre explicações, conceitos e exercícios do curso.
+title: "[Duvida] Modulo XX - Turma Tarde/Noite - Nome"
+labels:
+  - "tipo:duvida"
+  - "status:triagem"
+body:
+  - type: dropdown
+    id: turma
+    attributes:
+      label: Turma
+      options:
+        - Turma Tarde
+        - Turma Noite
+    validations:
+      required: true
+
+  - type: dropdown
+    id: modulo
+    attributes:
+      label: Módulo
+      options:
+        - modulo:01
+        - modulo:02
+        - modulo:03
+        - modulo:04
+        - modulo:05
+    validations:
+      required: true
+
+  - type: input
+    id: nome
+    attributes:
+      label: Nome
+      placeholder: Seu nome completo
+    validations:
+      required: true
+
+  - type: textarea
+    id: contexto
+    attributes:
+      label: Contexto da dúvida
+      description: Onde você encontrou dificuldade?
+      placeholder: Explique o trecho, exercício ou conceito.
+    validations:
+      required: true
+
+  - type: textarea
+    id: tentativa
+    attributes:
+      label: O que você já tentou
+      placeholder: Liste tentativas e resultados.
+    validations:
+      required: true
+
+  - type: textarea
+    id: apoio
+    attributes:
+      label: Links/prints (opcional)
+      placeholder: Cole links, prints ou trechos de código.
+    validations:
+      required: false

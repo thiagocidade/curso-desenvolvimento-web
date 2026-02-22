@@ -1,0 +1,51 @@
+name: Sugestão de Melhoria
+description: Use para propor melhoria didática, estrutural ou técnica no curso.
+title: "[Melhoria] Modulo XX - Turma Tarde/Noite - Nome"
+labels:
+  - "tipo:melhoria"
+  - "status:triagem"
+body:
+  - type: dropdown
+    id: modulo
+    attributes:
+      label: Módulo
+      options:
+        - modulo:01
+        - modulo:02
+        - modulo:03
+        - modulo:04
+        - modulo:05
+    validations:
+      required: true
+
+  - type: input
+    id: nome
+    attributes:
+      label: Nome
+      placeholder: Seu nome completo
+    validations:
+      required: true
+
+  - type: textarea
+    id: problema
+    attributes:
+      label: Qual problema atual?
+      placeholder: Explique o ponto que pode melhorar.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposta
+    attributes:
+      label: Proposta de melhoria
+      placeholder: Descreva a melhoria sugerida.
+    validations:
+      required: true
+
+  - type: textarea
+    id: impacto
+    attributes:
+      label: Impacto esperado
+      placeholder: Como isso melhora o aprendizado?
+    validations:
+      required: false

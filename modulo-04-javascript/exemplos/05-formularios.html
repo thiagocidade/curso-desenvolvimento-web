@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulários com JavaScript - Exemplos</title>
+    <style>
+        /* ==========================================
+           FORMULÁRIOS COM JAVASCRIPT - EXEMPLOS
+           ========================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #34495e;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .output {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            margin-top: 10px;
+            min-height: 40px;
+            white-space: pre-wrap;
+            font-size: 14px;
+        }
+
+        .code-display {
+            background: #f8f8f8;
+            border: 1px solid #ddd;
+            border-left: 4px solid #3498db;
+            padding: 12px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px 5px 5px 0;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        button:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        .btn-verde { background: #2ecc71; }
+        .btn-verde:hover { background: #27ae60; }
+
+        /* Estilos de formulário */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        /* Estados de validação */
+        .form-group input.valido {
+            border-color: #2ecc71;
+        }
+
+        .form-group input.invalido {
+            border-color: #e74c3c;
+        }
+
+        .erro-msg {
+            color: #e74c3c;
+            font-size: 13px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .erro-msg.visivel {
+            display: block;
+        }
+
+        .sucesso-msg {
+            color: #2ecc71;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .nota {
+            background: #eaf6ff;
+            border-left: 4px solid #3498db;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Barra de força da senha */
+        .forca-senha {
+            height: 6px;
+            background: #ecf0f1;
+            border-radius: 3px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+        .forca-senha-barra {
+            height: 100%;
+            border-radius: 3px;
+            transition: all 0.3s;
+            width: 0%;
+        }
+
+        .forca-fraca { background: #e74c3c; width: 33%; }
+        .forca-media { background: #f1c40f; width: 66%; }
+        .forca-forte { background: #2ecc71; width: 100%; }
+
+        /* Resultado do formulário */
+        .resultado-card {
+            background: #eafff4;
+            border: 2px solid #2ecc71;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .resultado-card.visivel {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📝 Formulários com JavaScript</h1>
+    <p class="subtitle">Módulo 4 - JavaScript | Exemplo 05</p>
+
+    <!-- ==================== SEÇÃO 1: Lendo Valores ==================== -->
+    <div class="section">
+        <h2>1. Lendo Valores de Campos</h2>
+        <p>Use a propriedade <code>.value</code> para obter o que o usuário digitou:</p>
+
+        <div class="code-display">// Ler valor de um input
+const nome = document.querySelector('#nome').value;
+
+// Ler checkbox (checked é boolean)
+const aceito = document.querySelector('#aceito').checked;
+
+// Ler select (valor da opção selecionada)
+const cidade = document.querySelector('#cidade').value;</div>
+
+        <form id="form-leitura">
+            <div class="form-group">
+                <label>Nome:</label>
+                <input type="text" id="leitura-nome" placeholder="Seu nome" value="Maria">
+            </div>
+            <div class="form-group">
+                <label>E-mail:</label>
+                <input type="email" id="leitura-email" placeholder="seu@email.com" value="maria@email.com">
+            </div>
+            <div class="form-group">
+                <label>Cidade:</label>
+                <select id="leitura-cidade">
+                    <option value="sp">São Paulo</option>
+                    <option value="rj">Rio de Janeiro</option>
+                    <option value="bh">Belo Horizonte</option>
+                    <option value="ctb">Curitiba</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="leitura-aceito" checked> Aceito os termos
+                </label>
+            </div>
+        </form>
+
+        <button onclick="lerValores()">▶ Ler Todos os Valores</button>
+        <div class="output" id="output-leitura"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 2: preventDefault ==================== -->
+    <div class="section">
+        <h2>2. Interceptando o Envio: preventDefault</h2>
+        <p>Por padrão, um formulário <strong>recarrega a página</strong> ao ser enviado. Use <code>preventDefault</code> para evitar isso e processar com JavaScript.</p>
+
+        <div class="code-display">form.addEventListener('submit', function(e) {
+    e.preventDefault();  // Impede o reload da página!
+
+    // Agora processar os dados com JavaScript
+    const nome = document.querySelector('#nome').value;
+    console.log("Formulário interceptado!", nome);
+});</div>
+
+        <form id="form-prevent">
+            <div class="form-group">
+                <label>Mensagem:</label>
+                <input type="text" id="prevent-msg" placeholder="Digite algo e pressione Enter">
+            </div>
+            <button type="submit" class="btn-verde">Enviar (com preventDefault)</button>
+        </form>
+
+        <div class="output" id="output-prevent"></div>
+
+        <div class="nota">
+            <strong>💡 Sem preventDefault:</strong> A página recarregaria e os dados seriam perdidos. Com ele, processamos tudo no JavaScript!
+        </div>
+    </div>
+
+    <!-- ==================== SEÇÃO 3: Validação em Tempo Real ==================== -->
+    <div class="section">
+        <h2>3. Validação em Tempo Real</h2>
+        <p>Usando o evento <code>input</code>, validamos enquanto o usuário digita:</p>
+
+        <form id="form-realtime">
+            <div class="form-group">
+                <label>Nome (mínimo 3 caracteres):</label>
+                <input type="text" id="rt-nome" placeholder="Seu nome completo">
+                <div class="erro-msg" id="erro-rt-nome">Nome deve ter pelo menos 3 caracteres</div>
+            </div>
+
+            <div class="form-group">
+                <label>E-mail:</label>
+                <input type="email" id="rt-email" placeholder="seu@email.com">
+                <div class="erro-msg" id="erro-rt-email">Formato de e-mail inválido</div>
+            </div>
+
+            <div class="form-group">
+                <label>Idade (18-120):</label>
+                <input type="number" id="rt-idade" placeholder="Sua idade" min="18" max="120">
+                <div class="erro-msg" id="erro-rt-idade">Idade deve ser entre 18 e 120</div>
+            </div>
+        </form>
+
+        <div class="output" id="output-realtime">Digite nos campos acima para ver a validação em tempo real...</div>
+    </div>
+
+    <!-- ==================== SEÇÃO 4: Formulário com Senha ==================== -->
+    <div class="section">
+        <h2>4. Validação de Senha com Indicador de Força</h2>
+
+        <form id="form-senha">
+            <div class="form-group">
+                <label>Senha:</label>
+                <input type="password" id="senha-input" placeholder="Crie uma senha">
+                <div class="forca-senha">
+                    <div class="forca-senha-barra" id="barra-forca"></div>
+                </div>
+                <div id="texto-forca" style="font-size: 13px; margin-top: 4px;"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Confirmar senha:</label>
+                <input type="password" id="senha-confirmar" placeholder="Repita a senha">
+                <div class="erro-msg" id="erro-confirmar">As senhas não coincidem</div>
+            </div>
+        </form>
+
+        <div class="output" id="output-senha">Digite uma senha para ver o indicador de força...</div>
+    </div>
+
+    <!-- ==================== SEÇÃO 5: Formulário Completo ==================== -->
+    <div class="section">
+        <h2>5. Formulário de Cadastro Completo</h2>
+        <p>Validação completa com <code>preventDefault</code>, validação em tempo real e feedback visual:</p>
+
+        <form id="form-cadastro">
+            <div class="form-group">
+                <label>Nome completo: *</label>
+                <input type="text" id="cad-nome" placeholder="Seu nome completo">
+                <div class="erro-msg" id="erro-cad-nome"></div>
+            </div>
+
+            <div class="form-group">
+                <label>E-mail: *</label>
+                <input type="email" id="cad-email" placeholder="seu@email.com">
+                <div class="erro-msg" id="erro-cad-email"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Telefone:</label>
+                <input type="text" id="cad-telefone" placeholder="(11) 99999-9999">
+                <div class="erro-msg" id="erro-cad-telefone"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Curso de interesse: *</label>
+                <select id="cad-curso">
+                    <option value="">-- Selecione --</option>
+                    <option value="html">HTML Básico</option>
+                    <option value="css">CSS Avançado</option>
+                    <option value="js">JavaScript</option>
+                    <option value="react">React</option>
+                </select>
+                <div class="erro-msg" id="erro-cad-curso"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Observações:</label>
+                <textarea id="cad-obs" rows="3" placeholder="Algo que gostaria de nos dizer?"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="cad-termos"> Aceito os termos de uso *
+                </label>
+                <div class="erro-msg" id="erro-cad-termos"></div>
+            </div>
+
+            <button type="submit" class="btn-verde" id="btn-cadastro" disabled>📋 Cadastrar</button>
+        </form>
+
+        <div class="resultado-card" id="resultado-cadastro">
+            <h3 style="color: #2ecc71; margin-bottom: 10px;">✅ Cadastro Realizado!</h3>
+            <div id="dados-cadastro"></div>
+        </div>
+
+        <div class="output" id="output-cadastro">Preencha o formulário acima. O botão será habilitado quando todos os campos obrigatórios (*) estiverem válidos.</div>
+    </div>
+
+    <!-- ==================== SEÇÃO 6: Resumo ==================== -->
+    <div class="section">
+        <h2>6. Resumo: Eventos de Formulário</h2>
+        <button onclick="mostrarResumo()">▶ Ver Resumo</button>
+        <div class="output" id="output-resumo"></div>
+    </div>
+
+    <script>
+        /* ==========================================
+           FUNÇÕES DOS EXEMPLOS
+           ========================================== */
+
+        // --- Exemplo 1: Ler valores ---
+        function lerValores() {
+            const el = document.getElementById('output-leitura');
+            const nome = document.getElementById('leitura-nome').value;
+            const email = document.getElementById('leitura-email').value;
+            const cidade = document.getElementById('leitura-cidade');
+            const cidadeTexto = cidade.options[cidade.selectedIndex].text;
+            const aceito = document.getElementById('leitura-aceito').checked;
+
+            let resultado = '';
+            resultado += `--- Valores lidos com .value ---\n\n`;
+            resultado += `input[text].value  → "${nome}"\n`;
+            resultado += `input[email].value → "${email}"\n`;
+            resultado += `select.value       → "${cidade.value}"\n`;
+            resultado += `select (texto)     → "${cidadeTexto}"\n`;
+            resultado += `checkbox.checked   → ${aceito}\n\n`;
+            resultado += `typeof nome    → "${typeof nome}" (sempre string!)\n`;
+            resultado += `typeof aceito  → "${typeof aceito}" (boolean)`;
+
+            el.textContent = resultado;
+        }
+
+        // --- Exemplo 2: preventDefault ---
+        document.getElementById('form-prevent').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const msg = document.getElementById('prevent-msg').value;
+            const el = document.getElementById('output-prevent');
+
+            if (!msg.trim()) {
+                el.textContent = "❌ Digite uma mensagem primeiro!";
+                return;
+            }
+
+            el.textContent =
+                `✅ Formulário interceptado com preventDefault!\n\n` +
+                `e.preventDefault() impediu o reload da página.\n` +
+                `Mensagem capturada: "${msg}"\n\n` +
+                `Sem preventDefault, a página teria recarregado\n` +
+                `e você não veria esta mensagem!`;
+        });
+
+        // --- Exemplo 3: Validação em tempo real ---
+        const rtNome = document.getElementById('rt-nome');
+        const rtEmail = document.getElementById('rt-email');
+        const rtIdade = document.getElementById('rt-idade');
+        const outputRealtime = document.getElementById('output-realtime');
+
+        function validarEmailFormato(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function atualizarValidacao(input, erroId, valido) {
+            const erroEl = document.getElementById(erroId);
+            if (input.value === '') {
+                input.classList.remove('valido', 'invalido');
+                erroEl.classList.remove('visivel');
+            } else if (valido) {
+                input.classList.remove('invalido');
+                input.classList.add('valido');
+                erroEl.classList.remove('visivel');
+            } else {
+                input.classList.remove('valido');
+                input.classList.add('invalido');
+                erroEl.classList.add('visivel');
+            }
+        }
+
+        function logValidacaoRealtime() {
+            const nomeOk = rtNome.value.length >= 3;
+            const emailOk = validarEmailFormato(rtEmail.value);
+            const idade = Number(rtIdade.value);
+            const idadeOk = idade >= 18 && idade <= 120;
+
+            outputRealtime.textContent =
+                `Validação em tempo real (evento: input):\n\n` +
+                `Nome:  "${rtNome.value}" → ${rtNome.value ? (nomeOk ? '✅' : '❌ < 3 caracteres') : '⬜ vazio'}\n` +
+                `Email: "${rtEmail.value}" → ${rtEmail.value ? (emailOk ? '✅' : '❌ formato inválido') : '⬜ vazio'}\n` +
+                `Idade: "${rtIdade.value}" → ${rtIdade.value ? (idadeOk ? '✅' : '❌ fora do intervalo') : '⬜ vazio'}`;
+        }
+
+        rtNome.addEventListener('input', () => {
+            atualizarValidacao(rtNome, 'erro-rt-nome', rtNome.value.length >= 3);
+            logValidacaoRealtime();
+        });
+
+        rtEmail.addEventListener('input', () => {
+            atualizarValidacao(rtEmail, 'erro-rt-email', validarEmailFormato(rtEmail.value));
+            logValidacaoRealtime();
+        });
+
+        rtIdade.addEventListener('input', () => {
+            const idade = Number(rtIdade.value);
+            atualizarValidacao(rtIdade, 'erro-rt-idade', idade >= 18 && idade <= 120);
+            logValidacaoRealtime();
+        });
+
+        // --- Exemplo 4: Força da senha ---
+        const senhaInput = document.getElementById('senha-input');
+        const senhaConfirmar = document.getElementById('senha-confirmar');
+        const barraForca = document.getElementById('barra-forca');
+        const textoForca = document.getElementById('texto-forca');
+        const outputSenha = document.getElementById('output-senha');
+
+        function calcularForca(senha) {
+            let pontos = 0;
+            if (senha.length >= 6) pontos++;
+            if (senha.length >= 10) pontos++;
+            if (/[A-Z]/.test(senha)) pontos++;
+            if (/[0-9]/.test(senha)) pontos++;
+            if (/[^A-Za-z0-9]/.test(senha)) pontos++;
+            return pontos;
+        }
+
+        senhaInput.addEventListener('input', () => {
+            const senha = senhaInput.value;
+            const forca = calcularForca(senha);
+
+            barraForca.className = 'forca-senha-barra';
+
+            if (senha === '') {
+                textoForca.textContent = '';
+                barraForca.style.width = '0%';
+            } else if (forca <= 2) {
+                barraForca.classList.add('forca-fraca');
+                textoForca.textContent = '🔴 Fraca';
+                textoForca.style.color = '#e74c3c';
+            } else if (forca <= 3) {
+                barraForca.classList.add('forca-media');
+                textoForca.textContent = '🟡 Média';
+                textoForca.style.color = '#f1c40f';
+            } else {
+                barraForca.classList.add('forca-forte');
+                textoForca.textContent = '🟢 Forte';
+                textoForca.style.color = '#2ecc71';
+            }
+
+            let detalhes = `Senha: "${'•'.repeat(senha.length)}" (${senha.length} caracteres)\n\n`;
+            detalhes += `Critérios (pontuação: ${forca}/5):\n`;
+            detalhes += `  ${senha.length >= 6 ? '✅' : '❌'} Mínimo 6 caracteres\n`;
+            detalhes += `  ${senha.length >= 10 ? '✅' : '❌'} 10+ caracteres (bônus)\n`;
+            detalhes += `  ${/[A-Z]/.test(senha) ? '✅' : '❌'} Letra maiúscula\n`;
+            detalhes += `  ${/[0-9]/.test(senha) ? '✅' : '❌'} Número\n`;
+            detalhes += `  ${/[^A-Za-z0-9]/.test(senha) ? '✅' : '❌'} Caractere especial`;
+
+            outputSenha.textContent = detalhes;
+
+            verificarConfirmacao();
+        });
+
+        function verificarConfirmacao() {
+            const erroEl = document.getElementById('erro-confirmar');
+            if (senhaConfirmar.value === '') {
+                senhaConfirmar.classList.remove('valido', 'invalido');
+                erroEl.classList.remove('visivel');
+            } else if (senhaInput.value === senhaConfirmar.value) {
+                senhaConfirmar.classList.remove('invalido');
+                senhaConfirmar.classList.add('valido');
+                erroEl.classList.remove('visivel');
+            } else {
+                senhaConfirmar.classList.remove('valido');
+                senhaConfirmar.classList.add('invalido');
+                erroEl.classList.add('visivel');
+            }
+        }
+
+        senhaConfirmar.addEventListener('input', verificarConfirmacao);
+
+        // --- Exemplo 5: Cadastro Completo ---
+        const formCadastro = document.getElementById('form-cadastro');
+        const btnCadastro = document.getElementById('btn-cadastro');
+        const camposObrigatorios = ['cad-nome', 'cad-email', 'cad-curso'];
+
+        function validarCadastro() {
+            let todosValidos = true;
+            const nome = document.getElementById('cad-nome').value.trim();
+            const email = document.getElementById('cad-email').value.trim();
+            const curso = document.getElementById('cad-curso').value;
+            const termos = document.getElementById('cad-termos').checked;
+
+            // Validar nome
+            if (nome && nome.length < 3) {
+                mostrarErroCad('cad-nome', 'Nome deve ter pelo menos 3 caracteres');
+                todosValidos = false;
+            } else {
+                limparErroCad('cad-nome', nome.length >= 3);
+            }
+
+            // Validar email
+            if (email && !validarEmailFormato(email)) {
+                mostrarErroCad('cad-email', 'E-mail inválido');
+                todosValidos = false;
+            } else {
+                limparErroCad('cad-email', validarEmailFormato(email));
+            }
+
+            // Validar curso
+            if (!curso) {
+                todosValidos = false;
+            }
+
+            // Validar termos
+            if (!termos) {
+                todosValidos = false;
+            }
+
+            // Habilitar/desabilitar botão
+            const formularioCompleto = nome.length >= 3 && validarEmailFormato(email) && curso && termos;
+            btnCadastro.disabled = !formularioCompleto;
+
+            const output = document.getElementById('output-cadastro');
+            output.textContent =
+                `Status dos campos obrigatórios:\n` +
+                `  Nome:   ${nome.length >= 3 ? '✅' : '❌'} "${nome}"\n` +
+                `  Email:  ${validarEmailFormato(email) ? '✅' : '❌'} "${email}"\n` +
+                `  Curso:  ${curso ? '✅' : '❌'} "${curso}"\n` +
+                `  Termos: ${termos ? '✅' : '❌'}\n\n` +
+                `Botão: ${formularioCompleto ? '🟢 Habilitado' : '🔴 Desabilitado'}`;
+        }
+
+        function mostrarErroCad(campoId, mensagem) {
+            const input = document.getElementById(campoId);
+            const erro = document.getElementById('erro-' + campoId);
+            input.classList.remove('valido');
+            input.classList.add('invalido');
+            erro.textContent = mensagem;
+            erro.classList.add('visivel');
+        }
+
+        function limparErroCad(campoId, valido) {
+            const input = document.getElementById(campoId);
+            const erro = document.getElementById('erro-' + campoId);
+            input.classList.remove('invalido');
+            if (valido && input.value) input.classList.add('valido');
+            else input.classList.remove('valido');
+            erro.classList.remove('visivel');
+        }
+
+        // Adicionar listeners em todos os campos
+        ['cad-nome', 'cad-email', 'cad-telefone', 'cad-curso'].forEach(id => {
+            document.getElementById(id).addEventListener('input', validarCadastro);
+        });
+        document.getElementById('cad-curso').addEventListener('change', validarCadastro);
+        document.getElementById('cad-termos').addEventListener('change', validarCadastro);
+
+        // Submit do formulário
+        formCadastro.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const dados = {
+                nome: document.getElementById('cad-nome').value,
+                email: document.getElementById('cad-email').value,
+                telefone: document.getElementById('cad-telefone').value || '(não informado)',
+                curso: document.getElementById('cad-curso').options[document.getElementById('cad-curso').selectedIndex].text,
+                obs: document.getElementById('cad-obs').value || '(nenhuma)'
+            };
+
+            // Mostrar resultado
+            const card = document.getElementById('resultado-cadastro');
+            const dadosEl = document.getElementById('dados-cadastro');
+            dadosEl.innerHTML =
+                `<p><strong>Nome:</strong> ${dados.nome}</p>` +
+                `<p><strong>E-mail:</strong> ${dados.email}</p>` +
+                `<p><strong>Telefone:</strong> ${dados.telefone}</p>` +
+                `<p><strong>Curso:</strong> ${dados.curso}</p>` +
+                `<p><strong>Observações:</strong> ${dados.obs}</p>`;
+            card.classList.add('visivel');
+
+            document.getElementById('output-cadastro').textContent =
+                `✅ Formulário enviado com sucesso!\n\n` +
+                `preventDefault() impediu o reload.\n` +
+                `Dados capturados via .value:\n` +
+                JSON.stringify(dados, null, 2);
+        });
+
+        // --- Exemplo 6: Resumo ---
+        function mostrarResumo() {
+            document.getElementById('output-resumo').textContent =
+                `╔═══════════════════════════════════════════════════╗\n` +
+                `║      EVENTOS DE FORMULÁRIO - RESUMO              ║\n` +
+                `╠═══════════════════════════════════════════════════╣\n` +
+                `║                                                  ║\n` +
+                `║  submit     Formulário enviado (form)            ║\n` +
+                `║  input      Valor alterado em tempo real         ║\n` +
+                `║  change     Valor alterado (ao sair do campo)    ║\n` +
+                `║  focus      Campo recebeu foco                   ║\n` +
+                `║  blur       Campo perdeu foco                    ║\n` +
+                `║  keydown    Tecla pressionada                    ║\n` +
+                `║  keyup      Tecla solta                          ║\n` +
+                `║                                                  ║\n` +
+                `╠═══════════════════════════════════════════════════╣\n` +
+                `║      PROPRIEDADES ÚTEIS                          ║\n` +
+                `╠═══════════════════════════════════════════════════╣\n` +
+                `║                                                  ║\n` +
+                `║  .value        Texto do campo                    ║\n` +
+                `║  .checked      Estado do checkbox (boolean)      ║\n` +
+                `║  .disabled     Habilitar/desabilitar             ║\n` +
+                `║  .selectedIndex  Índice do select                ║\n` +
+                `║  .classList    Manipular classes CSS              ║\n` +
+                `║                                                  ║\n` +
+                `╠═══════════════════════════════════════════════════╣\n` +
+                `║      MÉTODOS IMPORTANTES                         ║\n` +
+                `╠═══════════════════════════════════════════════════╣\n` +
+                `║                                                  ║\n` +
+                `║  e.preventDefault()  Impede ação padrão          ║\n` +
+                `║  form.reset()        Limpa o formulário          ║\n` +
+                `║  input.focus()       Dá foco ao campo            ║\n` +
+                `║                                                  ║\n` +
+                `╚═══════════════════════════════════════════════════╝`;
+        }
+    </script>
+
+</body>
+</html>

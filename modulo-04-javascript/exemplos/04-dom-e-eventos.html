@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulação do DOM e Eventos - Exemplos JavaScript</title>
+    <style>
+        /* ==========================================
+           DOM E EVENTOS - EXEMPLOS
+           ========================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #34495e;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #2c3e50;
+            margin: 15px 0 10px;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .output {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            margin-top: 10px;
+            min-height: 40px;
+            white-space: pre-wrap;
+            font-size: 14px;
+        }
+
+        .code-display {
+            background: #f8f8f8;
+            border: 1px solid #ddd;
+            border-left: 4px solid #3498db;
+            padding: 12px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px 5px 5px 0;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        .btn-verde { background: #2ecc71; }
+        .btn-verde:hover { background: #27ae60; }
+        .btn-vermelho { background: #e74c3c; }
+        .btn-vermelho:hover { background: #c0392b; }
+
+        input[type="text"] {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            margin: 5px;
+        }
+
+        .nota {
+            background: #eaf6ff;
+            border-left: 4px solid #3498db;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Estilos para exemplos interativos */
+        .demo-box {
+            border: 2px dashed #bdc3c7;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            min-height: 60px;
+            transition: all 0.3s;
+        }
+
+        .demo-item {
+            display: inline-block;
+            padding: 8px 15px;
+            margin: 5px;
+            background: #ecf0f1;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .destaque {
+            background: #f1c40f !important;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .grande {
+            font-size: 1.3em;
+            padding: 12px 20px;
+        }
+
+        .vermelho { color: #e74c3c; }
+        .azul { color: #3498db; }
+        .verde { color: #2ecc71; }
+
+        /* Estilo para a lista de tarefas */
+        .tarefa-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin: 5px 0;
+            background: #ecf0f1;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .tarefa-item.concluida {
+            text-decoration: line-through;
+            opacity: 0.6;
+            background: #d5f4e6;
+        }
+
+        .tarefa-item button {
+            margin-left: auto;
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+
+        /* Cores para caixas do exemplo */
+        .cor-box {
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            margin: 10px;
+            border-radius: 8px;
+            transition: all 0.5s;
+            cursor: pointer;
+        }
+
+        /* Contador */
+        .contador-display {
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+            color: #2c3e50;
+            margin: 15px 0;
+        }
+
+        /* Área de eventos de teclado */
+        .keyboard-area {
+            border: 2px solid #3498db;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            cursor: text;
+            margin: 10px 0;
+            background: #eaf6ff;
+            font-size: 18px;
+            outline: none;
+        }
+
+        .keyboard-area:focus {
+            border-color: #2ecc71;
+            background: #eafff4;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🎯 Manipulação do DOM e Eventos</h1>
+    <p class="subtitle">Módulo 4 - JavaScript | Exemplo 04</p>
+
+    <!-- ==================== SEÇÃO 1: querySelector ==================== -->
+    <div class="section">
+        <h2>1. Selecionando Elementos: querySelector</h2>
+        <p>Para modificar a página com JavaScript, primeiro precisamos <strong>selecionar</strong> os elementos HTML.</p>
+
+        <div class="code-display">// Seleciona o PRIMEIRO elemento que corresponde ao seletor CSS
+const titulo = document.querySelector('h1');
+const botao  = document.querySelector('.btn-principal');
+const menu   = document.querySelector('#menu-nav');
+
+// Seleciona TODOS os elementos
+const itens  = document.querySelectorAll('.item');
+const parags = document.querySelectorAll('p');</div>
+
+        <div class="demo-box">
+            <p id="paragrafo-demo" class="demo-text">Este é um parágrafo de demonstração.</p>
+            <span class="demo-item" id="item-1">Item 1</span>
+            <span class="demo-item" id="item-2">Item 2</span>
+            <span class="demo-item" id="item-3">Item 3</span>
+        </div>
+
+        <button onclick="exemploQuerySelector()">▶ Selecionar e Mostrar Info</button>
+        <div class="output" id="output-query"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 2: Modificar Conteúdo ==================== -->
+    <div class="section">
+        <h2>2. Modificando Conteúdo: textContent e innerHTML</h2>
+
+        <div class="code-display">// textContent - altera só o texto (mais seguro)
+elemento.textContent = "Novo texto";
+
+// innerHTML - altera o HTML interno (cuidado com XSS!)
+elemento.innerHTML = "&lt;strong&gt;Texto em negrito&lt;/strong&gt;";</div>
+
+        <div class="demo-box">
+            <p id="texto-modificavel">Clique nos botões para me modificar!</p>
+        </div>
+
+        <input type="text" id="input-texto" placeholder="Digite o novo texto" value="JavaScript é incrível!" style="width: 250px">
+        <br>
+        <button onclick="alterarTextContent()">textContent</button>
+        <button onclick="alterarInnerHTML()">innerHTML (com negrito)</button>
+        <button onclick="resetarTexto()">🔄 Resetar</button>
+        <div class="output" id="output-conteudo"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 3: classList ==================== -->
+    <div class="section">
+        <h2>3. Manipulando Classes: classList</h2>
+        <p>Use <code>classList</code> para adicionar, remover ou alternar classes CSS dinamicamente.</p>
+
+        <div class="code-display">elemento.classList.add('destaque');       // adiciona
+elemento.classList.remove('destaque');    // remove
+elemento.classList.toggle('destaque');    // alterna (add/remove)
+elemento.classList.contains('destaque'); // verifica (true/false)</div>
+
+        <div class="demo-box">
+            <p id="paragrafo-classes" class="demo-item">Observe minhas classes mudarem!</p>
+        </div>
+
+        <button class="btn-verde" onclick="adicionarClasse()">add('destaque')</button>
+        <button class="btn-vermelho" onclick="removerClasse()">remove('destaque')</button>
+        <button onclick="alternarClasse()">toggle('grande')</button>
+        <button onclick="verificarClasse()">contains('destaque')?</button>
+        <div class="output" id="output-classes"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 4: Mudar Estilos ==================== -->
+    <div class="section">
+        <h2>4. Mudando Estilos com JavaScript</h2>
+        <p>Altere cores clicando nas caixas ou usando os botões:</p>
+
+        <div style="text-align: center;">
+            <div class="cor-box" id="box1" style="background: #3498db;" onclick="clicarBox(this)"></div>
+            <div class="cor-box" id="box2" style="background: #2ecc71;" onclick="clicarBox(this)"></div>
+            <div class="cor-box" id="box3" style="background: #e74c3c;" onclick="clicarBox(this)"></div>
+        </div>
+
+        <button onclick="corAleatoria()">🎨 Cores Aleatórias</button>
+        <button onclick="crescer()">📐 Aumentar Tamanho</button>
+        <button onclick="resetarBoxes()">🔄 Resetar</button>
+        <div class="output" id="output-estilos"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 5: createElement ==================== -->
+    <div class="section">
+        <h2>5. Criando Elementos: createElement + appendChild</h2>
+
+        <div class="code-display">// 1. Criar o elemento
+const novoItem = document.createElement('div');
+
+// 2. Configurar conteúdo e atributos
+novoItem.textContent = "Novo item!";
+novoItem.classList.add('demo-item');
+
+// 3. Adicionar ao documento
+container.appendChild(novoItem);</div>
+
+        <input type="text" id="input-novo-item" placeholder="Texto do novo item" value="Novo elemento">
+        <button class="btn-verde" onclick="criarElemento()">➕ Criar Elemento</button>
+        <button class="btn-vermelho" onclick="removerUltimo()">➖ Remover Último</button>
+        <button onclick="limparContainer()">🗑️ Limpar Todos</button>
+
+        <div class="demo-box" id="container-elementos">
+            <p style="color: #95a5a6; text-align: center;" id="placeholder-msg">Os elementos criados aparecerão aqui...</p>
+        </div>
+        <div class="output" id="output-criar"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 6: Contador com Eventos ==================== -->
+    <div class="section">
+        <h2>6. Eventos: Contador Interativo</h2>
+        <p>Cada botão usa <code>addEventListener</code> para reagir a cliques:</p>
+
+        <div class="contador-display" id="contador-valor">0</div>
+
+        <div style="text-align: center;">
+            <button class="btn-vermelho" id="btn-decrementar" style="font-size: 20px; padding: 10px 25px;">− 1</button>
+            <button id="btn-resetar" style="font-size: 20px; padding: 10px 25px; background: #95a5a6;">Reset</button>
+            <button class="btn-verde" id="btn-incrementar" style="font-size: 20px; padding: 10px 25px;">+ 1</button>
+        </div>
+
+        <div class="output" id="output-contador"></div>
+
+        <div class="nota">
+            <strong>💡 Código usado:</strong> Os botões acima usam <code>addEventListener('click', callback)</code> em vez de <code>onclick</code> inline. Essa é a forma recomendada!
+        </div>
+    </div>
+
+    <!-- ==================== SEÇÃO 7: Eventos de Teclado e Mouse ==================== -->
+    <div class="section">
+        <h2>7. Eventos de Teclado e Mouse</h2>
+        <p>Clique na área abaixo e pressione teclas para ver os eventos:</p>
+
+        <div class="keyboard-area" id="area-teclado" tabindex="0">
+            Clique aqui e pressione qualquer tecla!
+        </div>
+
+        <div class="demo-box" id="area-mouse" style="text-align: center; cursor: crosshair;">
+            <p>Mova o mouse aqui dentro!</p>
+            <p id="mouse-info">Posição: x=0, y=0</p>
+        </div>
+
+        <div class="output" id="output-eventos"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 8: Mini To-Do List ==================== -->
+    <div class="section">
+        <h2>8. Projeto: Mini Lista de Tarefas</h2>
+        <p>Combinando tudo: DOM, eventos, createElement, classList, addEventListener:</p>
+
+        <div style="display: flex; gap: 5px; margin-bottom: 10px;">
+            <input type="text" id="input-tarefa" placeholder="Nova tarefa..." style="flex: 1;">
+            <button class="btn-verde" id="btn-add-tarefa">➕ Adicionar</button>
+        </div>
+
+        <div id="lista-tarefas"></div>
+
+        <div class="output" id="output-todo" style="margin-top: 15px;"></div>
+    </div>
+
+    <script>
+        /* ==========================================
+           FUNÇÕES DOS EXEMPLOS INTERATIVOS
+           ========================================== */
+
+        // --- Exemplo 1: querySelector ---
+        function exemploQuerySelector() {
+            const el = document.getElementById('output-query');
+            let resultado = '';
+
+            const paragrafo = document.querySelector('#paragrafo-demo');
+            const itens = document.querySelectorAll('.demo-item');
+
+            resultado += `querySelector('#paragrafo-demo'):\n`;
+            resultado += `  Tag: ${paragrafo.tagName}\n`;
+            resultado += `  Texto: "${paragrafo.textContent}"\n`;
+            resultado += `  ID: "${paragrafo.id}"\n\n`;
+
+            resultado += `querySelectorAll('.demo-item'):\n`;
+            resultado += `  Encontrou: ${itens.length} elementos\n`;
+            itens.forEach((item, i) => {
+                resultado += `  [${i}] Tag: ${item.tagName}, Texto: "${item.textContent}", ID: "${item.id}"\n`;
+            });
+
+            resultado += `\n💡 querySelector usa seletores CSS!\n`;
+            resultado += `   #id  .classe  tag  tag.classe  etc.`;
+
+            el.textContent = resultado;
+        }
+
+        // --- Exemplo 2: Modificar conteúdo ---
+        function alterarTextContent() {
+            const el = document.getElementById('texto-modificavel');
+            const novoTexto = document.getElementById('input-texto').value;
+            el.textContent = novoTexto;
+
+            document.getElementById('output-conteudo').textContent =
+                `textContent = "${novoTexto}"\n→ Alterou o texto puro (seguro contra XSS)`;
+        }
+
+        function alterarInnerHTML() {
+            const el = document.getElementById('texto-modificavel');
+            const novoTexto = document.getElementById('input-texto').value;
+            el.innerHTML = `<strong>${novoTexto}</strong>`;
+
+            document.getElementById('output-conteudo').textContent =
+                `innerHTML = "<strong>${novoTexto}</strong>"\n→ Interpretou as tags HTML (cuidado com dados de usuário!)`;
+        }
+
+        function resetarTexto() {
+            document.getElementById('texto-modificavel').textContent = "Clique nos botões para me modificar!";
+            document.getElementById('output-conteudo').textContent = "🔄 Texto resetado!";
+        }
+
+        // --- Exemplo 3: classList ---
+        function adicionarClasse() {
+            const el = document.getElementById('paragrafo-classes');
+            el.classList.add('destaque');
+            document.getElementById('output-classes').textContent =
+                `classList.add('destaque')\nClasses atuais: "${el.className}"`;
+        }
+
+        function removerClasse() {
+            const el = document.getElementById('paragrafo-classes');
+            el.classList.remove('destaque');
+            document.getElementById('output-classes').textContent =
+                `classList.remove('destaque')\nClasses atuais: "${el.className}"`;
+        }
+
+        function alternarClasse() {
+            const el = document.getElementById('paragrafo-classes');
+            const resultado = el.classList.toggle('grande');
+            document.getElementById('output-classes').textContent =
+                `classList.toggle('grande') → ${resultado}\n(${resultado ? 'adicionou' : 'removeu'} a classe)\nClasses atuais: "${el.className}"`;
+        }
+
+        function verificarClasse() {
+            const el = document.getElementById('paragrafo-classes');
+            const tem = el.classList.contains('destaque');
+            document.getElementById('output-classes').textContent =
+                `classList.contains('destaque') → ${tem}\nClasses atuais: "${el.className}"`;
+        }
+
+        // --- Exemplo 4: Estilos ---
+        function clicarBox(box) {
+            const cor = box.style.backgroundColor;
+            document.getElementById('output-estilos').textContent =
+                `Clicou na caixa: ${box.id}\nCor atual: ${cor}\n\nelemento.style.backgroundColor acessou a cor.`;
+        }
+
+        function corAleatoria() {
+            const cores = ['#3498db', '#2ecc71', '#e74c3c', '#f1c40f', '#9b59b6', '#e67e22', '#1abc9c'];
+            const boxes = document.querySelectorAll('.cor-box');
+            let resultado = 'Cores aplicadas:\n';
+
+            boxes.forEach(box => {
+                const cor = cores[Math.floor(Math.random() * cores.length)];
+                box.style.backgroundColor = cor;
+                resultado += `  ${box.id}.style.backgroundColor = "${cor}"\n`;
+            });
+
+            document.getElementById('output-estilos').textContent = resultado;
+        }
+
+        function crescer() {
+            const boxes = document.querySelectorAll('.cor-box');
+            boxes.forEach(box => {
+                const tamanhoAtual = parseInt(box.style.width) || 100;
+                const novoTamanho = Math.min(tamanhoAtual + 20, 200);
+                box.style.width = novoTamanho + 'px';
+                box.style.height = novoTamanho + 'px';
+            });
+            document.getElementById('output-estilos').textContent =
+                'Aumentou tamanho com .style.width e .style.height';
+        }
+
+        function resetarBoxes() {
+            const cores = ['#3498db', '#2ecc71', '#e74c3c'];
+            document.querySelectorAll('.cor-box').forEach((box, i) => {
+                box.style.backgroundColor = cores[i];
+                box.style.width = '100px';
+                box.style.height = '100px';
+            });
+            document.getElementById('output-estilos').textContent = '🔄 Caixas resetadas!';
+        }
+
+        // --- Exemplo 5: createElement ---
+        let contadorElementos = 0;
+
+        function criarElemento() {
+            const container = document.getElementById('container-elementos');
+            const placeholder = document.getElementById('placeholder-msg');
+            if (placeholder) placeholder.remove();
+
+            const texto = document.getElementById('input-novo-item').value || "Item";
+            contadorElementos++;
+
+            // Criar novo elemento
+            const novo = document.createElement('div');
+            novo.classList.add('demo-item');
+            novo.textContent = `#${contadorElementos}: ${texto}`;
+            novo.style.cursor = 'pointer';
+            novo.addEventListener('click', function() {
+                this.classList.toggle('destaque');
+            });
+
+            container.appendChild(novo);
+
+            document.getElementById('output-criar').textContent =
+                `createElement('div') → novo elemento criado\n` +
+                `novo.textContent = "#${contadorElementos}: ${texto}"\n` +
+                `novo.classList.add('demo-item')\n` +
+                `container.appendChild(novo)\n\n` +
+                `Total de elementos: ${container.children.length}\n` +
+                `💡 Clique em um elemento para alternar destaque!`;
+        }
+
+        function removerUltimo() {
+            const container = document.getElementById('container-elementos');
+            if (container.lastElementChild) {
+                const removido = container.lastElementChild.textContent;
+                container.removeChild(container.lastElementChild);
+                document.getElementById('output-criar').textContent =
+                    `removeChild(lastElementChild)\nRemovido: "${removido}"\nRestantes: ${container.children.length}`;
+            } else {
+                document.getElementById('output-criar').textContent = "❌ Nenhum elemento para remover!";
+            }
+        }
+
+        function limparContainer() {
+            const container = document.getElementById('container-elementos');
+            container.innerHTML = '<p style="color: #95a5a6; text-align: center;">Os elementos criados aparecerão aqui...</p>';
+            contadorElementos = 0;
+            document.getElementById('output-criar').textContent = "🗑️ Todos os elementos removidos!";
+        }
+
+        // --- Exemplo 6: Contador com addEventListener ---
+        (function() {
+            let contagem = 0;
+            const display = document.getElementById('contador-valor');
+            const output = document.getElementById('output-contador');
+
+            function atualizarCor() {
+                if (contagem > 0) display.style.color = '#2ecc71';
+                else if (contagem < 0) display.style.color = '#e74c3c';
+                else display.style.color = '#2c3e50';
+            }
+
+            document.getElementById('btn-incrementar').addEventListener('click', () => {
+                contagem++;
+                display.textContent = contagem;
+                atualizarCor();
+                output.textContent = `Evento: click no botão +1\nValor atual: ${contagem}`;
+            });
+
+            document.getElementById('btn-decrementar').addEventListener('click', () => {
+                contagem--;
+                display.textContent = contagem;
+                atualizarCor();
+                output.textContent = `Evento: click no botão -1\nValor atual: ${contagem}`;
+            });
+
+            document.getElementById('btn-resetar').addEventListener('click', () => {
+                contagem = 0;
+                display.textContent = contagem;
+                atualizarCor();
+                output.textContent = `Evento: click no botão Reset\nValor atual: ${contagem}`;
+            });
+        })();
+
+        // --- Exemplo 7: Eventos de teclado e mouse ---
+        const areaTeclado = document.getElementById('area-teclado');
+        const outputEventos = document.getElementById('output-eventos');
+        let logEventos = '';
+
+        areaTeclado.addEventListener('keydown', (e) => {
+            areaTeclado.textContent = `Tecla: ${e.key}`;
+            logEventos = `Evento: keydown\n` +
+                `  e.key:  "${e.key}"\n` +
+                `  e.code: "${e.code}"\n` +
+                `  e.type: "${e.type}"\n` +
+                `  Shift: ${e.shiftKey} | Ctrl: ${e.ctrlKey} | Alt: ${e.altKey}`;
+            outputEventos.textContent = logEventos;
+        });
+
+        const areaMouse = document.getElementById('area-mouse');
+        const mouseInfo = document.getElementById('mouse-info');
+
+        areaMouse.addEventListener('mousemove', (e) => {
+            const rect = areaMouse.getBoundingClientRect();
+            const x = Math.round(e.clientX - rect.left);
+            const y = Math.round(e.clientY - rect.top);
+            mouseInfo.textContent = `Posição: x=${x}, y=${y}`;
+        });
+
+        areaMouse.addEventListener('click', (e) => {
+            outputEventos.textContent =
+                `Evento: click no area-mouse\n` +
+                `  e.target: ${e.target.tagName}\n` +
+                `  e.clientX: ${e.clientX}\n` +
+                `  e.clientY: ${e.clientY}\n` +
+                `  e.type: "${e.type}"`;
+        });
+
+        // --- Exemplo 8: Mini To-Do List ---
+        const inputTarefa = document.getElementById('input-tarefa');
+        const btnAddTarefa = document.getElementById('btn-add-tarefa');
+        const listaTarefas = document.getElementById('lista-tarefas');
+        const outputTodo = document.getElementById('output-todo');
+
+        function adicionarTarefa() {
+            const texto = inputTarefa.value.trim();
+            if (!texto) {
+                outputTodo.textContent = "❌ Digite uma tarefa!";
+                return;
+            }
+
+            // Criar elemento da tarefa
+            const tarefa = document.createElement('div');
+            tarefa.classList.add('tarefa-item');
+
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.style.marginRight = '10px';
+            checkbox.style.cursor = 'pointer';
+
+            const label = document.createElement('span');
+            label.textContent = texto;
+            label.style.flex = '1';
+
+            const btnRemover = document.createElement('button');
+            btnRemover.textContent = '🗑️';
+            btnRemover.classList.add('btn-vermelho');
+
+            // Eventos
+            checkbox.addEventListener('change', () => {
+                tarefa.classList.toggle('concluida');
+                atualizarStatusTodo();
+            });
+
+            btnRemover.addEventListener('click', () => {
+                tarefa.remove();
+                atualizarStatusTodo();
+            });
+
+            tarefa.appendChild(checkbox);
+            tarefa.appendChild(label);
+            tarefa.appendChild(btnRemover);
+            listaTarefas.appendChild(tarefa);
+
+            inputTarefa.value = '';
+            inputTarefa.focus();
+            atualizarStatusTodo();
+        }
+
+        function atualizarStatusTodo() {
+            const total = listaTarefas.children.length;
+            const concluidas = listaTarefas.querySelectorAll('.concluida').length;
+            outputTodo.textContent =
+                `Total: ${total} tarefa(s) | Concluídas: ${concluidas} | Pendentes: ${total - concluidas}`;
+        }
+
+        btnAddTarefa.addEventListener('click', adicionarTarefa);
+        inputTarefa.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') adicionarTarefa();
+        });
+    </script>
+
+</body>
+</html>

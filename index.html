@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fundamentos de Desenvolvimento Web</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --paper: #ffffff;
+      --text: #142033;
+      --muted: #53627b;
+      --primary: #0f5eb8;
+      --primary-soft: #e7f1ff;
+      --accent: #ef7f1a;
+      --border: #d8e1ee;
+      --shadow: 0 18px 38px rgba(15, 31, 53, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+      background:
+        radial-gradient(circle at 10% -10%, #c7e2ff 0%, transparent 42%),
+        radial-gradient(circle at 100% 0%, #ffd8b4 0%, transparent 36%),
+        var(--bg);
+      color: var(--text);
+      padding: 28px 16px 42px;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    header {
+      padding: 28px 24px 18px;
+      background: linear-gradient(135deg, #f7fbff 0%, #fff7ee 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      line-height: 1.55;
+      max-width: 900px;
+    }
+
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .quick-links a {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--primary);
+      background: var(--primary-soft);
+      border: 1px solid #cde2ff;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .quick-links a:hover {
+      border-color: #9ec6fa;
+    }
+
+    .quick-links a.discussions-btn {
+      color: #7c2d12;
+      background: #fff7ed;
+      border-color: #fed7aa;
+    }
+
+    .quick-links a.discussions-btn:hover {
+      border-color: #fdba74;
+    }
+
+    .quick-links a.issues-btn {
+      color: #064e3b;
+      background: #ecfdf5;
+      border-color: #a7f3d0;
+    }
+
+    .quick-links a.issues-btn:hover {
+      border-color: #6ee7b7;
+    }
+
+    .content {
+      padding: 22px 24px 28px;
+      display: grid;
+      gap: 24px;
+    }
+
+    section h2 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .pill {
+      border: 1px solid var(--border);
+      background: #fbfdff;
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .pill strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--primary);
+    }
+
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 14px;
+    }
+
+    .module-card {
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .module-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 7px;
+    }
+
+    .meta {
+      display: inline-block;
+      margin-bottom: 8px;
+      color: #324968;
+      background: #eef4fd;
+      border: 1px solid #d7e6fa;
+      border-radius: 999px;
+      padding: 3px 10px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .module-card p {
+      color: var(--muted);
+      line-height: 1.45;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .module-card a {
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--primary);
+      margin-right: 12px;
+      font-size: 0.9rem;
+    }
+
+    .examples {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .examples h3 {
+      background: #f7fafd;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 14px;
+      font-size: 1rem;
+    }
+
+    .examples ul {
+      list-style: none;
+      padding: 10px 14px 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .examples li {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .examples a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .roadmap {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      background: #fcfdff;
+    }
+
+    .roadmap ol {
+      padding-left: 18px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    code {
+      background: #eef3fa;
+      border: 1px solid #dde7f5;
+      border-radius: 6px;
+      padding: 1px 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.9em;
+      color: #1e3352;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 14px 24px 16px;
+      color: #6a7790;
+      font-size: 0.87rem;
+    }
+
+    .marker {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    @media (max-width: 720px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      .container {
+        border-radius: 14px;
+      }
+
+      header,
+      .content,
+      footer {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Fundamentos de Desenvolvimento Web</h1>
+      <p class="subtitle">
+        Estrutura completa de estudo com base na apostila unificada e nos módulos por diretório.
+        Siga a trilha na ordem para manter a evolução do conteúdo.
+      </p>
+      <nav class="quick-links" aria-label="Acessos rápidos">
+        <a href="./apostila-fundamentos-web.md">Apostila Completa (Markdown)</a>
+        <a href="./guia-repositorio.html">Guia do Repositório</a>
+        <a href="./bibliografia.html">Bibliografia</a>
+        <a href="./conversao-word.html">Conversão para Word</a>
+        <a class="discussions-btn" href="https://github.com/thiagocidade/curso-desenvolvimento-web/discussions" target="_blank" rel="noopener noreferrer">Discussion</a>
+        <a class="issues-btn" href="https://github.com/thiagocidade/curso-desenvolvimento-web/issues" target="_blank" rel="noopener noreferrer">Issue</a>
+      </nav>
+    </header>
+
+    <div class="content">
+      <section>
+        <h2>Visão Geral</h2>
+        <div class="intro-grid">
+          <article class="pill">
+            <strong>Carga Horária</strong>
+            32 horas distribuídas em 8 dias (4h por dia).
+          </article>
+          <article class="pill">
+            <strong>Perfil</strong>
+            Iniciantes em programação e desenvolvimento web.
+          </article>
+          <article class="pill">
+            <strong>Tecnologias</strong>
+            HTML, CSS, JavaScript, Git e GitHub.
+          </article>
+          <article class="pill">
+            <strong>Objetivo Final</strong>
+            Entregar um projeto web completo com deploy.
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Módulos de Estudo</h2>
+        <div class="module-grid">
+          <article class="module-card">
+            <h3>Módulo 1: Introdução ao Desenvolvimento Web</h3>
+            <span class="meta">Dia 1 · 4h</span>
+            <p>Base conceitual da web, internet, ferramentas, Git/GitHub e primeiros passos com IA.</p>
+            <a href="./modulo-01-introducao/index.html">Abrir módulo</a>
+          </article>
+
+          <article class="module-card">
+            <h3>Módulo 2: HTML - Estruturando a Web</h3>
+            <span class="meta">Dias 2 e 3 · 8h</span>
+            <p>Estrutura de páginas, semântica, formulários, tabelas, acessibilidade e validação HTML.</p>
+            <a href="./modulo-02-html/index.html">Abrir módulo</a>
+            <a href="./modulo-02-html/exemplos/index.html">Exemplos práticos</a>
+          </article>
+
+          <article class="module-card">
+            <h3>Módulo 3: CSS - Estilizando a Web</h3>
+            <span class="meta">Dias 4 e 5 · 8h</span>
+            <p>Seletores, cascata, box model, flexbox, grid, responsividade e animações.</p>
+            <a href="./modulo-03-css/index.html">Abrir módulo</a>
+            <a href="./modulo-03-css/exemplos/index.html">Exemplos práticos</a>
+          </article>
+
+          <article class="module-card">
+            <h3>Módulo 4: JavaScript - Interatividade na Web</h3>
+            <span class="meta">Dias 6 e 7 · 8h</span>
+            <p>Lógica, funções, arrays, DOM, eventos, formulários e armazenamento local.</p>
+            <a href="./modulo-04-javascript/index.html">Abrir módulo</a>
+            <a href="./modulo-04-javascript/exemplos/index.html">Exemplos práticos</a>
+          </article>
+
+          <article class="module-card">
+            <h3>Módulo 5: Prática de Desenvolvimento Web</h3>
+            <span class="meta">Dia 8 · 4h</span>
+            <p>Revisão, boas práticas, deploy, IA aplicada e apresentação do projeto final.</p>
+            <a href="./modulo-05-projeto-final/index.html">Abrir módulo</a>
+            <a href="./modulo-05-projeto-final/projeto-base/index.html">Projeto base</a>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Orientações de Participação</h2>
+        <div class="module-grid">
+          <article class="examples">
+            <h3><span class="marker">Dia 1</span> · Participação obrigatória</h3>
+            <ul>
+              <li>Na Discussion fixada de apresentação, faça <strong>1 comentário</strong> com: nome, turma e o que espera do curso.</li>
+              <li>Abra uma Issue de check-in com padrão: <code>Check-in Dia 1 - Turma Tarde - Nome</code> ou <code>Check-in Dia 1 - Turma Noite - Nome</code>.</li>
+              <li>Inclua no conteúdo: nome, turma (<code>Tarde</code>/<code>Noite</code>) e objetivo no curso.</li>
+            </ul>
+          </article>
+
+          <article class="examples">
+            <h3><span class="marker">Discussions</span> · Interação contínua</h3>
+            <ul>
+              <li>Publique dúvidas de conteúdo, links úteis e aprendizados de cada módulo.</li>
+              <li>Comente em pelo menos uma publicação de colega por módulo.</li>
+              <li>Use Discussions para troca de ideias; evite usar Issue para conversa geral.</li>
+            </ul>
+          </article>
+
+          <article class="examples">
+            <h3><span class="marker">Issues</span> · Registro técnico</h3>
+            <ul>
+              <li>Abra Issue quando encontrar erro em material, exemplo quebrado ou instrução confusa.</li>
+              <li>Inclua contexto mínimo: módulo, arquivo e descrição objetiva do problema.</li>
+              <li>Se possível, proponha correção ou passo de reprodução.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Roteiro de Estudo Recomendado</h2>
+        <div class="roadmap">
+          <ol>
+            <li>Leia o módulo do dia no arquivo <code>README.md</code> correspondente.</li>
+            <li>Abra e execute todos os exemplos práticos do módulo.</li>
+            <li>Registre suas dúvidas e ajustes no seu fork do repositório.</li>
+            <li>Avance para o próximo módulo somente após concluir os exercícios.</li>
+            <li>No Dia 8, finalize e apresente o projeto usando o template base.</li>
+          </ol>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      Estrutura alinhada com <code>apostila-fundamentos-web.md</code> e com os diretórios <code>modulo-*</code> do repositório.
+    </footer>
+  </main>
+</body>
+</html>

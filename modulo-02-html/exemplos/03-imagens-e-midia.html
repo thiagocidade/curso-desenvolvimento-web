@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imagens e Multimídia - Exemplos HTML</title>
+</head>
+<body>
+
+    <h1>Imagens e Multimídia</h1>
+
+    <!-- Imagem básica com placeholder -->
+    <h2>Imagem Básica</h2>
+    <img
+        src="https://via.placeholder.com/600x400/3498db/ffffff?text=Minha+Imagem"
+        alt="Imagem de exemplo com fundo azul"
+        width="600"
+        height="400"
+    >
+
+    <hr>
+
+    <!-- Imagem com figure e figcaption -->
+    <h2>Imagem com Legenda</h2>
+    <figure>
+        <img
+            src="https://via.placeholder.com/500x300/2ecc71/ffffff?text=Paisagem"
+            alt="Uma bela paisagem com montanhas e lago"
+            width="500"
+            height="300"
+        >
+        <figcaption>Figura 1: Exemplo de imagem com legenda usando figure e figcaption.</figcaption>
+    </figure>
+
+    <hr>
+
+    <!-- Imagem responsiva com picture -->
+    <h2>Imagem Responsiva</h2>
+    <picture>
+        <source
+            media="(max-width: 480px)"
+            srcset="https://via.placeholder.com/480x320/e74c3c/ffffff?text=Mobile"
+        >
+        <source
+            media="(max-width: 768px)"
+            srcset="https://via.placeholder.com/768x400/f39c12/ffffff?text=Tablet"
+        >
+        <img
+            src="https://via.placeholder.com/1200x500/9b59b6/ffffff?text=Desktop"
+            alt="Imagem que muda conforme o tamanho da tela"
+            style="max-width: 100%; height: auto;"
+        >
+    </picture>
+    <p><em>Redimensione a janela do navegador para ver a imagem mudar!</em></p>
+
+    <hr>
+
+    <!-- Vídeo -->
+    <h2>Vídeo HTML5</h2>
+    <video
+        width="640"
+        height="360"
+        controls
+        poster="https://via.placeholder.com/640x360/34495e/ffffff?text=Video+Poster"
+    >
+        <source src="video-exemplo.mp4" type="video/mp4">
+        <source src="video-exemplo.webm" type="video/webm">
+        <p>Seu navegador não suporta o elemento de vídeo. <a href="video-exemplo.mp4">Baixe o vídeo aqui</a>.</p>
+    </video>
+
+    <hr>
+
+    <!-- Áudio -->
+    <h2>Áudio HTML5</h2>
+    <audio controls>
+        <source src="audio-exemplo.mp3" type="audio/mpeg">
+        <source src="audio-exemplo.ogg" type="audio/ogg">
+        <p>Seu navegador não suporta o elemento de áudio.</p>
+    </audio>
+
+    <hr>
+
+    <!-- Iframe - YouTube -->
+    <h2>Incorporando Vídeo do YouTube</h2>
+    <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+        title="Vídeo do YouTube incorporado"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+    ></iframe>
+
+    <hr>
+
+    <!-- Iframe - Google Maps -->
+    <h2>Incorporando Google Maps</h2>
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.1976509881556!2d-46.65342688502166!3d-23.56109268468041!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAv.%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1234567890"
+        width="600"
+        height="450"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        title="Mapa da Avenida Paulista"
+    ></iframe>
+
+    <hr>
+
+    <!-- Lazy loading -->
+    <h2>Lazy Loading (Carregamento Preguiçoso)</h2>
+    <p>A imagem abaixo só será carregada quando estiver próxima de aparecer na tela:</p>
+    <img
+        src="https://via.placeholder.com/800x400/1abc9c/ffffff?text=Lazy+Loading"
+        alt="Imagem com carregamento lazy"
+        width="800"
+        height="400"
+        loading="lazy"
+    >
+
+</body>
+</html>

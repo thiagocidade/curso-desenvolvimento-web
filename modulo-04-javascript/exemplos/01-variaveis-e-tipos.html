@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variáveis e Tipos de Dados - Exemplos JavaScript</title>
+    <style>
+        /* ==========================================
+           VARIÁVEIS E TIPOS DE DADOS - EXEMPLOS
+           ========================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #34495e;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #2c3e50;
+            margin: 15px 0 10px;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Área de saída estilo console */
+        .output {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            margin-top: 10px;
+            min-height: 40px;
+            white-space: pre-wrap;
+            font-size: 14px;
+        }
+
+        /* Exibição de código */
+        .code-display {
+            background: #f8f8f8;
+            border: 1px solid #ddd;
+            border-left: 4px solid #3498db;
+            padding: 12px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px 5px 5px 0;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        .btn-verde {
+            background: #2ecc71;
+        }
+
+        .btn-verde:hover {
+            background: #27ae60;
+        }
+
+        .btn-vermelho {
+            background: #e74c3c;
+        }
+
+        .btn-vermelho:hover {
+            background: #c0392b;
+        }
+
+        .nota {
+            background: #eaf6ff;
+            border-left: 4px solid #3498db;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .aviso {
+            background: #fff9e6;
+            border-left: 4px solid #f1c40f;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        input[type="text"], input[type="number"] {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            margin: 5px;
+            width: 200px;
+        }
+
+        .tipo-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            margin: 2px;
+        }
+
+        .tipo-string { background: #e74c3c; }
+        .tipo-number { background: #3498db; }
+        .tipo-boolean { background: #2ecc71; }
+        .tipo-undefined { background: #95a5a6; }
+        .tipo-null { background: #8e44ad; }
+        .tipo-object { background: #e67e22; }
+    </style>
+</head>
+<body>
+
+    <h1>📦 Variáveis e Tipos de Dados</h1>
+    <p class="subtitle">Módulo 4 - JavaScript | Exemplo 01</p>
+
+    <!-- ==================== SEÇÃO 1: let e const ==================== -->
+    <div class="section">
+        <h2>1. Declarando Variáveis: let e const</h2>
+        <p><strong>let</strong> cria uma variável que pode ter seu valor alterado. <strong>const</strong> cria uma constante (valor fixo).</p>
+
+        <div class="code-display">// Variável - pode mudar
+let nome = "Maria";
+nome = "João";        // ✅ OK - let permite reatribuir
+
+// Constante - NÃO pode mudar
+const PI = 3.14159;
+PI = 3;               // ❌ ERRO! const não permite reatribuir</div>
+
+        <button onclick="exemploLetConst()">▶ Executar Exemplo</button>
+        <div class="output" id="output-letconst"></div>
+
+        <div class="aviso">
+            <strong>⚠️ E o var?</strong> O <code>var</code> é a forma antiga de declarar variáveis. Evite usar — ele tem comportamentos confusos com escopo. Use sempre <code>let</code> ou <code>const</code>.
+        </div>
+    </div>
+
+    <!-- ==================== SEÇÃO 2: Tipos de Dados ==================== -->
+    <div class="section">
+        <h2>2. Os Tipos de Dados do JavaScript</h2>
+        <p>JavaScript tem tipos <strong>primitivos</strong> (simples) e tipos <strong>compostos</strong> (complexos).</p>
+
+        <div class="code-display">// Tipos primitivos
+let texto = "Olá mundo";     // string  (texto)
+let idade = 25;               // number  (número)
+let ativo = true;             // boolean (verdadeiro/falso)
+let vazio = null;             // null    (vazio intencional)
+let indefinido = undefined;   // undefined (não definido)</div>
+
+        <button onclick="exemploTipos()">▶ Ver Todos os Tipos</button>
+        <div class="output" id="output-tipos"></div>
+
+        <h3>Legenda dos Tipos</h3>
+        <p>
+            <span class="tipo-tag tipo-string">string</span>
+            <span class="tipo-tag tipo-number">number</span>
+            <span class="tipo-tag tipo-boolean">boolean</span>
+            <span class="tipo-tag tipo-undefined">undefined</span>
+            <span class="tipo-tag tipo-null">null</span>
+            <span class="tipo-tag tipo-object">object</span>
+        </p>
+    </div>
+
+    <!-- ==================== SEÇÃO 3: typeof ==================== -->
+    <div class="section">
+        <h2>3. Descobrindo o Tipo: typeof</h2>
+        <p>O operador <code>typeof</code> retorna o tipo de um valor como texto.</p>
+
+        <div class="code-display">typeof "Olá"      // "string"
+typeof 42         // "number"
+typeof true       // "boolean"
+typeof undefined  // "undefined"
+typeof null       // "object"  ← Bug histórico do JS!
+typeof [1, 2, 3]  // "object"  ← Arrays são objetos</div>
+
+        <button onclick="exemploTypeof()">▶ Testar typeof</button>
+        <div class="output" id="output-typeof"></div>
+
+        <div class="nota">
+            <strong>💡 Curiosidade:</strong> <code>typeof null</code> retorna <code>"object"</code> — isso é um bug que existe desde 1995! Nunca foi corrigido para não quebrar sites antigos.
+        </div>
+    </div>
+
+    <!-- ==================== SEÇÃO 4: Strings ==================== -->
+    <div class="section">
+        <h2>4. Trabalhando com Strings (Textos)</h2>
+        <p>Strings são textos. Podem usar aspas simples, duplas ou crases (template literals).</p>
+
+        <div class="code-display">let aspasSimples = 'Olá mundo';
+let aspasDuplas = "Olá mundo";
+let templateLiteral = `Olá mundo`;   // crases - aceita expressões!
+
+let nome = "Maria";
+let saudacao = `Olá, ${nome}!`;     // "Olá, Maria!"</div>
+
+        <p>Digite seu nome para ver template literals em ação:</p>
+        <input type="text" id="input-nome" placeholder="Seu nome">
+        <button onclick="exemploStrings()">▶ Gerar Saudação</button>
+        <div class="output" id="output-strings"></div>
+
+        <h3>Propriedades e Métodos Úteis</h3>
+        <button onclick="exemploMetodosString()">▶ Ver Métodos de String</button>
+        <div class="output" id="output-metodos-string"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 5: Numbers ==================== -->
+    <div class="section">
+        <h2>5. Trabalhando com Numbers (Números)</h2>
+        <p>JavaScript tem apenas um tipo numérico: <strong>number</strong> (inteiros e decimais juntos).</p>
+
+        <div class="code-display">let inteiro = 42;
+let decimal = 3.14;
+let negativo = -10;
+
+// Operações matemáticas
+let soma = 10 + 5;       // 15
+let divisao = 10 / 3;    // 3.3333...
+let resto = 10 % 3;      // 1 (resto da divisão)</div>
+
+        <p>Calculadora rápida:</p>
+        <input type="number" id="num1" placeholder="Número 1" value="10">
+        <input type="number" id="num2" placeholder="Número 2" value="3">
+        <br>
+        <button onclick="calcular('+')">➕ Somar</button>
+        <button onclick="calcular('-')">➖ Subtrair</button>
+        <button onclick="calcular('*')">✖️ Multiplicar</button>
+        <button onclick="calcular('/')">➗ Dividir</button>
+        <button onclick="calcular('%')">🔢 Resto</button>
+        <div class="output" id="output-numbers"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 6: Booleans ==================== -->
+    <div class="section">
+        <h2>6. Booleans (Verdadeiro ou Falso)</h2>
+        <p>Boolean é o tipo mais simples: só pode ser <code>true</code> ou <code>false</code>. É fundamental para condicionais.</p>
+
+        <div class="code-display">let maiorDeIdade = true;
+let chovendo = false;
+
+// Comparações retornam booleans
+10 > 5       // true
+3 === "3"    // false (tipos diferentes)
+3 == "3"     // true  (compara só o valor - EVITE!)</div>
+
+        <button onclick="exemploBoolean()">▶ Ver Comparações</button>
+        <div class="output" id="output-boolean"></div>
+
+        <div class="aviso">
+            <strong>⚠️ Importante:</strong> Use sempre <code>===</code> (igualdade estrita) em vez de <code>==</code> (igualdade solta). O <code>===</code> compara valor E tipo, evitando surpresas.
+        </div>
+    </div>
+
+    <!-- ==================== SEÇÃO 7: Conversão de Tipos ==================== -->
+    <div class="section">
+        <h2>7. Conversão de Tipos</h2>
+        <p>Às vezes precisamos converter um tipo em outro. JavaScript oferece funções para isso.</p>
+
+        <div class="code-display">// Para número
+Number("42")      // 42
+Number("abc")     // NaN (Not a Number)
+Number(true)      // 1
+
+// Para string
+String(42)        // "42"
+String(true)      // "true"
+
+// Para boolean
+Boolean(1)        // true
+Boolean(0)        // false
+Boolean("")       // false
+Boolean("texto")  // true</div>
+
+        <p>Digite um valor para converter:</p>
+        <input type="text" id="input-conversao" placeholder="Ex: 42, true, hello">
+        <button onclick="exemploConversao()">▶ Converter</button>
+        <div class="output" id="output-conversao"></div>
+    </div>
+
+    <!-- ==================== SEÇÃO 8: Valores Truthy e Falsy ==================== -->
+    <div class="section">
+        <h2>8. Valores Truthy e Falsy</h2>
+        <p>Em JavaScript, todo valor pode ser tratado como verdadeiro ou falso em um contexto booleano.</p>
+
+        <div class="code-display">// Valores FALSY (considerados falsos):
+// false, 0, "", null, undefined, NaN
+
+// Valores TRUTHY (considerados verdadeiros):
+// Tudo que NÃO é falsy!
+// "texto", 42, -1, " ", [], {}, true</div>
+
+        <button onclick="exemploTruthyFalsy()">▶ Testar Truthy/Falsy</button>
+        <div class="output" id="output-truthy"></div>
+    </div>
+
+    <script>
+        /* ==========================================
+           FUNÇÕES DOS EXEMPLOS INTERATIVOS
+           ========================================== */
+
+        // --- Exemplo 1: let e const ---
+        function exemploLetConst() {
+            const el = document.getElementById('output-letconst');
+            let resultado = '';
+
+            // let - pode reatribuir
+            let cidade = "São Paulo";
+            resultado += `let cidade = "São Paulo"  →  cidade = "${cidade}"\n`;
+
+            cidade = "Rio de Janeiro";
+            resultado += `cidade = "Rio de Janeiro" →  cidade = "${cidade}"\n`;
+            resultado += `✅ let permite mudar o valor!\n\n`;
+
+            // const - não pode reatribuir
+            const ANO_ATUAL = 2025;
+            resultado += `const ANO_ATUAL = 2025    →  ANO_ATUAL = ${ANO_ATUAL}\n`;
+            resultado += `❌ ANO_ATUAL = 2026 causaria ERRO!\n\n`;
+
+            // Regra prática
+            resultado += `💡 Regra: Use const por padrão.\n`;
+            resultado += `   Só use let se precisar mudar o valor depois.`;
+
+            el.textContent = resultado;
+        }
+
+        // --- Exemplo 2: Tipos de Dados ---
+        function exemploTipos() {
+            const el = document.getElementById('output-tipos');
+            let resultado = '';
+
+            let texto = "Olá, JavaScript!";
+            let numero = 42;
+            let decimal = 3.14;
+            let verdadeiro = true;
+            let falso = false;
+            let nulo = null;
+            let indefinido = undefined;
+            let lista = [1, 2, 3];
+            let objeto = { nome: "Ana", idade: 20 };
+
+            resultado += `"Olá, JavaScript!" → tipo: ${typeof texto} (string)\n`;
+            resultado += `42                 → tipo: ${typeof numero} (number)\n`;
+            resultado += `3.14               → tipo: ${typeof decimal} (number)\n`;
+            resultado += `true               → tipo: ${typeof verdadeiro} (boolean)\n`;
+            resultado += `false              → tipo: ${typeof falso} (boolean)\n`;
+            resultado += `null               → tipo: ${typeof nulo} (⚠️ "object" - bug!)\n`;
+            resultado += `undefined          → tipo: ${typeof indefinido} (undefined)\n`;
+            resultado += `[1, 2, 3]          → tipo: ${typeof lista} (object)\n`;
+            resultado += `{nome: "Ana"}      → tipo: ${typeof objeto} (object)`;
+
+            el.textContent = resultado;
+        }
+
+        // --- Exemplo 3: typeof ---
+        function exemploTypeof() {
+            const el = document.getElementById('output-typeof');
+            let resultado = '';
+
+            const testes = [
+                { valor: "Olá", repr: '"Olá"' },
+                { valor: 42, repr: '42' },
+                { valor: 3.14, repr: '3.14' },
+                { valor: true, repr: 'true' },
+                { valor: false, repr: 'false' },
+                { valor: undefined, repr: 'undefined' },
+                { valor: null, repr: 'null' },
+                { valor: [1, 2], repr: '[1, 2]' },
+                { valor: {a: 1}, repr: '{a: 1}' },
+                { valor: function(){}, repr: 'function(){}' }
+            ];
+
+            testes.forEach(t => {
+                resultado += `typeof ${t.repr.padEnd(16)} → "${typeof t.valor}"\n`;
+            });
+
+            el.textContent = resultado;
+        }
+
+        // --- Exemplo 4: Strings ---
+        function exemploStrings() {
+            const el = document.getElementById('output-strings');
+            const nome = document.getElementById('input-nome').value || "Visitante";
+
+            let resultado = '';
+            resultado += `Nome digitado: "${nome}"\n\n`;
+            resultado += `Template literal: \`Olá, \${nome}!\`\n`;
+            resultado += `Resultado: "Olá, ${nome}!"\n\n`;
+            resultado += `\`\${nome} tem \${nome.length} letras.\`\n`;
+            resultado += `Resultado: "${nome} tem ${nome.length} letras."\n\n`;
+            resultado += `\`Ano: \${2020 + 5}\`\n`;
+            resultado += `Resultado: "Ano: ${2020 + 5}"`;
+
+            el.textContent = resultado;
+        }
+
+        // --- Métodos de String ---
+        function exemploMetodosString() {
+            const el = document.getElementById('output-metodos-string');
+            let resultado = '';
+            const texto = "JavaScript é Incrível!";
+
+            resultado += `Texto original: "${texto}"\n\n`;
+            resultado += `.length          → ${texto.length} (tamanho)\n`;
+            resultado += `.toUpperCase()   → "${texto.toUpperCase()}"\n`;
+            resultado += `.toLowerCase()   → "${texto.toLowerCase()}"\n`;
+            resultado += `.includes("Script") → ${texto.includes("Script")}\n`;
+            resultado += `.indexOf("é")    → ${texto.indexOf("é")} (posição)\n`;
+            resultado += `.slice(0, 4)     → "${texto.slice(0, 4)}"\n`;
+            resultado += `.replace("Incrível", "Demais") → "${texto.replace("Incrível", "Demais")}"\n`;
+            resultado += `.trim()          → remove espaços extras\n`;
+            resultado += `.split(" ")      → [${texto.split(" ").map(p => `"${p}"`).join(", ")}]`;
+
+            el.textContent = resultado;
+        }
+
+        // --- Exemplo 5: Calculadora ---
+        function calcular(operador) {
+            const el = document.getElementById('output-numbers');
+            const a = Number(document.getElementById('num1').value);
+            const b = Number(document.getElementById('num2').value);
+
+            if (isNaN(a) || isNaN(b)) {
+                el.textContent = "❌ Por favor, digite números válidos!";
+                return;
+            }
+
+            let resultado;
+            let simbolo = operador;
+
+            switch (operador) {
+                case '+': resultado = a + b; break;
+                case '-': resultado = a - b; break;
+                case '*': resultado = a * b; simbolo = '×'; break;
+                case '/':
+                    if (b === 0) {
+                        el.textContent = "❌ Não é possível dividir por zero!";
+                        return;
+                    }
+                    resultado = a / b;
+                    simbolo = '÷';
+                    break;
+                case '%': resultado = a % b; break;
+            }
+
+            let texto = `${a} ${simbolo} ${b} = ${resultado}\n\n`;
+            texto += `typeof ${a}  → "${typeof a}"\n`;
+            texto += `typeof ${b}  → "${typeof b}"\n`;
+            texto += `typeof ${resultado} → "${typeof resultado}"`;
+
+            if (operador === '%') {
+                texto += `\n\n💡 O operador % retorna o RESTO da divisão.`;
+                texto += `\n   ${a} ÷ ${b} = ${Math.floor(a/b)} com resto ${resultado}`;
+            }
+
+            el.textContent = texto;
+        }
+
+        // --- Exemplo 6: Booleans ---
+        function exemploBoolean() {
+            const el = document.getElementById('output-boolean');
+            let resultado = '';
+
+            resultado += `=== Comparações ===\n`;
+            resultado += `10 > 5       → ${10 > 5}\n`;
+            resultado += `3 < 1        → ${3 < 1}\n`;
+            resultado += `5 >= 5       → ${5 >= 5}\n`;
+            resultado += `10 <= 9      → ${10 <= 9}\n\n`;
+
+            resultado += `=== Igualdade Estrita (===) vs Solta (==) ===\n`;
+            resultado += `5 === 5      → ${5 === 5}  (mesmo valor, mesmo tipo)\n`;
+            resultado += `5 === "5"    → ${5 === "5"}  (mesmo valor, tipo DIFERENTE)\n`;
+            resultado += `5 == "5"     → ${5 == "5"}   (compara só valor - EVITE!)\n\n`;
+
+            resultado += `null === undefined  → ${null === undefined}\n`;
+            resultado += `null == undefined   → ${null == undefined}\n\n`;
+
+            resultado += `=== Operadores Lógicos ===\n`;
+            resultado += `true && true   → ${true && true}   (E - ambos verdadeiros)\n`;
+            resultado += `true && false  → ${true && false}  (E - um é falso)\n`;
+            resultado += `true || false  → ${true || false}   (OU - pelo menos um)\n`;
+            resultado += `!true          → ${!true}  (NÃO - inverte)`;
+
+            el.textContent = resultado;
+        }
+
+        // --- Exemplo 7: Conversão de Tipos ---
+        function exemploConversao() {
+            const el = document.getElementById('output-conversao');
+            const valor = document.getElementById('input-conversao').value;
+
+            let resultado = '';
+            resultado += `Valor digitado: "${valor}" (tipo original: string)\n\n`;
+
+            resultado += `=== Conversões ===\n`;
+            resultado += `Number("${valor}")  → ${Number(valor)}`;
+            if (isNaN(Number(valor))) {
+                resultado += `  ⚠️ NaN = Not a Number`;
+            }
+            resultado += `\n`;
+            resultado += `String(${valor})   → "${String(valor)}"\n`;
+            resultado += `Boolean("${valor}") → ${Boolean(valor)}\n\n`;
+
+            resultado += `=== Por que Boolean("${valor}") é ${Boolean(valor)}? ===\n`;
+            if (valor === "" || valor === "0" || valor === "false" || valor === "null" || valor === "undefined") {
+                resultado += `String vazia "" é falsy.\n`;
+                resultado += `Mas atenção: Boolean("0") é true! (string não vazia)\n`;
+                resultado += `Só Boolean(0) - o número - é false.`;
+            } else {
+                resultado += `Qualquer string NÃO vazia é truthy (verdadeira).`;
+            }
+
+            el.textContent = resultado;
+        }
+
+        // --- Exemplo 8: Truthy e Falsy ---
+        function exemploTruthyFalsy() {
+            const el = document.getElementById('output-truthy');
+            let resultado = '';
+
+            const valores = [
+                { valor: false, repr: 'false' },
+                { valor: 0, repr: '0' },
+                { valor: '', repr: '""' },
+                { valor: null, repr: 'null' },
+                { valor: undefined, repr: 'undefined' },
+                { valor: NaN, repr: 'NaN' },
+                { valor: true, repr: 'true' },
+                { valor: 1, repr: '1' },
+                { valor: -1, repr: '-1' },
+                { valor: "olá", repr: '"olá"' },
+                { valor: " ", repr: '" "' },
+                { valor: "0", repr: '"0"' },
+                { valor: [], repr: '[]' },
+                { valor: {}, repr: '{}' },
+            ];
+
+            resultado += `FALSY (considerados falsos):\n`;
+            resultado += `─────────────────────────────\n`;
+            valores.filter(v => !v.valor && v.valor !== 0 || v.valor === 0 || v.valor === false)
+                   .filter(v => !Boolean(v.valor))
+                   .forEach(v => {
+                resultado += `  Boolean(${v.repr.padEnd(12)}) → ❌ false\n`;
+            });
+
+            resultado += `\nTRUTHY (considerados verdadeiros):\n`;
+            resultado += `─────────────────────────────────\n`;
+            valores.filter(v => Boolean(v.valor)).forEach(v => {
+                resultado += `  Boolean(${v.repr.padEnd(12)}) → ✅ true\n`;
+            });
+
+            resultado += `\n💡 Regra prática: Só existem 6 valores falsy.\n`;
+            resultado += `   Todo o resto é truthy!`;
+
+            el.textContent = resultado;
+        }
+    </script>
+
+</body>
+</html>
