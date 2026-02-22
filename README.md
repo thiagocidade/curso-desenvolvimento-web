@@ -80,27 +80,34 @@ Use sempre o padrão com **Turma + Nome** para facilitar organização entre as 
   - Status: `Presente`
   - Dúvida inicial (opcional)
 
-#### Configuração pronta no repositório
 
-- **Labels do curso (arquivo):** `.github/course-labels.csv`
-- **Script para criar/atualizar labels:** `scripts/setup-course-labels.sh`
-- **Script opcional para limpar labels antigas:** `scripts/prune-course-labels.sh`
-- **Templates de Issue:** `.github/ISSUE_TEMPLATE/`
-- **Modelo de Discussion do Dia 1:** `docs/discussion-dia1-template.md`
+### Configurar chave SSH e Github
 
-Para configurar labels com GitHub CLI:
+Desde de 2021, após uma atualização de segurança, é necessário configurar a chave SSH com o github para poder realizar as operações necessárias.
 
-```bash
-bash scripts/setup-course-labels.sh
-```
+Então, vamos configurar para poder clonar o projeto.
 
-Se quiser manter somente o conjunto simplificado (tipo, turma e status), rode também:
+Adicione seu email no comando abaixo e execute no terminal:
 
 ```bash
-bash scripts/prune-course-labels.sh
+ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
 
-Consulte o [Guia de Contribuição](./CONTRIBUTING.md) para mais detalhes.
+Adicione a chave gerada no ssh-agent:
+
+```bash
+ssh-add ~/.ssh/id_ed25519
+```
+
+Copie a chave pública gerada:
+
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+
+Adicione no github a chave pública copiada anteriormente, em:<br>
+`Settings > SSH and GPG keys > New SSH key`
+
 
 ## Ferramentas Necessárias
 
@@ -119,6 +126,11 @@ Neste curso, incentivamos o uso responsável de ferramentas de IA como apoio ao 
 - **GitHub Copilot** — Autocompletar inteligente no VS Code
 
 > **Importante:** A IA é uma ferramenta de apoio, não de substituição. Primeiro entenda os conceitos, depois use IA para acelerar seu desenvolvimento.
+
+## Links úteis
+
+- [APIs gratuitas para testes](https://www.tabnews.com.br/zehguilherme/dicas-de-apis-gratuitas-para-uso-em-projeto-crud)
+- [Aprender com a IA](https://notebooklm.google.com/)
 
 ## Bibliografia
 
