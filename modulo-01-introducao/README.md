@@ -89,6 +89,7 @@ A web passou por diversas fases de evolucao. Vamos entender cada uma:
 A primeira geracao da web era composta por paginas **estaticas** -- ou seja, paginas que apenas exibiam informacoes, sem interacao com o usuario. Era como ler um livro digital.
 
 Caracteristicas da Web 1.0:
+
 - Paginas apenas para leitura
 - Conteudo criado por poucos (empresas e instituicoes)
 - Pouca ou nenhuma interatividade
@@ -102,6 +103,7 @@ Caracteristicas da Web 1.0:
 A segunda geracao da web trouxe a **interacao**. Os usuarios deixaram de ser apenas leitores e passaram a ser tambem **criadores de conteudo**.
 
 Caracteristicas da Web 2.0:
+
 - Redes sociais (Facebook, Twitter, Instagram)
 - Conteudo gerado pelo usuario (YouTube, Wikipedia, blogs)
 - Aplicacoes web complexas (Gmail, Google Docs)
@@ -115,6 +117,7 @@ Caracteristicas da Web 2.0:
 A terceira geracao da web ainda esta em construcao e traz conceitos como descentralizacao, blockchain e inteligencia artificial.
 
 Caracteristicas da Web 3.0:
+
 - Descentralizacao (dados distribuidos, nao controlados por uma unica empresa)
 - Blockchain e criptomoedas
 - Inteligencia artificial integrada
@@ -201,6 +204,7 @@ Muita gente usa "internet" e "web" como sinonimos, mas sao coisas diferentes:
 **Analogia:** Pense na internet como o **sistema de estradas e rodovias** de um pais. A web seria os **carros, caminhoes e onibus** que trafegam por essas estradas. A estrada (internet) existe independentemente dos veiculos (web), e existem outros "veiculos" que tambem usam a estrada, como o e-mail, jogos online, streaming de video, etc.
 
 Outros servicos que usam a internet (mas nao sao "a web"):
+
 - E-mail (protocolo SMTP/IMAP)
 - Transferencia de arquivos (protocolo FTP)
 - Jogos online
@@ -237,6 +241,7 @@ A web funciona com base no modelo **cliente-servidor**. Esse e um dos conceitos 
 Um **servidor web** e, na essencia, um computador que esta ligado 24 horas por dia, 7 dias por semana, conectado a internet e que armazena os arquivos dos sites. Quando alguem acessa um site, o servidor envia esses arquivos para o navegador da pessoa.
 
 Existem diferentes tipos de servidores web (softwares):
+
 - **Apache** -- um dos mais antigos e populares
 - **Nginx** -- muito usado por sua velocidade
 - **Node.js** -- permite usar JavaScript no servidor
@@ -249,12 +254,14 @@ Existem diferentes tipos de servidores web (softwares):
 O **navegador** (ou browser, em ingles) e o programa que voce usa para acessar sites. Ele e o "cliente" no modelo cliente-servidor.
 
 O trabalho do navegador e:
+
 1. Enviar requisicoes para servidores
 2. Receber os arquivos de resposta (HTML, CSS, JS)
 3. **Interpretar** esses arquivos e montar a pagina visualmente
 4. Permitir que voce interaja com a pagina
 
 Principais navegadores:
+
 - **Google Chrome** -- o mais popular (cerca de 65% do mercado)
 - **Mozilla Firefox** -- codigo aberto, focado em privacidade
 - **Safari** -- navegador da Apple
@@ -265,7 +272,7 @@ Principais navegadores:
 
 ### Protocolo HTTP/HTTPS (explicacao simples)
 
-**HTTP** significa *HyperText Transfer Protocol* (Protocolo de Transferencia de Hipertexto). E o "idioma" que o navegador e o servidor usam para se comunicar.
+**HTTP** significa _HyperText Transfer Protocol_ (Protocolo de Transferencia de Hipertexto). E o "idioma" que o navegador e o servidor usam para se comunicar.
 
 **Analogia:** Imagine que voce esta em um pais estrangeiro e precisa se comunicar. O HTTP e como um idioma universal que todos (navegadores e servidores) entendem. Existem regras claras: como fazer um pedido, como responder, como informar que algo deu errado, etc.
 
@@ -277,6 +284,7 @@ Servidor:  "Claro! Aqui esta a pagina. Status: 200 OK" (resposta HTTP)
 ```
 
 Alguns **codigos de status HTTP** que voce vai encontrar:
+
 - **200 OK** -- tudo certo, a pagina foi encontrada
 - **301 Moved** -- a pagina mudou de endereco (redirecionamento)
 - **404 Not Found** -- a pagina nao existe (famoso "erro 404")
@@ -284,7 +292,7 @@ Alguns **codigos de status HTTP** que voce vai encontrar:
 
 **E o HTTPS?**
 
-O **HTTPS** e a versao **segura** do HTTP. O "S" vem de *Secure* (seguro). Quando voce acessa um site com HTTPS, toda a comunicacao entre seu navegador e o servidor e **criptografada** -- ou seja, mesmo que alguem intercepte os dados, nao conseguira le-los.
+O **HTTPS** e a versao **segura** do HTTP. O "S" vem de _Secure_ (seguro). Quando voce acessa um site com HTTPS, toda a comunicacao entre seu navegador e o servidor e **criptografada** -- ou seja, mesmo que alguem intercepte os dados, nao conseguira le-los.
 
 Voce pode identificar se um site usa HTTPS pelo **cadeado** que aparece na barra de endereco do navegador.
 
@@ -292,7 +300,7 @@ Voce pode identificar se um site usa HTTPS pelo **cadeado** que aparece na barra
 
 ### O que e DNS e como funciona
 
-**DNS** significa *Domain Name System* (Sistema de Nomes de Dominio). E como a "agenda telefonica" da internet.
+**DNS** significa _Domain Name System_ (Sistema de Nomes de Dominio). E como a "agenda telefonica" da internet.
 
 Todo computador conectado a internet tem um endereco numerico chamado **endereco IP** (ex: 142.250.218.4). Seria impossivel decorar esses numeros para cada site que voce quer acessar, certo?
 
@@ -316,7 +324,7 @@ Navegador se conecta ao IP: 142.250.218.4
 
 ### O que e uma URL (anatomia completa)
 
-**URL** significa *Uniform Resource Locator* (Localizador Uniforme de Recursos). E o endereco completo de uma pagina na web.
+**URL** significa _Uniform Resource Locator_ (Localizador Uniforme de Recursos). E o endereco completo de uma pagina na web.
 
 Vamos dissecar uma URL:
 
@@ -352,6 +360,7 @@ Protocolo  Dominio        Porta  Caminho      Parametros     Ancora
 - **AWS, Google Cloud, Azure** -- servicos de nuvem profissionais
 
 **Analogia do dominio e hospedagem:**
+
 - O **dominio** e como o **endereco** da sua casa (Rua das Flores, 123)
 - A **hospedagem** e o **terreno** onde a casa esta construida
 - Os **arquivos do site** sao a **casa** em si
@@ -394,9 +403,10 @@ Vamos usar uma analogia que vai acompanhar voce ao longo de todo o curso:
 
 ### HTML: A Estrutura (Esqueleto)
 
-**HTML** (*HyperText Markup Language*) e a linguagem de **marcacao** que define a estrutura de uma pagina web. E como o esqueleto do corpo humano ou a planta de uma casa.
+**HTML** (_HyperText Markup Language_) e a linguagem de **marcacao** que define a estrutura de uma pagina web. E como o esqueleto do corpo humano ou a planta de uma casa.
 
 Com HTML voce define:
+
 - Titulos e subtitulos
 - Paragrafos de texto
 - Imagens
@@ -411,15 +421,15 @@ Exemplo simples de HTML:
 ```html
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Minha Primeira Pagina</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Ola, Mundo!</h1>
     <p>Esta e minha primeira pagina web.</p>
-    <img src="foto.jpg" alt="Minha foto">
+    <img src="foto.jpg" alt="Minha foto" />
     <a href="https://google.com">Ir para o Google</a>
-</body>
+  </body>
 </html>
 ```
 
@@ -427,9 +437,10 @@ Exemplo simples de HTML:
 
 ### CSS: O Estilo (Aparencia)
 
-**CSS** (*Cascading Style Sheets*) e a linguagem que controla a **aparencia** visual de uma pagina. Sem CSS, todas as paginas seriam textos pretos em fundo branco com a formatacao padrao do navegador.
+**CSS** (_Cascading Style Sheets_) e a linguagem que controla a **aparencia** visual de uma pagina. Sem CSS, todas as paginas seriam textos pretos em fundo branco com a formatacao padrao do navegador.
 
 Com CSS voce define:
+
 - Cores (texto, fundo, bordas)
 - Fontes (tipo, tamanho, peso)
 - Espacamentos (margens, padding)
@@ -441,19 +452,19 @@ Exemplo simples de CSS:
 
 ```css
 body {
-    background-color: #f0f0f0;
-    font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
 }
 
 h1 {
-    color: #333333;
-    text-align: center;
-    font-size: 32px;
+  color: #333333;
+  text-align: center;
+  font-size: 32px;
 }
 
 p {
-    color: #666666;
-    line-height: 1.6;
+  color: #666666;
+  line-height: 1.6;
 }
 ```
 
@@ -464,6 +475,7 @@ p {
 **JavaScript** (abreviado como JS) e a linguagem de **programacao** que traz vida as paginas web. E ela que faz as coisas acontecerem quando voce clica em um botao, preenche um formulario ou interage com a pagina.
 
 Com JavaScript voce pode:
+
 - Reagir a cliques, teclas, scroll e outros eventos
 - Alterar o conteudo da pagina dinamicamente
 - Validar formularios
@@ -475,10 +487,10 @@ Exemplo simples de JavaScript:
 
 ```javascript
 // Quando o usuario clicar no botao, mostrar uma mensagem
-let botao = document.querySelector('#meuBotao');
+let botao = document.querySelector("#meuBotao");
 
-botao.addEventListener('click', function() {
-    alert('Voce clicou no botao!');
+botao.addEventListener("click", function () {
+  alert("Voce clicou no botao!");
 });
 ```
 
@@ -516,6 +528,7 @@ Agora que voce entende as tecnologias basicas, vamos falar sobre as **carreiras*
 O **front-end** e tudo o que o usuario **ve e interage** diretamente. O desenvolvedor front-end e responsavel por transformar designs em codigo funcional no navegador.
 
 **Tecnologias principais:**
+
 - HTML, CSS, JavaScript (a base!)
 - Frameworks CSS: Tailwind CSS, Bootstrap
 - Frameworks JavaScript: React, Vue.js, Angular, Svelte
@@ -523,6 +536,7 @@ O **front-end** e tudo o que o usuario **ve e interage** diretamente. O desenvol
 - Design responsivo e acessibilidade
 
 **O que faz no dia a dia:**
+
 - Transforma layouts (Figma, Adobe XD) em paginas funcionais
 - Garante que o site funcione em diferentes navegadores e dispositivos
 - Implementa animacoes e interacoes
@@ -534,6 +548,7 @@ O **front-end** e tudo o que o usuario **ve e interage** diretamente. O desenvol
 O **back-end** e tudo que acontece **por tras dos panos** -- no servidor. O desenvolvedor back-end cuida da logica, banco de dados, autenticacao e tudo que o usuario nao ve diretamente.
 
 **Tecnologias principais:**
+
 - Linguagens: Node.js (JavaScript), Python, Java, PHP, C#, Go, Ruby
 - Bancos de dados: PostgreSQL, MySQL, MongoDB
 - APIs: REST, GraphQL
@@ -541,6 +556,7 @@ O **back-end** e tudo que acontece **por tras dos panos** -- no servidor. O dese
 - Servidores e deploy
 
 **O que faz no dia a dia:**
+
 - Cria e mantem APIs (interfaces para o front-end acessar dados)
 - Gerencia bancos de dados
 - Implementa regras de negocio
@@ -558,16 +574,19 @@ O **full-stack** e o desenvolvedor que trabalha tanto no front-end quanto no bac
 O mundo do desenvolvimento web e amplo e tem muitas areas de atuacao:
 
 **UX/UI Designer:**
+
 - **UX (User Experience):** pesquisa e projeta a experiencia do usuario
 - **UI (User Interface):** cria a interface visual (cores, tipografia, botoes, layouts)
 - Ferramentas: Figma, Adobe XD, Sketch
 
 **DevOps:**
+
 - Cuida da infraestrutura, deploy e monitoramento
 - Ferramentas: Docker, Kubernetes, CI/CD, AWS, Azure
 - Automatiza processos de desenvolvimento
 
 **Desenvolvedor Mobile:**
+
 - Cria aplicativos para celulares e tablets
 - Tecnologias: React Native, Flutter, Swift (iOS), Kotlin (Android)
 - Muitos conceitos web se aplicam ao mobile
@@ -609,6 +628,7 @@ O **Visual Studio Code** (VS Code) e o editor de codigo mais popular do mundo. E
 #### Instalacao passo a passo
 
 **Windows:**
+
 1. Acesse https://code.visualstudio.com
 2. Clique no botao de download para Windows
 3. Execute o instalador baixado
@@ -620,6 +640,7 @@ O **Visual Studio Code** (VS Code) e o editor de codigo mais popular do mundo. E
 5. Clique em "Install" e aguarde
 
 **macOS:**
+
 1. Acesse https://code.visualstudio.com
 2. Clique no botao de download para macOS
 3. Abra o arquivo `.zip` baixado
@@ -680,41 +701,58 @@ Uma das grandes vantagens do VS Code sao as **extensoes**. Para instalar, clique
 
 Extensoes recomendadas para este curso:
 
-| Extensao | O que faz |
-|----------|-----------|
-| **Live Server** | Cria um servidor local e atualiza a pagina automaticamente ao salvar |
-| **Prettier** | Formata seu codigo automaticamente, mantendo-o organizado |
-| **Auto Rename Tag** | Ao renomear uma tag HTML de abertura, renomeia a de fechamento automaticamente |
-| **Portuguese (Brazil) Language Pack** | Traduz a interface do VS Code para portugues |
-| **Material Icon Theme** | Adiciona icones bonitos para diferentes tipos de arquivo |
-| **ESLint** | Identifica erros e problemas no seu codigo JavaScript |
-| **Color Highlight** | Mostra uma previa visual das cores no codigo CSS |
-| **Path Intellisense** | Autocompleta caminhos de arquivos |
-| **GitLens** | Mostra informacoes detalhadas do Git diretamente no editor |
+| Extensao                              | O que faz                                                                      |
+| ------------------------------------- | ------------------------------------------------------------------------------ |
+| **Live Server**                       | Cria um servidor local e atualiza a pagina automaticamente ao salvar           |
+| **Prettier**                          | Formata seu codigo automaticamente, mantendo-o organizado                      |
+| **Auto Rename Tag**                   | Ao renomear uma tag HTML de abertura, renomeia a de fechamento automaticamente |
+| **Portuguese (Brazil) Language Pack** | Traduz a interface do VS Code para portugues                                   |
+| **Material Icon Theme**               | Adiciona icones bonitos para diferentes tipos de arquivo                       |
+| **ESLint**                            | Identifica erros e problemas no seu codigo JavaScript                          |
+| **Color Highlight**                   | Mostra uma previa visual das cores no codigo CSS                               |
+| **Path Intellisense**                 | Autocompleta caminhos de arquivos                                              |
+| **GitLens**                           | Mostra informacoes detalhadas do Git diretamente no editor                     |
 
 > **Atencao:** Para instalar uma extensao, basta buscar pelo nome na aba de extensoes e clicar em "Install". Nao instale extensoes demais de uma vez -- va adicionando conforme sentir necessidade.
+
+#### Se não aplicou a formatação automática:
+
+No VS Code, faça assim:
+
+Abra as configurações JSON (Ctrl+Shift+P → Preferences: Open User Settings (JSON)).
+Adicione:
+
+```json
+{
+  "editor.formatOnSave": true,
+
+  "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[css]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" }
+}
+```
 
 #### Atalhos uteis
 
 Memorizar atalhos vai aumentar muito sua produtividade. Aqui estao os mais importantes:
 
-| Atalho (Windows/Linux) | Atalho (macOS) | Acao |
-|------------------------|----------------|------|
-| `Ctrl + S` | `Cmd + S` | Salvar arquivo |
-| `Ctrl + Z` | `Cmd + Z` | Desfazer |
-| `Ctrl + Shift + Z` | `Cmd + Shift + Z` | Refazer |
-| `Ctrl + C` | `Cmd + C` | Copiar |
-| `Ctrl + V` | `Cmd + V` | Colar |
-| `Ctrl + X` | `Cmd + X` | Recortar (linha inteira se nada selecionado) |
-| `Ctrl + D` | `Cmd + D` | Selecionar a proxima ocorrencia da palavra |
-| `Ctrl + /` | `Cmd + /` | Comentar/descomentar linha |
-| `Alt + Seta` | `Option + Seta` | Mover linha para cima/baixo |
-| `Ctrl + Shift + K` | `Cmd + Shift + K` | Deletar linha inteira |
-| `Ctrl + P` | `Cmd + P` | Abrir arquivo rapidamente |
-| `Ctrl + Shift + P` | `Cmd + Shift + P` | Abrir paleta de comandos |
-| `Ctrl + `` ` | `Cmd + `` ` | Abrir/fechar terminal integrado |
-| `Ctrl + B` | `Cmd + B` | Mostrar/ocultar barra lateral |
-| `Ctrl + Shift + F` | `Cmd + Shift + F` | Buscar em todos os arquivos |
+| Atalho (Windows/Linux) | Atalho (macOS)    | Acao                                         |
+| ---------------------- | ----------------- | -------------------------------------------- |
+| `Ctrl + S`             | `Cmd + S`         | Salvar arquivo                               |
+| `Ctrl + Z`             | `Cmd + Z`         | Desfazer                                     |
+| `Ctrl + Shift + Z`     | `Cmd + Shift + Z` | Refazer                                      |
+| `Ctrl + C`             | `Cmd + C`         | Copiar                                       |
+| `Ctrl + V`             | `Cmd + V`         | Colar                                        |
+| `Ctrl + X`             | `Cmd + X`         | Recortar (linha inteira se nada selecionado) |
+| `Ctrl + D`             | `Cmd + D`         | Selecionar a proxima ocorrencia da palavra   |
+| `Ctrl + /`             | `Cmd + /`         | Comentar/descomentar linha                   |
+| `Alt + Seta`           | `Option + Seta`   | Mover linha para cima/baixo                  |
+| `Ctrl + Shift + K`     | `Cmd + Shift + K` | Deletar linha inteira                        |
+| `Ctrl + P`             | `Cmd + P`         | Abrir arquivo rapidamente                    |
+| `Ctrl + Shift + P`     | `Cmd + Shift + P` | Abrir paleta de comandos                     |
+| `Ctrl + `` `           | `Cmd + `` `       | Abrir/fechar terminal integrado              |
+| `Ctrl + B`             | `Cmd + B`         | Mostrar/ocultar barra lateral                |
+| `Ctrl + Shift + F`     | `Cmd + Shift + F` | Buscar em todos os arquivos                  |
 
 > **Dica:** Voce nao precisa decorar todos de uma vez! Comece pelos mais basicos (salvar, desfazer, copiar, colar) e va aprendendo os outros aos poucos.
 
@@ -735,18 +773,21 @@ Existem varias formas de abrir o DevTools:
 O DevTools tem muitas abas, mas as tres mais importantes para comecar sao:
 
 **1. Elements (Elementos)**
+
 - Mostra a estrutura HTML da pagina em formato de arvore
 - Permite ver e editar HTML e CSS em tempo real
 - As alteracoes sao temporarias (somem ao recarregar a pagina)
 - Excelente para experimentar mudancas visuais
 
 **2. Console**
+
 - Mostra mensagens de erro, avisos e logs do JavaScript
 - Permite executar codigo JavaScript diretamente
 - Muito usado para depuracao (debugging)
 - Experimente digitar `console.log("Ola!")` e pressionar Enter
 
 **3. Network (Rede)**
+
 - Mostra todas as requisicoes que a pagina faz (arquivos, imagens, APIs)
 - Permite ver o tempo de carregamento de cada recurso
 - Muito util para diagnosticar problemas de performance
@@ -870,6 +911,7 @@ O **controle de versao** resolve esse problema. Ele:
 Muita gente confunde Git e GitHub, mas sao coisas diferentes:
 
 **Git:**
+
 - E um **software** de controle de versao
 - Funciona **localmente** no seu computador
 - Foi criado por **Linus Torvalds** (o mesmo criador do Linux) em 2005
@@ -877,6 +919,7 @@ Muita gente confunde Git e GitHub, mas sao coisas diferentes:
 - Funciona via linha de comando (terminal)
 
 **GitHub:**
+
 - E uma **plataforma web** que hospeda repositorios Git na nuvem
 - Permite **compartilhar codigo** com outras pessoas
 - Adiciona funcionalidades como Issues, Pull Requests, Actions
@@ -886,6 +929,7 @@ Muita gente confunde Git e GitHub, mas sao coisas diferentes:
 **Analogia:** Pense no **Git** como um **diario pessoal** onde voce registra tudo que faz. O **GitHub** e como uma **biblioteca publica** onde voce pode guardar seus diarios para que outras pessoas leiam e contribuam.
 
 Outras plataformas similares ao GitHub:
+
 - **GitLab** -- alternativa com CI/CD integrado
 - **Bitbucket** -- popular em ambientes corporativos
 
@@ -969,6 +1013,7 @@ git --version
 ```
 
 Se nao estiver instalado:
+
 - **Windows:** baixe em https://git-scm.com/download/win
 - **macOS:** `xcode-select --install` ou baixe em https://git-scm.com/download/mac
 - **Linux (Ubuntu):** `sudo apt install git`
@@ -1042,12 +1087,14 @@ git commit -m "Adicionar pagina inicial do site"
 > **Dica:** Escreva mensagens de commit claras e descritivas. Use verbos no infinitivo: "Adicionar", "Corrigir", "Atualizar", "Remover".
 
 Exemplos de boas mensagens de commit:
+
 - `"Adicionar pagina de contato"`
 - `"Corrigir bug no menu de navegacao"`
 - `"Atualizar cores do tema para nova identidade visual"`
 - `"Remover arquivo de configuracao duplicado"`
 
 Exemplos de mensagens ruins:
+
 - `"update"` -- vago demais
 - `"fix"` -- fix do que?
 - `"asdf"` -- sem sentido
@@ -1141,21 +1188,25 @@ git push
 O GitHub oferece muito mais do que apenas armazenamento de codigo. Aqui estao as funcionalidades que mais usaremos:
 
 **Issues (Problemas/Tarefas):**
+
 - Usado para reportar bugs, sugerir melhorias ou organizar tarefas
 - Cada issue tem um titulo, descricao, labels (etiquetas) e pode ser atribuida a alguem
 - Funciona como um sistema de gerenciamento de tarefas
 
 **Discussions (Discussoes):**
+
 - Forum de discussao dentro do repositorio
 - Otimo para perguntas, ideias e conversas da comunidade
 - Diferente das Issues, que sao para tarefas especificas
 
 **Pull Requests (PRs):**
+
 - Usado quando voce quer propor alteracoes no codigo
 - Permite revisao de codigo por outros desenvolvedores
 - E o padrao da industria para colaboracao em codigo
 
 **Actions:**
+
 - Automatizacao de tarefas (deploy, testes, etc.)
 - Roda scripts automaticamente quando algo acontece (ex: novo push)
 - Veremos mais sobre isso em modulos avancados
@@ -1166,13 +1217,15 @@ O GitHub oferece muito mais do que apenas armazenamento de codigo. Aqui estao as
 
 Aqui esta um guia rapido de Markdown:
 
-```markdown
+````markdown
 # Titulo Principal (h1)
+
 ## Subtitulo (h2)
+
 ### Sub-subtitulo (h3)
 
 **Texto em negrito**
-*Texto em italico*
+_Texto em italico_
 ~~Texto riscado~~
 
 - Item de lista
@@ -1195,13 +1248,15 @@ Aqui esta um guia rapido de Markdown:
 // Bloco de codigo com syntax highlighting
 console.log("Ola, mundo!");
 ```
+````
 
 | Coluna 1 | Coluna 2 |
-|----------|----------|
+| -------- | -------- |
 | Dado 1   | Dado 2   |
 
 - [ ] Tarefa pendente
 - [x] Tarefa concluida
+
 ```
 
 > **Dica:** O arquivo `README.md` e a "capa" do seu repositorio no GitHub. E a primeira coisa que as pessoas veem quando acessam seu projeto. Capriche nele!
@@ -1232,11 +1287,13 @@ Ferramentas de IA para desenvolvimento sao programas que usam **modelos de lingu
 **Exemplo de uso com Claude:**
 
 ```
+
 Voce: "Estou aprendendo HTML. Pode me explicar o que e uma tag semantica
-       e dar 3 exemplos com explicacao?"
+e dar 3 exemplos com explicacao?"
 
 Claude: "Claro! Tags semanticas sao elementos HTML que tem significado
-         proprio, descrevendo o tipo de conteudo que contem..."
+proprio, descrevendo o tipo de conteudo que contem..."
+
 ```
 
 #### GitHub Copilot: Autocompletar inteligente
@@ -1294,37 +1351,47 @@ A qualidade da resposta da IA depende muito da qualidade da sua pergunta (prompt
 
 **1. Seja especifico:**
 ```
+
 Ruim: "Como fazer um site?"
-Bom:  "Como criar uma barra de navegacao responsiva com HTML e CSS
-       que tenha logo a esquerda e links a direita?"
+Bom: "Como criar uma barra de navegacao responsiva com HTML e CSS
+que tenha logo a esquerda e links a direita?"
+
 ```
 
 **2. Forneca contexto:**
 ```
+
 Ruim: "Meu codigo nao funciona."
-Bom:  "Estou tentando criar um botao que muda de cor ao clicar,
-       usando JavaScript. Quando clico, nada acontece.
-       Aqui esta meu codigo: [colar codigo]"
+Bom: "Estou tentando criar um botao que muda de cor ao clicar,
+usando JavaScript. Quando clico, nada acontece.
+Aqui esta meu codigo: [colar codigo]"
+
 ```
 
 **3. Peca explicacoes:**
 ```
+
 Ruim: "Escreva o codigo."
-Bom:  "Escreva o codigo e explique cada parte,
-       especialmente as partes que um iniciante pode nao entender."
+Bom: "Escreva o codigo e explique cada parte,
+especialmente as partes que um iniciante pode nao entender."
+
 ```
 
 **4. Itere e refine:**
 Se a primeira resposta nao for ideal, refine seu pedido:
 ```
+
 "A explicacao ficou muito tecnica. Pode explicar usando uma
 analogia do dia a dia?"
+
 ```
 
 **5. Peca alternativas:**
 ```
+
 "Voce mostrou uma forma de fazer. Existe uma forma mais simples
 ou mais moderna de resolver isso?"
+
 ```
 
 ### Limitacoes e cuidados com IA
@@ -1367,12 +1434,14 @@ Agora e hora de colocar a mao na massa! As atividades a seguir vao consolidar tu
 2. Busque e instale cada uma das seguintes extensoes:
 
 ```
+
 1. Live Server
 2. Prettier - Code formatter
 3. Auto Rename Tag
 4. Portuguese (Brazil) Language Pack
 5. Material Icon Theme
-```
+
+````
 
 3. Apos instalar o Language Pack, o VS Code pedira para reiniciar. Reinicie.
 4. Apos instalar o Material Icon Theme, ative-o seguindo a notificacao.
@@ -1389,9 +1458,10 @@ Agora e hora de colocar a mao na massa! As atividades a seguir vao consolidar tu
 ```bash
 # No terminal, execute:
 xcode-select --install
-```
+````
 
 **Linux (Ubuntu/Debian):**
+
 ```bash
 sudo apt update
 sudo apt install git
@@ -1423,6 +1493,7 @@ git --version
 4. Verifique seu e-mail
 
 > **Checklist de conclusao:**
+>
 > - [ ] VS Code instalado e funcionando
 > - [ ] Extensoes essenciais instaladas
 > - [ ] Git instalado e configurado
@@ -1500,7 +1571,7 @@ Abra o arquivo `README.md` no VS Code e substitua o conteudo por:
 
 ---
 
-*Este repositorio foi criado como parte do curso de Fundamentos de Desenvolvimento Web.*
+_Este repositorio foi criado como parte do curso de Fundamentos de Desenvolvimento Web._
 ```
 
 > **Dica:** Substitua todas as partes entre colchetes `[]` pelas suas informacoes pessoais!
@@ -1537,6 +1608,7 @@ git push
 > **Parabens!** Voce acabou de fazer seu primeiro commit e push no GitHub!
 
 > **Checklist de conclusao:**
+>
 > - [ ] Repositorio criado no GitHub
 > - [ ] Repositorio clonado no computador
 > - [ ] README.md editado com apresentacao pessoal
@@ -1569,17 +1641,21 @@ git push
 # Ola, turma! 👋
 
 ## Quem sou eu
+
 Meu nome e [Seu Nome] e estou muito animado(a) para comecar
 este curso de Desenvolvimento Web!
 
 ## O que espero do curso
+
 [Escreva o que voce espera aprender e conquistar com o curso]
 
 ## Experiencia previa
+
 [Conte se ja teve algum contato com programacao, tecnologia,
 ou se e completamente iniciante. Tudo bem ser iniciante!]
 
 ## Um hobby ou curiosidade sobre mim
+
 [Conte algo interessante sobre voce -- um hobby, algo que gosta
 de fazer, uma curiosidade divertida]
 ```
@@ -1593,6 +1669,7 @@ de fazer, uma curiosidade divertida]
 3. Use reacoes (emojis) nas apresentacoes que gostar
 
 > **Checklist de conclusao:**
+>
 > - [ ] Post de apresentacao criado na Discussion
 > - [ ] Pelo menos 2 comentarios em apresentacoes de colegas
 > - [ ] Utilizou Markdown na formatacao
@@ -1632,6 +1709,7 @@ de fazer, uma curiosidade divertida]
 4. Observe a mudanca em tempo real na pagina
 
 **Experimente as seguintes mudancas:**
+
 - Mudar a cor do fundo da pagina (`background-color`)
 - Mudar a cor de um titulo (`color`)
 - Mudar o tamanho de uma fonte (`font-size`)
@@ -1644,19 +1722,19 @@ de fazer, uma curiosidade divertida]
 
 ```javascript
 // Exibir uma mensagem
-console.log("Ola, DevTools!")
+console.log("Ola, DevTools!");
 
 // Fazer uma conta
-2 + 2
+2 + 2;
 
 // Ver o titulo da pagina
-document.title
+document.title;
 
 // Mudar a cor de fundo da pagina inteira
-document.body.style.backgroundColor = "lightblue"
+document.body.style.backgroundColor = "lightblue";
 
 // Mostrar um alerta
-alert("Eu estou usando o DevTools!")
+alert("Eu estou usando o DevTools!");
 ```
 
 #### Passo 6: Documentar o resultado
@@ -1667,6 +1745,7 @@ alert("Eu estou usando o DevTools!")
 > **Lembrete:** Todas as alteracoes feitas pelo DevTools sao **temporarias**. Ao recarregar a pagina (F5), tudo volta ao normal. Voce nao esta modificando o site real!
 
 > **Checklist de conclusao:**
+>
 > - [ ] DevTools aberto com sucesso
 > - [ ] Texto de pelo menos um elemento alterado
 > - [ ] Estilo CSS de pelo menos dois elementos alterados
@@ -1692,6 +1771,7 @@ alert("Eu estou usando o DevTools!")
 2. Escolha um dos tipos abaixo:
 
 **Opcao A - Sugestao de melhoria:**
+
 ```
 Titulo: [Sugestao] Adicionar mais exemplos sobre [topico]
 
@@ -1708,6 +1788,7 @@ Estou no Modulo 1 e senti que [explique sua experiencia].
 ```
 
 **Opcao B - Duvida:**
+
 ```
 Titulo: [Duvida] Como funciona [conceito]?
 
@@ -1723,6 +1804,7 @@ Nao entendi completamente como funciona [conceito especifico].
 ```
 
 **Opcao C - Reporte de erro no material:**
+
 ```
 Titulo: [Erro] Erro no [local do material]
 
@@ -1741,6 +1823,7 @@ Encontrei um possivel erro em [local especifico do material].
 4. Clique em **"Submit new issue"**
 
 > **Checklist de conclusao:**
+>
 > - [ ] Issue criada com titulo descritivo
 > - [ ] Corpo da issue bem formatado com Markdown
 > - [ ] Labels adicionadas (se disponiveis)
@@ -1751,21 +1834,22 @@ Encontrei um possivel erro em [local especifico do material].
 
 Parabens por completar o primeiro modulo! Hoje voce aprendeu:
 
-| Topico | O que aprendeu |
-|--------|---------------|
-| Historia da Web | Como a web surgiu e evoluiu de 1989 ate hoje |
-| Como a Internet funciona | Modelo cliente-servidor, HTTP, DNS, URLs |
-| Tres linguagens base | HTML (estrutura), CSS (estilo), JavaScript (comportamento) |
-| Carreiras em Web | Front-end, Back-end, Full-stack e outras areas |
-| VS Code | Instalacao, configuracao e extensoes essenciais |
-| DevTools | Como inspecionar e modificar paginas pelo navegador |
-| Terminal | Comandos basicos de navegacao e gerenciamento de arquivos |
-| Git e GitHub | Controle de versao, commits, push, pull e colaboracao |
-| IA no desenvolvimento | Ferramentas, boas praticas e limitacoes |
+| Topico                   | O que aprendeu                                             |
+| ------------------------ | ---------------------------------------------------------- |
+| Historia da Web          | Como a web surgiu e evoluiu de 1989 ate hoje               |
+| Como a Internet funciona | Modelo cliente-servidor, HTTP, DNS, URLs                   |
+| Tres linguagens base     | HTML (estrutura), CSS (estilo), JavaScript (comportamento) |
+| Carreiras em Web         | Front-end, Back-end, Full-stack e outras areas             |
+| VS Code                  | Instalacao, configuracao e extensoes essenciais            |
+| DevTools                 | Como inspecionar e modificar paginas pelo navegador        |
+| Terminal                 | Comandos basicos de navegacao e gerenciamento de arquivos  |
+| Git e GitHub             | Controle de versao, commits, push, pull e colaboracao      |
+| IA no desenvolvimento    | Ferramentas, boas praticas e limitacoes                    |
 
 ### O que vem a seguir
 
 No **Modulo 2**, vamos mergulhar de cabeca no **HTML** e aprender:
+
 - Estrutura completa de um documento HTML
 - Tags semanticas
 - Formularios
